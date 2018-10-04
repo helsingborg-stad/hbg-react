@@ -416,7 +416,7 @@ Object.defineProperty(exports, "__esModule", {
 //Enable spread operator
 React.__spread = Object.assign;
 
-exports.default = Button = function Button(props) {
+exports.default = function (props) {
     var dynamicProps = {};
 
     dynamicProps.className = 'btn';

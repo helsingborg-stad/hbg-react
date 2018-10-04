@@ -1,7 +1,7 @@
 //Enable spread operator
 React.__spread = Object.assign;
 
-export default Button = (props) => {
+export default (props) => {
     let dynamicProps = {};
 
     dynamicProps.className = 'btn';
