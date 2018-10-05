@@ -1,6 +1,3 @@
-//Enable spread operator
-React.__spread = Object.assign;
-
 export default (props) => {
     let dynamicProps = {};
 
@@ -23,7 +20,8 @@ export default (props) => {
             'theme-second',
             'theme-third',
             'theme-fourth',
-            'theme-fifth'
+            'theme-fifth',
+            'plain'
         ];
 
         if (colors.includes(props.color.toLowerCase())) {
@@ -52,6 +50,10 @@ export default (props) => {
     } else if (typeof(props.onClick) != 'undefined') {
         dynamicProps.onClick = props.onClick;
         return (<button {...dynamicProps}>{props.children || props.title}</button>);
+    } else if (typeof(props.submit) != 'undefined' && props.submit) {
+        dynamicProps.type = "submit";
+        dynamicProps.value = props.title;
+        return (<input {...dynamicProps} />);
     }
 
     return null;
