@@ -62,11 +62,11 @@ module.exports = onClickOutside(class extends React.Component
 
                             if (typeof(item.href) != 'undefined') {
                                 props.href = item.href;
-                            } else if (typeof(item.clickAction) != 'undefined') {
-                                props.clickAction = () => item.clickAction(id, key);
+                            } else if (typeof(item.onClickAction) != 'undefined') {
+                                props.onClickAction = () => item.onClickAction(id, key);
                             }
 
-                            if (typeof(props.href) == 'undefined' && typeof(props.clickAction) == 'undefined') {
+                            if (typeof(props.href) == 'undefined' && typeof(props.onClickAction) == 'undefined') {
                                 return null;
                             }
 

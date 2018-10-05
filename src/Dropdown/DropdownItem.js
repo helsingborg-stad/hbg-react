@@ -9,8 +9,8 @@ module.exports = (props) => {
         dynamicProps.href = props.href;
     }
 
-    if (typeof(props.clickAction) != 'undefined') {
-        dynamicProps.onClick = props.clickAction;
+    if (typeof(props.onClickAction) != 'undefined') {
+        dynamicProps.onClick = props.onClickAction;
     }
 
     return (
