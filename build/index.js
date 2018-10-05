@@ -413,8 +413,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//Enable spread operator
-React.__spread = Object.assign;
 
 exports.default = function (props) {
     var dynamicProps = {};
@@ -429,7 +427,7 @@ exports.default = function (props) {
 
     //Color
     if (typeof props.color != 'undefined') {
-        var colors = ['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth'];
+        var colors = ['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth', 'plain'];
 
         if (colors.includes(props.color.toLowerCase())) {
             dynamicProps.className += ' btn-' + props.color.toLowerCase();
@@ -465,6 +463,10 @@ exports.default = function (props) {
             dynamicProps,
             props.children || props.title
         );
+    } else if (typeof props.submit != 'undefined' && props.submit) {
+        dynamicProps.type = "submit";
+        dynamicProps.value = props.title;
+        return React.createElement('input', dynamicProps);
     }
 
     return null;
@@ -566,13 +568,13 @@ module.exports = onClickOutside(function (_React$Component) {
 
                         if (typeof item.href != 'undefined') {
                             props.href = item.href;
-                        } else if (typeof item.clickAction != 'undefined') {
-                            props.clickAction = function () {
-                                return item.clickAction(id, key);
+                        } else if (typeof item.onClickAction != 'undefined') {
+                            props.onClickAction = function () {
+                                return item.onClickAction(id, key);
                             };
                         }
 
-                        if (typeof props.href == 'undefined' && typeof props.clickAction == 'undefined') {
+                        if (typeof props.href == 'undefined' && typeof props.onClickAction == 'undefined') {
                             return null;
                         }
 
@@ -599,11 +601,11 @@ module.exports = function (props) {
         { className: "c-dropdown__menu is-open" },
         React.createElement(
             "ul",
-            { className: "o-dropdown-links" },
-            props.children.map(function (child) {
+            { className: "o-dropdown-links unlist" },
+            props.children.map(function (child, index) {
                 return React.createElement(
                     "li",
-                    null,
+                    { key: index },
                     child
                 );
             })
@@ -629,8 +631,8 @@ module.exports = function (props) {
         dynamicProps.href = props.href;
     }
 
-    if (typeof props.clickAction != 'undefined') {
-        dynamicProps.onClick = props.clickAction;
+    if (typeof props.onClickAction != 'undefined') {
+        dynamicProps.onClick = props.onClickAction;
     }
 
     return React.createElement(
