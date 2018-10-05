@@ -20760,6 +20760,13 @@ module.exports = function (_React$Component) {
     }
 
     _createClass(_class, [{
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps) {
+            if (prevProps.fields != this.props.fields) {
+                this.setState({ fields: this.props.fields });
+            }
+        }
+    }, {
         key: 'submitForm',
         value: function submitForm(e) {
             e.preventDefault();

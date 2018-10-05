@@ -78,6 +78,13 @@ module.exports = class extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps)
+    {
+        if (prevProps.fields != this.props.fields) {
+            this.setState({fields: this.props.fields});
+        }
+    }
+
     submitForm(e)
     {
         e.preventDefault();
