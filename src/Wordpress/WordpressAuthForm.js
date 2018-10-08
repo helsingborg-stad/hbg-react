@@ -109,13 +109,13 @@ module.exports = class extends React.Component {
                 <Content>{content}</Content>
                 <table className="form-table">
                     <tbody>
-                        {fields.map((field, index) => (
+                        {Object.values(fields).map((field, index) => (
                             <Field
                                 key={field.id || 'field-' + index}
-                                id={field.id}
-                                label={field.label}
-                                value={field.value}
-                                readOnly={field.readOnly}
+                                id={field.id || 'field-' + index}
+                                label={field.label || null}
+                                value={field.value || null}
+                                readOnly={field.readOnly || null}
                                 onChangeAction={(e) => {
                                     let value = e.target.value;
                                     this.setState((prevState) => {
@@ -129,7 +129,7 @@ module.exports = class extends React.Component {
                 </table>
                 <SubmitButton
                     text={submitButtonText || 'Submit'}
-                    style={submitButtonStyle}
+                    style={submitButtonStyle || null}
                 />
             </form>
         );

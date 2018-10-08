@@ -20814,13 +20814,13 @@ module.exports = function (_React$Component) {
                     React.createElement(
                         'tbody',
                         null,
-                        fields.map(function (field, index) {
+                        Object.values(fields).map(function (field, index) {
                             return React.createElement(Field, {
                                 key: field.id || 'field-' + index,
-                                id: field.id,
-                                label: field.label,
-                                value: field.value,
-                                readOnly: field.readOnly,
+                                id: field.id || 'field-' + index,
+                                label: field.label || null,
+                                value: field.value || null,
+                                readOnly: field.readOnly || null,
                                 onChangeAction: function onChangeAction(e) {
                                     var value = e.target.value;
                                     _this2.setState(function (prevState) {
@@ -20834,7 +20834,7 @@ module.exports = function (_React$Component) {
                 ),
                 React.createElement(SubmitButton, {
                     text: submitButtonText || 'Submit',
-                    style: submitButtonStyle
+                    style: submitButtonStyle || null
                 })
             );
         }
