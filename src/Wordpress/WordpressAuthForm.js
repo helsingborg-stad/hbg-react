@@ -1,74 +1,3 @@
-const Title = (props) => {
-    if (!props.children) {
-        return null;
-    }
-
-    return (<h3>{props.children}</h3>);
-}
-
-const Content = (props) => {
-    if (!props.children) {
-        return null;
-    }
-
-    return (<p>{props.children}</p>);
-}
-
-const Notice = (props) => {
-    const {message, type} = props;
-
-    if (!message) {
-        return null;
-    }
-
-    let classes = 'notice';
-    const avalibleTypes = ['error', 'success', 'warning'];
-
-    if (avalibleTypes.includes(type)) {
-        classes += ' notice-' + type;
-    }
-
-    return (
-        <div className={classes}><p>{message}</p></div>
-    );
-}
-
-const Field = (props) => {
-    const {id, label, value, readOnly, onChangeAction} = props;
-    let Field = () => (<input type="text" name={id} id={id} onChange={onChangeAction} defaultValue={value} />);
-
-    //Read only field
-    if (readOnly && value && value != '') {
-        Field = () => (<code>{value}</code>);
-    }
-
-    return (
-        <tr>
-            <th>
-                <label htmlFor={(!readOnly ? id : null)}>
-                    {label}
-                </label>
-            </th>
-            <td>
-                <Field />
-            </td>
-        </tr>
-    );
-}
-
-const SubmitButton = (props) => {
-    const {text, style} = props;
-    const avalibleStyles = ['primary'];
-
-    let classes = 'button'
-
-    if (avalibleStyles.includes(style)) {
-        classes = 'button-' + style;
-    }
-
-    return (<input name="submit" type="submit" className={classes} value={text} />);
-}
-
 module.exports = class extends React.Component {
     constructor(props)
     {
@@ -98,6 +27,77 @@ module.exports = class extends React.Component {
     {
         const {title, content, notice, noticeType, submitButtonText, submitButtonStyle} = this.props;
         const {fields} = this.state;
+
+        const Title = (props) => {
+            if (!props.children) {
+                return null;
+            }
+
+            return (<h3>{props.children}</h3>);
+        }
+
+        const Content = (props) => {
+            if (!props.children) {
+                return null;
+            }
+
+            return (<p>{props.children}</p>);
+        }
+
+        const Notice = (props) => {
+            const {message, type} = props;
+
+            if (!message) {
+                return null;
+            }
+
+            let classes = 'notice';
+            const avalibleTypes = ['error', 'success', 'warning'];
+
+            if (avalibleTypes.includes(type)) {
+                classes += ' notice-' + type;
+            }
+
+            return (
+                <div className={classes}><p>{message}</p></div>
+            );
+        }
+
+        const Field = (props) => {
+            const {id, label, value, readOnly, onChangeAction} = props;
+            let Field = () => (<input type="text" name={id} id={id} onChange={onChangeAction} defaultValue={value} />);
+
+            //Read only field
+            if (readOnly && value && value != '') {
+                Field = () => (<code>{value}</code>);
+            }
+
+            return (
+                <tr>
+                    <th>
+                        <label htmlFor={(!readOnly ? id : null)}>
+                            {label}
+                        </label>
+                    </th>
+                    <td>
+                        <Field />
+                    </td>
+                </tr>
+            );
+        }
+
+        const SubmitButton = (props) => {
+            const {text, style} = props;
+            const avalibleStyles = ['primary'];
+
+            let classes = 'button'
+
+            if (avalibleStyles.includes(style)) {
+                classes = 'button-' + style;
+            }
+
+            return (<input name="submit" type="submit" className={classes} value={text} />);
+        }
 
         return (
             <form onSubmit={this.submitForm.bind(this)}>
