@@ -20877,56 +20877,52 @@ exports.default = function (_ref) {
         input = _ref.input;
     return React.createElement(
         "div",
-        null,
+        { className: "grid" },
         React.createElement(
             "div",
-            { className: "grid" },
+            { className: "grid-fit-content u-mr-auto" },
             React.createElement(
                 "div",
-                { className: "grid-fit-content u-mr-auto" },
+                { className: "grid sm-gutter grid-va-middle" },
                 React.createElement(
                     "div",
-                    { className: "grid sm-gutter grid-va-middle" },
+                    { className: "grid-xs-fit-content", key: current },
+                    React.createElement("input", { defaultValue: current, type: "number", min: "1", max: total, onChange: input })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "grid-fit-content" },
                     React.createElement(
-                        "div",
-                        { className: "grid-xs-fit-content", key: current },
-                        React.createElement("input", { defaultValue: current, type: "number", min: "1", max: total, onChange: input })
-                    ),
-                    React.createElement(
-                        "div",
-                        { className: "grid-fit-content" },
-                        React.createElement(
-                            "span",
-                            null,
-                            " / ",
-                            total
-                        )
+                        "span",
+                        null,
+                        " / ",
+                        total
                     )
                 )
-            ),
+            )
+        ),
+        React.createElement(
+            "div",
+            { className: "grid-fit-content" },
             React.createElement(
                 "div",
-                { className: "grid-fit-content" },
+                { className: "grid sm-gutter" },
                 React.createElement(
                     "div",
-                    { className: "grid sm-gutter" },
+                    { className: "grid-fit-content" },
                     React.createElement(
-                        "div",
-                        { className: "grid-fit-content" },
-                        React.createElement(
-                            _Button2.default,
-                            { color: "primary", onClick: prev, disabled: current === 1 },
-                            React.createElement("i", { className: "pricon pricon-previous" })
-                        )
-                    ),
+                        _Button2.default,
+                        { color: "primary", onClick: prev, disabled: current === 1 },
+                        React.createElement("i", { className: "pricon pricon-previous" })
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "grid-fit-content" },
                     React.createElement(
-                        "div",
-                        { className: "grid-fit-content" },
-                        React.createElement(
-                            _Button2.default,
-                            { color: "primary", onClick: next, disabled: current === total },
-                            React.createElement("i", { className: "pricon pricon-next" })
-                        )
+                        _Button2.default,
+                        { color: "primary", onClick: next, disabled: current === total },
+                        React.createElement("i", { className: "pricon pricon-next" })
                     )
                 )
             )
