@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -265,6 +265,75 @@ module.exports = require("react");
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (props) {
+    var dynamicProps = {};
+
+    dynamicProps.className = 'btn';
+
+    //Size
+    if (typeof props.size != 'undefined') {
+        dynamicProps.className += props.size == 'large' ? ' btn-lg' : '';
+        dynamicProps.className += props.size == 'small' ? ' btn-sm' : '';
+    }
+
+    //Color
+    if (typeof props.color != 'undefined') {
+        var colors = ['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth', 'plain'];
+
+        if (colors.includes(props.color.toLowerCase())) {
+            dynamicProps.className += ' btn-' + props.color.toLowerCase();
+        }
+    }
+
+    //Block
+    if (typeof props.block != 'undefined' && props.block) {
+        dynamicProps.className += ' btn-block';
+    }
+
+    //Disabled
+    if (typeof props.disabled != 'undefined' && props.disabled) {
+        dynamicProps.className += ' disabled';
+    }
+
+    //Outline
+    if (typeof props.outline != 'undefined' && props.outline) {
+        dynamicProps.className += ' btn-outline';
+    }
+
+    if (typeof props.href != 'undefined') {
+        dynamicProps.href = props.href;
+        return React.createElement(
+            'a',
+            dynamicProps,
+            props.children || props.title
+        );
+    } else if (typeof props.onClick != 'undefined') {
+        dynamicProps.onClick = props.onClick;
+        return React.createElement(
+            'button',
+            dynamicProps,
+            props.children || props.title
+        );
+    } else if (typeof props.submit != 'undefined' && props.submit) {
+        dynamicProps.type = "submit";
+        dynamicProps.value = props.title;
+        return React.createElement('input', dynamicProps);
+    }
+
+    return null;
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -358,7 +427,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -373,7 +442,7 @@ if (process.env.NODE_ENV === 'production') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -383,7 +452,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Button = __webpack_require__(5);
+var _Button = __webpack_require__(2);
 
 Object.defineProperty(exports, 'Button', {
   enumerable: true,
@@ -410,76 +479,16 @@ Object.defineProperty(exports, 'WordpressAuthForm', {
   }
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Pagination = __webpack_require__(22);
 
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
+Object.defineProperty(exports, 'Pagination', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Pagination).default;
+  }
 });
 
-exports.default = function (props) {
-    var dynamicProps = {};
-
-    dynamicProps.className = 'btn';
-
-    //Size
-    if (typeof props.size != 'undefined') {
-        dynamicProps.className += props.size == 'large' ? ' btn-lg' : '';
-        dynamicProps.className += props.size == 'small' ? ' btn-sm' : '';
-    }
-
-    //Color
-    if (typeof props.color != 'undefined') {
-        var colors = ['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth', 'plain'];
-
-        if (colors.includes(props.color.toLowerCase())) {
-            dynamicProps.className += ' btn-' + props.color.toLowerCase();
-        }
-    }
-
-    //Block
-    if (typeof props.block != 'undefined' && props.block) {
-        dynamicProps.className += ' btn-block';
-    }
-
-    //Disabled
-    if (typeof props.disabled != 'undefined' && props.disabled) {
-        dynamicProps.className += ' disabled';
-    }
-
-    //Outline
-    if (typeof props.outline != 'undefined' && props.outline) {
-        dynamicProps.className += ' btn-outline';
-    }
-
-    if (typeof props.href != 'undefined') {
-        dynamicProps.href = props.href;
-        return React.createElement(
-            'a',
-            dynamicProps,
-            props.children || props.title
-        );
-    } else if (typeof props.onClick != 'undefined') {
-        dynamicProps.onClick = props.onClick;
-        return React.createElement(
-            'button',
-            dynamicProps,
-            props.children || props.title
-        );
-    } else if (typeof props.submit != 'undefined' && props.submit) {
-        dynamicProps.type = "submit";
-        dynamicProps.value = props.title;
-        return React.createElement('input', dynamicProps);
-    }
-
-    return null;
-};
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
 /* 6 */
@@ -1092,7 +1101,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),n=__webpack_require__(2),ba=__webpack_require__(3);function ca(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var k=[c,d,e,f,g,h],l=0;a=Error(b.replace(/%s/g,function(){return k[l++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
+var aa=__webpack_require__(1),n=__webpack_require__(3),ba=__webpack_require__(4);function ca(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var k=[c,d,e,f,g,h],l=0;a=Error(b.replace(/%s/g,function(){return k[l++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
 function t(a){for(var b=arguments.length-1,c="https://reactjs.org/docs/error-decoder.html?invariant="+a,d=0;d<b;d++)c+="&args[]="+encodeURIComponent(arguments[d+1]);ca(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",c)}aa?void 0:t("227");function da(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}
 var ea=!1,fa=null,ha=!1,ia=null,ja={onError:function(a){ea=!0;fa=a}};function ka(a,b,c,d,e,f,g,h,k){ea=!1;fa=null;da.apply(ja,arguments)}function la(a,b,c,d,e,f,g,h,k){ka.apply(this,arguments);if(ea){if(ea){var l=fa;ea=!1;fa=null}else t("198"),l=void 0;ha||(ha=!0,ia=l)}}var ma=null,na={};
 function oa(){if(ma)for(var a in na){var b=na[a],c=ma.indexOf(a);-1<c?void 0:t("96",a);if(!pa[c]){b.extractEvents?void 0:t("97",a);pa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;qa.hasOwnProperty(h)?t("99",h):void 0;qa[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ra(k[e],g,h);e=!0}else f.registrationName?(ra(f.registrationName,g,h),e=!0):e=!1;e?void 0:t("98",d,a)}}}}
@@ -1793,9 +1802,9 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(1);
-var _assign = __webpack_require__(2);
+var _assign = __webpack_require__(3);
 var checkPropTypes = __webpack_require__(16);
-var schedule = __webpack_require__(3);
+var schedule = __webpack_require__(4);
 var tracing = __webpack_require__(18);
 
 /**
@@ -20842,6 +20851,88 @@ module.exports = function (_React$Component) {
 
     return _class;
 }(React.Component);
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _Button = __webpack_require__(2);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+    var current = _ref.current,
+        total = _ref.total,
+        next = _ref.next,
+        prev = _ref.prev,
+        input = _ref.input;
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "div",
+            { className: "grid" },
+            React.createElement(
+                "div",
+                { className: "grid-fit-content u-mr-auto" },
+                React.createElement(
+                    "div",
+                    { className: "grid sm-gutter grid-va-middle" },
+                    React.createElement(
+                        "div",
+                        { className: "grid-xs-fit-content", key: current },
+                        React.createElement("input", { defaultValue: current, type: "number", min: "1", max: total, onChange: input })
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "grid-fit-content" },
+                        React.createElement(
+                            "span",
+                            null,
+                            " / ",
+                            total
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                "div",
+                { className: "grid-fit-content" },
+                React.createElement(
+                    "div",
+                    { className: "grid sm-gutter" },
+                    React.createElement(
+                        "div",
+                        { className: "grid-fit-content" },
+                        React.createElement(
+                            _Button2.default,
+                            { color: "primary", onClick: prev, disabled: current === 1 },
+                            React.createElement("i", { className: "pricon pricon-previous" })
+                        )
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "grid-fit-content" },
+                        React.createElement(
+                            _Button2.default,
+                            { color: "primary", onClick: next, disabled: current === total },
+                            React.createElement("i", { className: "pricon pricon-next" })
+                        )
+                    )
+                )
+            )
+        )
+    );
+};
 
 /***/ })
 /******/ ]);
