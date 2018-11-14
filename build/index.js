@@ -20886,8 +20886,8 @@ exports.default = function (_ref) {
                 { className: "grid sm-gutter grid-va-middle" },
                 React.createElement(
                     "div",
-                    { className: "grid-xs-fit-content", key: current },
-                    React.createElement("input", { defaultValue: current, type: "number", min: "1", max: total, onChange: input })
+                    { className: "grid-xs-fit-content" },
+                    React.createElement("input", { value: current, type: "number", min: "1", max: total, onChange: input })
                 ),
                 React.createElement(
                     "div",

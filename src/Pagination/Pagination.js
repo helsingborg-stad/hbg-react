@@ -4,8 +4,8 @@ export default ({ current, total, next, prev, input }) =>
     <div className="grid">
         <div className="grid-fit-content u-mr-auto">
             <div className="grid sm-gutter grid-va-middle">
-                <div className="grid-xs-fit-content" key={current}>
-                    <input defaultValue={current} type="number" min="1" max={total} onChange={input} />
+                <div className="grid-xs-fit-content">
+                    <input value={current} type="number" min="1" max={total} onChange={input} />
                 </div>
                 <div className="grid-fit-content">
                     <span> / {total}</span>
