@@ -1,6 +1,6 @@
 import Button from '../Button/Button';
 
-export default ({ current, total, next, prev, input }) =>
+export default ({ current, total, next, prev, input, langPrev, langNext }) =>
     <div className="grid">
         <div className="grid-fit-content u-mr-auto">
             <div className="grid sm-gutter grid-va-middle">
@@ -16,12 +16,12 @@ export default ({ current, total, next, prev, input }) =>
             <div className="grid sm-gutter">
                 <div className="grid-fit-content">
                     <Button color="primary" onClick={prev} disabled={current === 1}>
-                        <i className="pricon pricon-previous"></i>
+                        <i className="pricon pricon-previous"></i> {langPrev}
                     </Button>
                 </div>
                 <div className="grid-fit-content">
                     <Button color="primary" onClick={next} disabled={current === total}>
-                        <i className="pricon pricon-next"></i>
+                        <i className="pricon pricon-next"></i> {langNext}
                     </Button>
                 </div>
             </div>

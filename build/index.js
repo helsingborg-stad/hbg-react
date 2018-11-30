@@ -20874,7 +20874,9 @@ exports.default = function (_ref) {
         total = _ref.total,
         next = _ref.next,
         prev = _ref.prev,
-        input = _ref.input;
+        input = _ref.input,
+        langPrev = _ref.langPrev,
+        langNext = _ref.langNext;
     return React.createElement(
         "div",
         { className: "grid" },
@@ -20913,7 +20915,9 @@ exports.default = function (_ref) {
                     React.createElement(
                         _Button2.default,
                         { color: "primary", onClick: prev, disabled: current === 1 },
-                        React.createElement("i", { className: "pricon pricon-previous" })
+                        React.createElement("i", { className: "pricon pricon-previous" }),
+                        " ",
+                        langPrev
                     )
                 ),
                 React.createElement(
@@ -20922,7 +20926,9 @@ exports.default = function (_ref) {
                     React.createElement(
                         _Button2.default,
                         { color: "primary", onClick: next, disabled: current === total },
-                        React.createElement("i", { className: "pricon pricon-next" })
+                        React.createElement("i", { className: "pricon pricon-next" }),
+                        " ",
+                        langNext
                     )
                 )
             )
