@@ -16,12 +16,12 @@ export default ({ current, total, next, prev, input, langPrev, langNext }) =>
             <div className="grid sm-gutter">
                 <div className="grid-fit-content">
                     <Button color="primary" onClick={prev} disabled={current === 1}>
-                        <i className="pricon pricon-previous"></i> {(langNext) ? langNext : null}
+                        <i className="pricon pricon-previous"></i> {(langNext) ? <span className="hidden-xs">langNext</span> : null}
                     </Button>
                 </div>
                 <div className="grid-fit-content">
                     <Button color="primary" onClick={next} disabled={current === total}>
-                        <i className="pricon pricon-next"></i> {(langNext) ? langNext : null}
+                        <i className="pricon pricon-next"></i> {(langNext) ? <span className="hidden-xs">langNext</span> : null}
                     </Button>
                 </div>
             </div>
