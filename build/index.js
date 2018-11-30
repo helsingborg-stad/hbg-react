@@ -20920,7 +20920,7 @@ exports.default = function (_ref) {
                         langNext ? React.createElement(
                             "span",
                             { className: "hidden-xs" },
-                            "langNext"
+                            langNext
                         ) : null
                     )
                 ),
@@ -20935,7 +20935,7 @@ exports.default = function (_ref) {
                         langNext ? React.createElement(
                             "span",
                             { className: "hidden-xs" },
-                            "langNext"
+                            langNext
                         ) : null
                     )
                 )
