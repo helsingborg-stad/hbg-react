@@ -20917,10 +20917,10 @@ exports.default = function (_ref) {
                         { color: "primary", onClick: prev, disabled: current === 1 },
                         React.createElement("i", { className: "pricon pricon-previous" }),
                         " ",
-                        langNext ? React.createElement(
+                        langPrev ? React.createElement(
                             "span",
                             { className: "hidden-xs" },
-                            langNext
+                            langPrev
                         ) : null
                     )
                 ),
