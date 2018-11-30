@@ -20917,7 +20917,11 @@ exports.default = function (_ref) {
                         { color: "primary", onClick: prev, disabled: current === 1 },
                         React.createElement("i", { className: "pricon pricon-previous" }),
                         " ",
-                        langPrev
+                        langNext ? React.createElement(
+                            "span",
+                            { className: "hidden-xs" },
+                            "langNext"
+                        ) : null
                     )
                 ),
                 React.createElement(
@@ -20928,7 +20932,11 @@ exports.default = function (_ref) {
                         { color: "primary", onClick: next, disabled: current === total },
                         React.createElement("i", { className: "pricon pricon-next" }),
                         " ",
-                        langNext
+                        langNext ? React.createElement(
+                            "span",
+                            { className: "hidden-xs" },
+                            "langNext"
+                        ) : null
                     )
                 )
             )
