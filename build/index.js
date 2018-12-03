@@ -488,6 +488,24 @@ Object.defineProperty(exports, 'Pagination', {
   }
 });
 
+var _Input = __webpack_require__(23);
+
+Object.defineProperty(exports, 'Input', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Input).default;
+  }
+});
+
+var _Textarea = __webpack_require__(24);
+
+Object.defineProperty(exports, 'Textarea', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Textarea).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
@@ -20943,6 +20961,136 @@ exports.default = function (_ref) {
         )
     );
 };
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var Input = function Input(props) {
+    var dynamicProps = {};
+
+    if (typeof props.required != 'undefined') {
+        dynamicProps.required = props.required;
+    }
+
+    if (typeof props.disabled != 'undefined') {
+        dynamicProps.disabled = props.disabled;
+    }
+
+    if (typeof props.readonly != 'undefined') {
+        dynamicProps.readonly = props.readonly;
+    }
+
+    if (typeof props.placeholder != 'undefined') {
+        dynamicProps.placeholder = props.placeholder;
+    }
+
+    if (typeof props.maxlength != 'undefined') {
+        dynamicProps.maxlength = props.maxlength;
+    }
+
+    if (typeof props.minlength != 'undefined') {
+        dynamicProps.minlength = props.minlength;
+    }
+
+    return React.createElement(
+        'div',
+        { className: 'form-group' },
+        props.label && React.createElement(
+            'label',
+            { htmlFor: props.name, className: 'form-label' },
+            props.label
+        ),
+        React.createElement('input', _extends({
+            className: 'form-input',
+            id: props.id || props.name,
+            name: props.name,
+            type: props.type,
+            value: props.value,
+            onChange: props.handleChange
+        }, dynamicProps))
+    );
+};
+
+exports.default = Input;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var Textarea = function Textarea(props) {
+    var dynamicProps = {};
+
+    if (typeof props.required != 'undefined') {
+        dynamicProps.required = props.required;
+    }
+
+    if (typeof props.disabled != 'undefined') {
+        dynamicProps.disabled = props.disabled;
+    }
+
+    if (typeof props.readonly != 'undefined') {
+        dynamicProps.readonly = props.readonly;
+    }
+
+    if (typeof props.placeholder != 'undefined') {
+        dynamicProps.placeholder = props.placeholder;
+    }
+
+    if (typeof props.maxlength != 'undefined') {
+        dynamicProps.maxlength = props.maxlength;
+    }
+
+    if (typeof props.minlength != 'undefined') {
+        dynamicProps.minlength = props.minlength;
+    }
+
+    if (typeof props.rows != 'undefined') {
+        dynamicProps.rows = props.rows;
+    }
+
+    if (typeof props.cols != 'undefined') {
+        dynamicProps.cols = props.cols;
+    }
+
+    return React.createElement(
+        'div',
+        { className: 'form-group' },
+        props.label && React.createElement(
+            'label',
+            { htmlFor: props.name, className: 'form-label' },
+            props.label
+        ),
+        React.createElement('textarea', _extends({
+            className: 'form-input',
+            id: props.id || props.name,
+            name: props.name,
+            type: props.type,
+            value: props.value,
+            onChange: props.handleChange
+        }, dynamicProps))
+    );
+};
+
+exports.default = Textarea;
 
 /***/ })
 /******/ ]);
