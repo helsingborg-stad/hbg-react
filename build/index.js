@@ -488,7 +488,16 @@ Object.defineProperty(exports, 'Pagination', {
   }
 });
 
-var _Input = __webpack_require__(23);
+var _Notice = __webpack_require__(23);
+
+Object.defineProperty(exports, 'Notice', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Notice).default;
+  }
+});
+
+var _Input = __webpack_require__(24);
 
 Object.defineProperty(exports, 'Input', {
   enumerable: true,
@@ -497,7 +506,7 @@ Object.defineProperty(exports, 'Input', {
   }
 });
 
-var _Textarea = __webpack_require__(24);
+var _Textarea = __webpack_require__(25);
 
 Object.defineProperty(exports, 'Textarea', {
   enumerable: true,
@@ -20972,6 +20981,43 @@ exports.default = function (_ref) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var Notice = function Notice(props) {
+    var children = props.children,
+        content = props.content,
+        icon = props.icon;
+    var type = props.type;
+
+    var avalibleNoticeTypes = ['success', 'warning', 'danger', 'info'];
+    var avalibleIcons = {
+        success: 'pricon-check',
+        warning: 'pricon-notice-warning',
+        danger: 'pricon-notice-error',
+        info: 'pricon-info-o'
+    };
+
+    type = typeof type != 'undefined' && avalibleNoticeTypes.includes(type) ? type : 'info';
+
+    return React.createElement(
+        'div',
+        { className: 'notice ' + type },
+        icon && React.createElement('i', { className: 'pricon ' + avalibleIcons[type] }),
+        ' ',
+        children || content
+    );
+};
+
+exports.default = Notice;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -21024,7 +21070,7 @@ var Input = function Input(props) {
 exports.default = Input;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
