@@ -21023,30 +21023,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var Input = function Input(props) {
     var dynamicProps = {};
+    var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly'];
 
-    if (typeof props.required != 'undefined') {
-        dynamicProps.required = props.required;
-    }
-
-    if (typeof props.disabled != 'undefined') {
-        dynamicProps.disabled = props.disabled;
-    }
-
-    if (typeof props.readonly != 'undefined') {
-        dynamicProps.readonly = props.readonly;
-    }
-
-    if (typeof props.placeholder != 'undefined') {
-        dynamicProps.placeholder = props.placeholder;
-    }
-
-    if (typeof props.maxLength != 'undefined') {
-        dynamicProps.maxLength = props.maxLength;
-    }
-
-    if (typeof props.minLength != 'undefined') {
-        dynamicProps.minLength = props.minLength;
-    }
+    avalibleProps.forEach(function (key) {
+        if (typeof props[key] != 'undefined') {
+            dynamicProps[key] = props[key];
+        }
+    });
 
     return React.createElement(
         'div',
@@ -21084,38 +21067,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var Textarea = function Textarea(props) {
     var dynamicProps = {};
+    var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'rows', 'cols', 'required', 'disabled', 'readonly'];
 
-    if (typeof props.required != 'undefined') {
-        dynamicProps.required = props.required;
-    }
-
-    if (typeof props.disabled != 'undefined') {
-        dynamicProps.disabled = props.disabled;
-    }
-
-    if (typeof props.readonly != 'undefined') {
-        dynamicProps.readonly = props.readonly;
-    }
-
-    if (typeof props.placeholder != 'undefined') {
-        dynamicProps.placeholder = props.placeholder;
-    }
-
-    if (typeof props.maxLength != 'undefined') {
-        dynamicProps.maxLength = props.maxLength;
-    }
-
-    if (typeof props.minLength != 'undefined') {
-        dynamicProps.minLength = props.minLength;
-    }
-
-    if (typeof props.rows != 'undefined') {
-        dynamicProps.rows = props.rows;
-    }
-
-    if (typeof props.cols != 'undefined') {
-        dynamicProps.cols = props.cols;
-    }
+    avalibleProps.forEach(function (key) {
+        if (typeof props[key] != 'undefined') {
+            dynamicProps[key] = props[key];
+        }
+    });
 
     return React.createElement(
         'div',

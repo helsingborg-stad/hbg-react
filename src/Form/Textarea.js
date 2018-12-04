@@ -1,37 +1,22 @@
 const Textarea = (props) => {
     let dynamicProps = {};
+    const avalibleProps = [
+        'placeholder',
+        'autocomplete',
+        'maxLength',
+        'minLength',
+        'rows',
+        'cols',
+        'required',
+        'disabled',
+        'readonly'
+    ];
 
-    if (typeof(props.required) != 'undefined') {
-        dynamicProps.required = props.required;
-    }
-
-    if (typeof(props.disabled) != 'undefined') {
-        dynamicProps.disabled = props.disabled;
-    }
-
-    if (typeof(props.readonly) != 'undefined') {
-        dynamicProps.readonly = props.readonly;
-    }
-
-    if (typeof(props.placeholder) != 'undefined') {
-        dynamicProps.placeholder = props.placeholder;
-    }
-
-    if (typeof(props.maxLength) != 'undefined') {
-        dynamicProps.maxLength = props.maxLength;
-    }
-
-    if (typeof(props.minLength) != 'undefined') {
-        dynamicProps.minLength = props.minLength;
-    }
-
-    if (typeof(props.rows) != 'undefined') {
-        dynamicProps.rows = props.rows;
-    }
-
-    if (typeof(props.cols) != 'undefined') {
-        dynamicProps.cols = props.cols;
-    }
+    avalibleProps.forEach(function(key) {
+        if (typeof(props[key]) != 'undefined') {
+            dynamicProps[key] = props[key];
+        }
+    });
 
     return (
         <div className="form-group">
