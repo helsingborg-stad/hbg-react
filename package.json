@@ -1,6 +1,6 @@
 {
   "name": "hbg-react",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Library of reusable React components",
   "main": "build/index.js",
   "scripts": {
