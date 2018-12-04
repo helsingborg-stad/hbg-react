@@ -17,12 +17,12 @@ const Input = (props) => {
         dynamicProps.placeholder = props.placeholder;
     }
 
-    if (typeof(props.maxlength) != 'undefined') {
-        dynamicProps.maxlength = props.maxlength;
+    if (typeof(props.maxLength) != 'undefined') {
+        dynamicProps.maxLength = props.maxLength;
     }
 
-    if (typeof(props.minlength) != 'undefined') {
-        dynamicProps.minlength = props.minlength;
+    if (typeof(props.minLength) != 'undefined') {
+        dynamicProps.minLength = props.minLength;
     }
 
     return (

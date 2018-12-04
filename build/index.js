@@ -21040,12 +21040,12 @@ var Input = function Input(props) {
         dynamicProps.placeholder = props.placeholder;
     }
 
-    if (typeof props.maxlength != 'undefined') {
-        dynamicProps.maxlength = props.maxlength;
+    if (typeof props.maxLength != 'undefined') {
+        dynamicProps.maxLength = props.maxLength;
     }
 
-    if (typeof props.minlength != 'undefined') {
-        dynamicProps.minlength = props.minlength;
+    if (typeof props.minLength != 'undefined') {
+        dynamicProps.minLength = props.minLength;
     }
 
     return React.createElement(
@@ -21101,12 +21101,12 @@ var Textarea = function Textarea(props) {
         dynamicProps.placeholder = props.placeholder;
     }
 
-    if (typeof props.maxlength != 'undefined') {
-        dynamicProps.maxlength = props.maxlength;
+    if (typeof props.maxLength != 'undefined') {
+        dynamicProps.maxLength = props.maxLength;
     }
 
-    if (typeof props.minlength != 'undefined') {
-        dynamicProps.minlength = props.minlength;
+    if (typeof props.minLength != 'undefined') {
+        dynamicProps.minLength = props.minLength;
     }
 
     if (typeof props.rows != 'undefined') {
