@@ -20942,11 +20942,11 @@ exports.default = function (_ref) {
                     React.createElement(
                         _Button2.default,
                         { color: "primary", onClick: prev, disabled: current === 1 },
-                        React.createElement("i", { className: "pricon pricon-previous" }),
+                        React.createElement("i", { className: "pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl" }),
                         " ",
                         langPrev ? React.createElement(
                             "span",
-                            { className: "hidden-xs" },
+                            { className: "u-hidden@xs u-hidden@sm" },
                             langPrev
                         ) : null
                     )
@@ -20957,13 +20957,13 @@ exports.default = function (_ref) {
                     React.createElement(
                         _Button2.default,
                         { color: "primary", onClick: next, disabled: current === total },
-                        React.createElement("i", { className: "pricon pricon-next" }),
-                        " ",
                         langNext ? React.createElement(
                             "span",
-                            { className: "hidden-xs" },
+                            { className: "u-hidden@xs u-hidden@sm" },
                             langNext
-                        ) : null
+                        ) : null,
+                        " ",
+                        React.createElement("i", { className: "pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" })
                     )
                 )
             )
