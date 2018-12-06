@@ -21031,6 +21031,15 @@ var Input = function Input(props) {
         }
     });
 
+    //Hyperform confirm field validation
+    if (typeof props.confirmField != 'undefined') {
+        dynamicProps['data-confirm-field'] = props.confirmField;
+
+        if (typeof props.confirmFieldMessage != 'undefined') {
+            dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
+        }
+    }
+
     return React.createElement(
         'div',
         { className: 'form-group' },
@@ -21074,6 +21083,15 @@ var Textarea = function Textarea(props) {
             dynamicProps[key] = props[key];
         }
     });
+
+    //Hyperform confirm field validation
+    if (typeof props.confirmField != 'undefined') {
+        dynamicProps['data-confirm-field'] = props.confirmField;
+
+        if (typeof props.confirmFieldMessage != 'undefined') {
+            dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
+        }
+    }
 
     return React.createElement(
         'div',

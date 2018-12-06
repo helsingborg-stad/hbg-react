@@ -18,6 +18,15 @@ const Textarea = (props) => {
         }
     });
 
+    //Hyperform confirm field validation
+    if (typeof(props.confirmField) != 'undefined') {
+        dynamicProps['data-confirm-field'] = props.confirmField;
+
+        if (typeof(props.confirmFieldMessage) != 'undefined') {
+            dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
+        }
+    }
+
     return (
         <div className="form-group">
             {props.label &&
