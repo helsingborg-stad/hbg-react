@@ -497,7 +497,16 @@ Object.defineProperty(exports, 'Notice', {
   }
 });
 
-var _Input = __webpack_require__(24);
+var _PreLoader = __webpack_require__(24);
+
+Object.defineProperty(exports, 'PreLoader', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_PreLoader).default;
+  }
+});
+
+var _Input = __webpack_require__(25);
 
 Object.defineProperty(exports, 'Input', {
   enumerable: true,
@@ -506,7 +515,7 @@ Object.defineProperty(exports, 'Input', {
   }
 });
 
-var _Textarea = __webpack_require__(25);
+var _Textarea = __webpack_require__(26);
 
 Object.defineProperty(exports, 'Textarea', {
   enumerable: true,
@@ -21019,6 +21028,30 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+exports.default = function (_ref) {
+    var _ref$modifier = _ref.modifier,
+        modifier = _ref$modifier === undefined ? '' : _ref$modifier;
+    return React.createElement(
+        'div',
+        { className: 'loading ' + modifier },
+        React.createElement('div', null),
+        React.createElement('div', null),
+        React.createElement('div', null),
+        React.createElement('div', null)
+    );
+};
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Input = function Input(props) {
@@ -21062,7 +21095,7 @@ var Input = function Input(props) {
 exports.default = Input;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
