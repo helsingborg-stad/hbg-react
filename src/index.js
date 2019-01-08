@@ -1,9 +1,7 @@
-export { default as Button } from './Button/Button.js';
-export { default as Dropdown } from './Dropdown/Dropdown.js';
-export { default as WordpressAuthForm } from './Wordpress/WordpressAuthForm.js';
-export { default as Pagination } from './Pagination/Pagination.js';
-export { default as Notice } from './Notice/Notice.js';
-
-//Form
-export { default as Input } from './Form/Input.js';
-export { default as Textarea } from './Form/Textarea.js';
+export Button from "./components/Button/Button.js";
+export Dropdown from "./components/Dropdown/Dropdown.js";
+export Pagination from "./components/Pagination/Pagination.js";
+export Notice from "./components/Notice/Notice.js";
+export Input from "./components/Form/Input.js";
+export Textarea from "./components/Form/Textarea.js";
+export WordpressAuthForm from "./components/Wordpress/WordpressAuthForm.js";
