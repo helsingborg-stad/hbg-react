@@ -5,3 +5,5 @@ export Notice from "./components/Notice/Notice.js";
 export Input from "./components/Form/Input.js";
 export Textarea from "./components/Form/Textarea.js";
 export WordpressAuthForm from "./components/Wordpress/WordpressAuthForm.js";
+export AccordionTable from "./components/AccordionTable/AccordionTable.js";
+export PreLoader from "./components/PreLoader/PreLoader.js";
