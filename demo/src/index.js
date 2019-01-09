@@ -7,11 +7,30 @@ import {
     Input,
     Textarea,
     Pagination,
-    Dropdown
+    Dropdown,
+    AccordionTable,
+    PreLoader
 } from "../../src";
 
 document.querySelector("head").innerHTML +=
     '<link rel="stylesheet" href="http://helsingborg-stad.github.io/styleguide-web/dist/css/hbg-prime-red.min.css" type="text/css"/>';
+
+const insertAfter = (el, referenceNode) => {
+    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+};
+
+const addScript = src => {
+    var s = document.createElement("script");
+    s.setAttribute("src", src);
+    return s;
+};
+
+insertAfter(
+    addScript(
+        "http://helsingborg-stad.github.io/styleguide-web/dist/js/hbg-prime.min.js"
+    ),
+    document.querySelector("#demo")
+);
 
 class Demo extends Component {
     render() {
@@ -54,7 +73,7 @@ class Demo extends Component {
                             id: "item-2",
                             key: "item2",
                             onClickAction: () => {
-                                console.log("Item 1");
+                                console.log("Item 2");
                             }
                         },
                         {
@@ -62,7 +81,7 @@ class Demo extends Component {
                             id: "item-3",
                             key: "item3",
                             onClickAction: () => {
-                                console.log("Item 1");
+                                console.log("Item 3");
                             }
                         },
                         {
@@ -70,11 +89,27 @@ class Demo extends Component {
                             id: "item-4",
                             key: "item4",
                             onClickAction: () => {
-                                console.log("Item 1");
+                                console.log("Item 4");
                             }
                         }
                     ]}
                 />
+                <AccordionTable
+                    headings={["Heading 1", "Heading 2"]}
+                    items={[
+                        {
+                            id: "item1",
+                            headings: ["Head 1", "Head 2"],
+                            content: "omg"
+                        },
+                        {
+                            id: "item2",
+                            headings: ["Head 1", "Head 2"],
+                            content: "lol"
+                        }
+                    ]}
+                />
+                <PreLoader />
             </div>
         );
     }
