@@ -49,19 +49,19 @@ npm run start
 npm whoami
 ```
 
-2. Build assets for production
-
-```
-npm run build
-```
-
-3. Bump package version:
+2. Bump package version:
 
 ```
 npm version patch | minor | major
 ```
 
-4. Set a release tag and publish to Github
+3. Build assets for production
+
+```
+npm run build
+```
+
+4. Commit changes, set release tag and publish to github
 5. Then publish to NPM:
 
 ```
