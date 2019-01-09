@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 import {
     Button,
@@ -9,10 +9,11 @@ import {
     Pagination,
     Dropdown,
     AccordionTable,
-    PreLoader
-} from "../../src";
+    PreLoader,
+    Calendar
+} from '../../src';
 
-document.querySelector("head").innerHTML +=
+document.querySelector('head').innerHTML +=
     '<link rel="stylesheet" href="http://helsingborg-stad.github.io/styleguide-web/dist/css/hbg-prime-red.min.css" type="text/css"/>';
 
 const insertAfter = (el, referenceNode) => {
@@ -20,22 +21,22 @@ const insertAfter = (el, referenceNode) => {
 };
 
 const addScript = src => {
-    var s = document.createElement("script");
-    s.setAttribute("src", src);
+    var s = document.createElement('script');
+    s.setAttribute('src', src);
     return s;
 };
 
 insertAfter(
     addScript(
-        "http://helsingborg-stad.github.io/styleguide-web/dist/js/hbg-prime.min.js"
+        'http://helsingborg-stad.github.io/styleguide-web/dist/js/hbg-prime.min.js'
     ),
-    document.querySelector("#demo")
+    document.querySelector('#demo')
 );
 
 class Demo extends Component {
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>hbg-react-v2 Demo</h1>
                 <Button color="primary" href="http://google.se">
                     Lol
@@ -58,63 +59,64 @@ class Demo extends Component {
                 />
                 <Dropdown
                     toggleClass="btn btn-primary btn-block"
-                    title={"Dropdown button"}
+                    title={'Dropdown button'}
                     list={[
                         {
-                            title: "Item 1",
-                            id: "item-1",
-                            key: "item1",
+                            title: 'Item 1',
+                            id: 'item-1',
+                            key: 'item1',
                             onClickAction: () => {
-                                console.log("Item 1");
+                                console.log('Item 1');
                             }
                         },
                         {
-                            title: "Item 2",
-                            id: "item-2",
-                            key: "item2",
+                            title: 'Item 2',
+                            id: 'item-2',
+                            key: 'item2',
                             onClickAction: () => {
-                                console.log("Item 2");
+                                console.log('Item 2');
                             }
                         },
                         {
-                            title: "Item 3",
-                            id: "item-3",
-                            key: "item3",
+                            title: 'Item 3',
+                            id: 'item-3',
+                            key: 'item3',
                             onClickAction: () => {
-                                console.log("Item 3");
+                                console.log('Item 3');
                             }
                         },
                         {
-                            title: "Item 4",
-                            id: "item-4",
-                            key: "item4",
+                            title: 'Item 4',
+                            id: 'item-4',
+                            key: 'item4',
                             onClickAction: () => {
-                                console.log("Item 4");
+                                console.log('Item 4');
                             }
                         }
                     ]}
                 />
                 <AccordionTable
-                    headings={["Heading 1", "Heading 2"]}
+                    headings={['Heading 1', 'Heading 2']}
                     items={[
                         {
-                            id: "item1",
-                            headings: ["Head 1", "Head 2"],
-                            content: "omg"
+                            id: 'item1',
+                            headings: ['Head 1', 'Head 2'],
+                            content: 'omg'
                         },
                         {
-                            id: "item2",
-                            headings: ["Head 1", "Head 2"],
-                            content: "lol"
+                            id: 'item2',
+                            headings: ['Head 1', 'Head 2'],
+                            content: 'lol'
                         }
                     ]}
                 />
                 <PreLoader />
+                <Calendar />
             </div>
         );
     }
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    render(<Demo />, document.querySelector("#demo"));
+document.addEventListener('DOMContentLoaded', function(event) {
+    render(<Demo />, document.querySelector('#demo'));
 });
