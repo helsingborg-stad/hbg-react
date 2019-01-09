@@ -1,0 +1,52 @@
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+
+var DropdownItem = function (_Component) {
+    _inherits(DropdownItem, _Component);
+
+    function DropdownItem() {
+        _classCallCheck(this, DropdownItem);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    DropdownItem.prototype.render = function render() {
+        var props = this.props;
+        var dynamicProps = {};
+
+        if (typeof props.classes != "undefined") {
+            dynamicProps.className = props.classes;
+        }
+
+        if (typeof props.href != "undefined") {
+            dynamicProps.href = props.href;
+        }
+
+        if (typeof props.onClickAction != "undefined") {
+            dynamicProps.onClick = props.onClickAction;
+        }
+
+        return React.createElement(
+            "a",
+            dynamicProps,
+            props.title
+        );
+    };
+
+    return DropdownItem;
+}(Component);
+
+DropdownItem.propTypes = process.env.NODE_ENV !== "production" ? {
+    classes: PropTypes.string,
+    href: PropTypes.string,
+    onClickAction: PropTypes.func
+} : {};
+
+
+export default DropdownItem;
