@@ -12,3 +12,7 @@ import _Textarea from "./components/Form/Textarea.js";
 export { _Textarea as Textarea };
 import _WordpressAuthForm from "./components/Wordpress/WordpressAuthForm.js";
 export { _WordpressAuthForm as WordpressAuthForm };
+import _AccordionTable from "./components/AccordionTable/AccordionTable.js";
+export { _AccordionTable as AccordionTable };
+import _PreLoader from "./components/PreLoader/PreLoader.js";
+export { _PreLoader as PreLoader };

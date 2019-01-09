@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.6.4 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.9.0 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1973,6 +1973,130 @@ var WordpressAuthForm_WordpressAuthForm = function (_Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
 
 /* harmony default export */ var Wordpress_WordpressAuthForm = (WordpressAuthForm_WordpressAuthForm);
+// CONCATENATED MODULE: ./src/components/AccordionTable/AccordionItem.js
+
+
+
+var AccordionItem_AccordionItem = function AccordionItem(_ref) {
+    var headings = _ref.headings,
+        content = _ref.content;
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "section",
+        { className: "accordion-section" },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "label",
+            {
+                tabIndex: "0",
+                className: "accordion-toggle",
+                htmlFor: "accordion-section-1"
+            },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                "span",
+                { className: "accordion-table" },
+                headings.map(function (heading, i) {
+                    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                        "span",
+                        { key: i, className: "column-header" },
+                        heading
+                    );
+                })
+            )
+        ),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "div",
+            { className: "accordion-content" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { dangerouslySetInnerHTML: { __html: content } })
+        )
+    );
+};
+
+/* harmony default export */ var AccordionTable_AccordionItem = (AccordionItem_AccordionItem);
+// CONCATENATED MODULE: ./src/components/AccordionTable/SearchField.js
+
+
+
+var SearchField_SearchField = function SearchField(_ref) {
+    var doSearch = _ref.doSearch,
+        langFilterOn = _ref.langFilterOn;
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "div",
+        { className: "accordion-search" },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("input", { type: "text", onChange: doSearch, placeholder: langFilterOn })
+    );
+};
+
+/* harmony default export */ var AccordionTable_SearchField = (SearchField_SearchField);
+// CONCATENATED MODULE: ./src/components/AccordionTable/AccordionTable.js
+
+
+
+
+
+
+var AccordionTable_AccordionTable = function AccordionTable(_ref) {
+    var headings = _ref.headings,
+        items = _ref.items,
+        showSearch = _ref.showSearch,
+        doSearch = _ref.doSearch,
+        langFilterOn = _ref.langFilterOn,
+        langNoResults = _ref.langNoResults;
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "div",
+        null,
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "header",
+            { className: "accordion-table accordion-table-head" },
+            headings.map(function (heading, i) {
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    "span",
+                    { key: i, className: "column-header" },
+                    heading
+                );
+            })
+        ),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "div",
+            { className: "accordion accordion-icon accordion-list" },
+            showSearch && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(AccordionTable_SearchField, { doSearch: doSearch, langFilterOn: langFilterOn }),
+            Object.keys(items).length === 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                "div",
+                { className: "gutter" },
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    "p",
+                    null,
+                    langNoResults
+                )
+            ),
+            items.map(function (item) {
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(AccordionTable_AccordionItem, {
+                    key: item.id,
+                    headings: item.headings,
+                    content: item.content
+                });
+            })
+        )
+    );
+};
+
+/* harmony default export */ var components_AccordionTable_AccordionTable = (AccordionTable_AccordionTable);
+// CONCATENATED MODULE: ./src/components/PreLoader/PreLoader.js
+
+
+
+var PreLoader_PreLoader = function PreLoader(_ref) {
+    var _ref$modifier = _ref.modifier,
+        modifier = _ref$modifier === undefined ? "" : _ref$modifier;
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "div",
+        { className: "loading " + modifier },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null)
+    );
+};
+
+/* harmony default export */ var components_PreLoader_PreLoader = (PreLoader_PreLoader);
 // CONCATENATED MODULE: ./src/index.js
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Button", function() { return components_Button_Button; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Dropdown", function() { return components_Dropdown_Dropdown; });
@@ -1981,6 +2105,12 @@ var WordpressAuthForm_WordpressAuthForm = function (_Component) {
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Input", function() { return Form_Input; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Textarea", function() { return Form_Textarea; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "WordpressAuthForm", function() { return Wordpress_WordpressAuthForm; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "AccordionTable", function() { return components_AccordionTable_AccordionTable; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "PreLoader", function() { return components_PreLoader_PreLoader; });
+
+
+
+
 
 
 
