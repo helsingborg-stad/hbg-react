@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 const AccordionItem = ({ headings, content }) => (
     <section className="accordion-section">

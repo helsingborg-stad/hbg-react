@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
-import AccordionItem from "./AccordionItem";
-import SearchField from "./SearchField";
+import AccordionItem from './AccordionItem';
+import SearchField from './SearchField';
 
 const AccordionTable = ({
     headings,

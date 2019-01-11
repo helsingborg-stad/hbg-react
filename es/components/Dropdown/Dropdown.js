@@ -1,23 +1,24 @@
+var _class, _temp;
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import onClickOutside from "react-onclickoutside";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import onClickOutside from 'react-onclickoutside';
 
-import DropdownList from "./DropdownList";
-import DropdownItem from "./DropdownItem";
-import DropdownToggle from "./DropdownToggle";
+import DropdownList from './DropdownList';
+import DropdownItem from './DropdownItem';
+import DropdownToggle from './DropdownToggle';
 
 //Enable spread operator
 React.__spread = Object.assign;
 
 //Class wrapped in onclickoutside HOC
-
-var Dropdown = function (_Component) {
+var Dropdown = (_temp = _class = function (_Component) {
     _inherits(Dropdown, _Component);
 
     function Dropdown(props) {
@@ -28,6 +29,8 @@ var Dropdown = function (_Component) {
         _this.state = {
             listOpen: false
         };
+
+        _this.renderDepricatedList = _this.renderDepricatedList.bind(_this);
         return _this;
     }
 
@@ -54,61 +57,77 @@ var Dropdown = function (_Component) {
             list = _props.list,
             toggleItem = _props.toggleItem,
             title = _props.title,
-            toggleClass = _props.toggleClass;
+            toggleClass = _props.toggleClass,
+            children = _props.children;
         var listOpen = this.state.listOpen;
 
+
         return React.createElement(
-            "div",
-            { className: "c-dropdown" },
+            'div',
+            { className: 'c-dropdown' },
             React.createElement(DropdownToggle, {
-                btnClass: toggleClass || "btn btn-primary",
+                btnClass: toggleClass,
                 clickAction: function clickAction() {
                     return _this2.toggleList();
                 },
                 title: title
             }),
-            listOpen && React.createElement(
+            typeof children !== 'undefined' && listOpen && React.createElement(
                 DropdownList,
                 null,
-                list.map(function (item, index) {
-                    if (typeof item.title == "undefined") {
-                        return null;
-                    }
+                typeof children !== 'array' ? [children] : children
+            ),
+            typeof list !== 'undefined' && typeof children === 'undefined' && listOpen && this.renderDepricatedList()
+        );
+    };
 
-                    var id = item.id || index;
-                    var key = item.key || "";
+    Dropdown.prototype.renderDepricatedList = function renderDepricatedList() {
+        var list = this.props.list;
 
-                    var props = {};
 
-                    props.key = id;
-                    props.title = item.title;
+        return React.createElement(
+            DropdownList,
+            null,
+            list.map(function (item, index) {
+                if (typeof item.title == 'undefined') {
+                    return null;
+                }
 
-                    if (typeof item.classes != "undefined") {
-                        props.classes = item.classes;
-                    }
+                var id = item.id || index;
+                var key = item.key || '';
 
-                    if (typeof item.href != "undefined") {
-                        props.href = item.href;
-                    } else if (typeof item.onClickAction != "undefined") {
-                        props.onClickAction = function () {
-                            return item.onClickAction(id, key);
-                        };
-                    }
+                var props = {};
 
-                    if (typeof props.href == "undefined" && typeof props.onClickAction == "undefined") {
-                        return null;
-                    }
+                props.key = id;
+                props.title = item.title;
 
-                    return React.createElement(DropdownItem, props);
-                })
-            )
+                if (typeof item.classes != 'undefined') {
+                    props.classes = item.classes;
+                }
+
+                if (typeof item.href != 'undefined') {
+                    props.href = item.href;
+                } else if (typeof item.onClickAction != 'undefined') {
+                    props.onClickAction = function () {
+                        return item.onClickAction(id, key);
+                    };
+                }
+
+                if (typeof props.href == 'undefined' && typeof props.onClickAction == 'undefined') {
+                    return null;
+                }
+
+                return React.createElement(DropdownItem, props);
+            })
         );
     };
 
     return Dropdown;
-}(Component);
-
+}(Component), _class.defaultProps = {
+    toggleClass: 'btn btn-primary'
+}, _temp);
 Dropdown.propTypes = process.env.NODE_ENV !== "production" ? {
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, PropTypes.string]))]),
     list: PropTypes.array,
     title: PropTypes.string,
     toggleClass: PropTypes.string

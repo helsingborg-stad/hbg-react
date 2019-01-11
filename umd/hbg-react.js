@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.10.0 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.10.1 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -7762,56 +7762,56 @@ var Button_Button = (Button_temp = Button_class = function (_Component) {
         var props = this.props;
         var dynamicProps = {};
 
-        dynamicProps.className = "btn";
+        dynamicProps.className = 'btn';
 
         //Size
-        if (typeof props.size != "undefined") {
-            dynamicProps.className += props.size == "large" ? " btn-lg" : "";
-            dynamicProps.className += props.size == "small" ? " btn-sm" : "";
+        if (typeof props.size != 'undefined') {
+            dynamicProps.className += props.size == 'large' ? ' btn-lg' : '';
+            dynamicProps.className += props.size == 'small' ? ' btn-sm' : '';
         }
 
         //Color
-        if (typeof props.color != "undefined") {
-            var colors = ["primary", "contrasted", "light", "danger", "theme-first", "theme-second", "theme-third", "theme-fourth", "theme-fifth", "plain"];
+        if (typeof props.color != 'undefined') {
+            var colors = ['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth', 'plain'];
 
             if (colors.includes(props.color.toLowerCase())) {
-                dynamicProps.className += " btn-" + props.color.toLowerCase();
+                dynamicProps.className += ' btn-' + props.color.toLowerCase();
             }
         }
 
         //Block
-        if (typeof props.block != "undefined" && props.block) {
-            dynamicProps.className += " btn-block";
+        if (typeof props.block != 'undefined' && props.block) {
+            dynamicProps.className += ' btn-block';
         }
 
         //Disabled
-        if (typeof props.disabled != "undefined" && props.disabled) {
-            dynamicProps.className += " disabled";
+        if (typeof props.disabled != 'undefined' && props.disabled) {
+            dynamicProps.className += ' disabled';
         }
 
         //Outline
-        if (typeof props.outline != "undefined" && props.outline) {
-            dynamicProps.className += " btn-outline";
+        if (typeof props.outline != 'undefined' && props.outline) {
+            dynamicProps.className += ' btn-outline';
         }
 
-        if (typeof props.href != "undefined") {
+        if (typeof props.href != 'undefined') {
             dynamicProps.href = props.href;
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "a",
+                'a',
                 dynamicProps,
                 props.children || props.title
             );
-        } else if (typeof props.onClick != "undefined") {
+        } else if (typeof props.onClick != 'undefined') {
             dynamicProps.onClick = props.onClick;
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "button",
+                'button',
                 dynamicProps,
                 props.children || props.title
             );
-        } else if (typeof props.submit != "undefined" && props.submit) {
-            dynamicProps.type = "submit";
+        } else if (typeof props.submit != 'undefined' && props.submit) {
+            dynamicProps.type = 'submit';
             dynamicProps.value = props.title;
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("input", dynamicProps);
+            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('input', dynamicProps);
         }
 
         return null;
@@ -7819,8 +7819,8 @@ var Button_Button = (Button_temp = Button_class = function (_Component) {
 
     return Button;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), Button_class.propTypes = {
-    size: prop_types_default.a.oneOf(["large", "small"]),
-    color: prop_types_default.a.oneOf(["primary", "contrasted", "light", "danger", "theme-first", "theme-second", "theme-third", "theme-fourth", "theme-fifth", "plain"]),
+    size: prop_types_default.a.oneOf(['large', 'small']),
+    color: prop_types_default.a.oneOf(['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth', 'plain']),
     block: prop_types_default.a.bool,
     disabled: prop_types_default.a.bool,
     outline: prop_types_default.a.bool,
@@ -8349,6 +8349,8 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
         _this.state = {
             listOpen: false
         };
+
+        _this.renderDepricatedList = _this.renderDepricatedList.bind(_this);
         return _this;
     }
 
@@ -8375,62 +8377,79 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
             list = _props.list,
             toggleItem = _props.toggleItem,
             title = _props.title,
-            toggleClass = _props.toggleClass;
+            toggleClass = _props.toggleClass,
+            children = _props.children;
         var listOpen = this.state.listOpen;
 
+
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { className: "c-dropdown" },
+            'div',
+            { className: 'c-dropdown' },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dropdown_DropdownToggle, {
-                btnClass: toggleClass || "btn btn-primary",
+                btnClass: toggleClass,
                 clickAction: function clickAction() {
                     return _this2.toggleList();
                 },
                 title: title
             }),
-            listOpen && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            typeof children !== 'undefined' && listOpen && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 Dropdown_DropdownList,
                 null,
-                list.map(function (item, index) {
-                    if (typeof item.title == "undefined") {
-                        return null;
-                    }
+                typeof children !== 'array' ? [children] : children
+            ),
+            typeof list !== 'undefined' && typeof children === 'undefined' && listOpen && this.renderDepricatedList()
+        );
+    };
 
-                    var id = item.id || index;
-                    var key = item.key || "";
+    Dropdown.prototype.renderDepricatedList = function renderDepricatedList() {
+        var list = this.props.list;
 
-                    var props = {};
 
-                    props.key = id;
-                    props.title = item.title;
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            Dropdown_DropdownList,
+            null,
+            list.map(function (item, index) {
+                if (typeof item.title == 'undefined') {
+                    return null;
+                }
 
-                    if (typeof item.classes != "undefined") {
-                        props.classes = item.classes;
-                    }
+                var id = item.id || index;
+                var key = item.key || '';
 
-                    if (typeof item.href != "undefined") {
-                        props.href = item.href;
-                    } else if (typeof item.onClickAction != "undefined") {
-                        props.onClickAction = function () {
-                            return item.onClickAction(id, key);
-                        };
-                    }
+                var props = {};
 
-                    if (typeof props.href == "undefined" && typeof props.onClickAction == "undefined") {
-                        return null;
-                    }
+                props.key = id;
+                props.title = item.title;
 
-                    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dropdown_DropdownItem, props);
-                })
-            )
+                if (typeof item.classes != 'undefined') {
+                    props.classes = item.classes;
+                }
+
+                if (typeof item.href != 'undefined') {
+                    props.href = item.href;
+                } else if (typeof item.onClickAction != 'undefined') {
+                    props.onClickAction = function () {
+                        return item.onClickAction(id, key);
+                    };
+                }
+
+                if (typeof props.href == 'undefined' && typeof props.onClickAction == 'undefined') {
+                    return null;
+                }
+
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dropdown_DropdownItem, props);
+            })
         );
     };
 
     return Dropdown;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), Dropdown_class.propTypes = {
+    children: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.element, prop_types_default.a.arrayOf(prop_types_default.a.oneOfType([prop_types_default.a.element, prop_types_default.a.string]))]),
     list: prop_types_default.a.array,
     title: prop_types_default.a.string,
     toggleClass: prop_types_default.a.string
+}, Dropdown_class.defaultProps = {
+    toggleClass: 'btn btn-primary'
 }, Dropdown_temp);
 
 /* harmony default export */ var components_Dropdown_Dropdown = (react_onclickoutside_es(Dropdown_Dropdown));
@@ -9035,31 +9054,31 @@ var AccordionItem_AccordionItem = function AccordionItem(_ref) {
     var headings = _ref.headings,
         content = _ref.content;
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "section",
-        { className: "accordion-section" },
+        'section',
+        { className: 'accordion-section' },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "label",
+            'label',
             {
-                tabIndex: "0",
-                className: "accordion-toggle",
-                htmlFor: "accordion-section-1"
+                tabIndex: '0',
+                className: 'accordion-toggle',
+                htmlFor: 'accordion-section-1'
             },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "span",
-                { className: "accordion-table" },
+                'span',
+                { className: 'accordion-table' },
                 headings.map(function (heading, i) {
                     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                        "span",
-                        { key: i, className: "column-header" },
+                        'span',
+                        { key: i, className: 'column-header' },
                         heading
                     );
                 })
             )
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { className: "accordion-content" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { dangerouslySetInnerHTML: { __html: content } })
+            'div',
+            { className: 'accordion-content' },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { dangerouslySetInnerHTML: { __html: content } })
         )
     );
 };
@@ -9073,9 +9092,9 @@ var SearchField_SearchField = function SearchField(_ref) {
     var doSearch = _ref.doSearch,
         langFilterOn = _ref.langFilterOn;
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { className: "accordion-search" },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("input", { type: "text", onChange: doSearch, placeholder: langFilterOn })
+        'div',
+        { className: 'accordion-search' },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('input', { type: 'text', onChange: doSearch, placeholder: langFilterOn })
     );
 };
 
@@ -9095,28 +9114,28 @@ var AccordionTable_AccordionTable = function AccordionTable(_ref) {
         langFilterOn = _ref.langFilterOn,
         langNoResults = _ref.langNoResults;
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
+        'div',
         null,
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "header",
-            { className: "accordion-table accordion-table-head" },
+            'header',
+            { className: 'accordion-table accordion-table-head' },
             headings.map(function (heading, i) {
                 return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    "span",
-                    { key: i, className: "column-header" },
+                    'span',
+                    { key: i, className: 'column-header' },
                     heading
                 );
             })
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { className: "accordion accordion-icon accordion-list" },
+            'div',
+            { className: 'accordion accordion-icon accordion-list' },
             showSearch && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(AccordionTable_SearchField, { doSearch: doSearch, langFilterOn: langFilterOn }),
             Object.keys(items).length === 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "div",
-                { className: "gutter" },
+                'div',
+                { className: 'gutter' },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    "p",
+                    'p',
                     null,
                     langNoResults
                 )

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 const SearchField = ({ doSearch, langFilterOn }) => (
     <div className="accordion-search">
