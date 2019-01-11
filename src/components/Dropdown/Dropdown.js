@@ -65,7 +65,7 @@ class Dropdown extends Component {
 
                 {typeof children !== 'undefined' && listOpen && (
                     <DropdownList>
-                        {typeof children !== 'array' ? [children] : children}
+                        {Array.isArray(children) ? children : [children]}
                     </DropdownList>
                 )}
 
