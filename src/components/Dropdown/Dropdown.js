@@ -21,11 +21,13 @@ class Dropdown extends Component {
         ]),
         list: PropTypes.array,
         title: PropTypes.string,
-        toggleClass: PropTypes.string
+        toggleClass: PropTypes.string,
+        itemKey: PropTypes.string
     };
 
     static defaultProps = {
-        toggleClass: 'btn btn-primary'
+        toggleClass: 'btn btn-primary',
+        itemKey: 'dropdownItem'
     };
 
     constructor(props) {
@@ -52,7 +54,14 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { list, toggleItem, title, toggleClass, children } = this.props;
+        const {
+            list,
+            toggleItem,
+            title,
+            toggleClass,
+            children,
+            itemKey
+        } = this.props;
         const { listOpen } = this.state;
 
         return (
@@ -64,7 +73,7 @@ class Dropdown extends Component {
                 />
 
                 {typeof children !== 'undefined' && listOpen && (
-                    <DropdownList>
+                    <DropdownList itemKey={itemKey}>
                         {Array.isArray(children) ? children : [children]}
                     </DropdownList>
                 )}
@@ -79,10 +88,10 @@ class Dropdown extends Component {
     }
 
     renderDepricatedList() {
-        const { list } = this.props;
+        const { list, itemKey } = this.props;
 
         return (
-            <DropdownList>
+            <DropdownList itemKey={itemKey}>
                 {list.map((item, index) => {
                     if (typeof item.title == 'undefined') {
                         return null;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class DropdownList extends Component {
     render() {
@@ -7,7 +7,7 @@ class DropdownList extends Component {
             <div className="c-dropdown__menu is-open">
                 <ul className="o-dropdown-links unlist">
                     {props.children.map((child, index) => (
-                        <li key={index}>{child}</li>
+                        <li key={props.itemKey + '-' + index}>{child}</li>
                     ))}
                 </ul>
             </div>
