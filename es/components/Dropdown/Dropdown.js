@@ -75,7 +75,7 @@ var Dropdown = (_temp = _class = function (_Component) {
             typeof children !== 'undefined' && listOpen && React.createElement(
                 DropdownList,
                 null,
-                typeof children !== 'array' ? [children] : children
+                Array.isArray(children) ? children : [children]
             ),
             typeof list !== 'undefined' && typeof children === 'undefined' && listOpen && this.renderDepricatedList()
         );

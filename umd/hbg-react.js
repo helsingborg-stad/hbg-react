@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.10.1 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.10.2 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -8395,7 +8395,7 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
             typeof children !== 'undefined' && listOpen && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 Dropdown_DropdownList,
                 null,
-                typeof children !== 'array' ? [children] : children
+                Array.isArray(children) ? children : [children]
             ),
             typeof list !== 'undefined' && typeof children === 'undefined' && listOpen && this.renderDepricatedList()
         );
