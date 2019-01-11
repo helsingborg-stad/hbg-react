@@ -58,7 +58,8 @@ var Dropdown = (_temp = _class = function (_Component) {
             toggleItem = _props.toggleItem,
             title = _props.title,
             toggleClass = _props.toggleClass,
-            children = _props.children;
+            children = _props.children,
+            itemKey = _props.itemKey;
         var listOpen = this.state.listOpen;
 
 
@@ -74,7 +75,7 @@ var Dropdown = (_temp = _class = function (_Component) {
             }),
             typeof children !== 'undefined' && listOpen && React.createElement(
                 DropdownList,
-                null,
+                { itemKey: itemKey },
                 Array.isArray(children) ? children : [children]
             ),
             typeof list !== 'undefined' && typeof children === 'undefined' && listOpen && this.renderDepricatedList()
@@ -82,12 +83,14 @@ var Dropdown = (_temp = _class = function (_Component) {
     };
 
     Dropdown.prototype.renderDepricatedList = function renderDepricatedList() {
-        var list = this.props.list;
+        var _props2 = this.props,
+            list = _props2.list,
+            itemKey = _props2.itemKey;
 
 
         return React.createElement(
             DropdownList,
-            null,
+            { itemKey: itemKey },
             list.map(function (item, index) {
                 if (typeof item.title == 'undefined') {
                     return null;
@@ -124,13 +127,15 @@ var Dropdown = (_temp = _class = function (_Component) {
 
     return Dropdown;
 }(Component), _class.defaultProps = {
-    toggleClass: 'btn btn-primary'
+    toggleClass: 'btn btn-primary',
+    itemKey: 'dropdownItem'
 }, _temp);
 Dropdown.propTypes = process.env.NODE_ENV !== "production" ? {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, PropTypes.string]))]),
     list: PropTypes.array,
     title: PropTypes.string,
-    toggleClass: PropTypes.string
+    toggleClass: PropTypes.string,
+    itemKey: PropTypes.string
 } : {};
 
 export default onClickOutside(Dropdown);

@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.10.2 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.10.3 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -8213,7 +8213,7 @@ var DropdownList_DropdownList = function (_Component) {
                 props.children.map(function (child, index) {
                     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                         "li",
-                        { key: index },
+                        { key: props.itemKey + '-' + index },
                         child
                     );
                 })
@@ -8378,7 +8378,8 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
             toggleItem = _props.toggleItem,
             title = _props.title,
             toggleClass = _props.toggleClass,
-            children = _props.children;
+            children = _props.children,
+            itemKey = _props.itemKey;
         var listOpen = this.state.listOpen;
 
 
@@ -8394,7 +8395,7 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
             }),
             typeof children !== 'undefined' && listOpen && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 Dropdown_DropdownList,
-                null,
+                { itemKey: itemKey },
                 Array.isArray(children) ? children : [children]
             ),
             typeof list !== 'undefined' && typeof children === 'undefined' && listOpen && this.renderDepricatedList()
@@ -8402,12 +8403,14 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
     };
 
     Dropdown.prototype.renderDepricatedList = function renderDepricatedList() {
-        var list = this.props.list;
+        var _props2 = this.props,
+            list = _props2.list,
+            itemKey = _props2.itemKey;
 
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             Dropdown_DropdownList,
-            null,
+            { itemKey: itemKey },
             list.map(function (item, index) {
                 if (typeof item.title == 'undefined') {
                     return null;
@@ -8447,9 +8450,11 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
     children: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.element, prop_types_default.a.arrayOf(prop_types_default.a.oneOfType([prop_types_default.a.element, prop_types_default.a.string]))]),
     list: prop_types_default.a.array,
     title: prop_types_default.a.string,
-    toggleClass: prop_types_default.a.string
+    toggleClass: prop_types_default.a.string,
+    itemKey: prop_types_default.a.string
 }, Dropdown_class.defaultProps = {
-    toggleClass: 'btn btn-primary'
+    toggleClass: 'btn btn-primary',
+    itemKey: 'dropdownItem'
 }, Dropdown_temp);
 
 /* harmony default export */ var components_Dropdown_Dropdown = (react_onclickoutside_es(Dropdown_Dropdown));
