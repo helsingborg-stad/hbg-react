@@ -57,44 +57,59 @@ class Demo extends Component {
                     langNext="Next"
                     langPrev="Prev"
                 />
-                <Dropdown
-                    toggleClass="btn btn-primary btn-block"
-                    title={'Dropdown button'}
-                    list={[
-                        {
-                            title: 'Item 1',
-                            id: 'item-1',
-                            key: 'item1',
-                            onClickAction: () => {
-                                console.log('Item 1');
+                <Dropdown title="Dropdown button">
+                    {['Option 1', 'Option 2', 'Option 3'].map(item => (
+                        <a
+                            onClick={() => {
+                                console.log(item);
+                            }}
+                        >
+                            {item}
+                        </a>
+                    ))}
+                </Dropdown>
+
+                {
+                    <Dropdown
+                        toggleClass="btn btn-primary btn-block"
+                        title={'Deprecated dropdown'}
+                        list={[
+                            {
+                                title: 'Item 1',
+                                id: 'item-1',
+                                key: 'item1',
+                                onClickAction: () => {
+                                    console.log('Item 1');
+                                }
+                            },
+                            {
+                                title: 'Item 2',
+                                id: 'item-2',
+                                key: 'item2',
+                                onClickAction: () => {
+                                    console.log('Item 2');
+                                }
+                            },
+                            {
+                                title: 'Item 3',
+                                id: 'item-3',
+                                key: 'item3',
+                                onClickAction: () => {
+                                    console.log('Item 3');
+                                }
+                            },
+                            {
+                                title: 'Item 4',
+                                id: 'item-4',
+                                key: 'item4',
+                                onClickAction: () => {
+                                    console.log('Item 4');
+                                }
                             }
-                        },
-                        {
-                            title: 'Item 2',
-                            id: 'item-2',
-                            key: 'item2',
-                            onClickAction: () => {
-                                console.log('Item 2');
-                            }
-                        },
-                        {
-                            title: 'Item 3',
-                            id: 'item-3',
-                            key: 'item3',
-                            onClickAction: () => {
-                                console.log('Item 3');
-                            }
-                        },
-                        {
-                            title: 'Item 4',
-                            id: 'item-4',
-                            key: 'item4',
-                            onClickAction: () => {
-                                console.log('Item 4');
-                            }
-                        }
-                    ]}
-                />
+                        ]}
+                    />
+                }
+
                 <AccordionTable
                     headings={['Heading 1', 'Heading 2']}
                     items={[

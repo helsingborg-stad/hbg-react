@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import onClickOutside from "react-onclickoutside";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import onClickOutside from 'react-onclickoutside';
 
-import DropdownList from "./DropdownList";
-import DropdownItem from "./DropdownItem";
-import DropdownToggle from "./DropdownToggle";
+import DropdownList from './DropdownList';
+import DropdownItem from './DropdownItem';
+import DropdownToggle from './DropdownToggle';
 
 //Enable spread operator
 React.__spread = Object.assign;
@@ -12,9 +12,20 @@ React.__spread = Object.assign;
 //Class wrapped in onclickoutside HOC
 class Dropdown extends Component {
     static propTypes = {
+        children: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.element,
+            PropTypes.arrayOf(
+                PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+            )
+        ]),
         list: PropTypes.array,
         title: PropTypes.string,
         toggleClass: PropTypes.string
+    };
+
+    static defaultProps = {
+        toggleClass: 'btn btn-primary'
     };
 
     constructor(props) {
@@ -22,6 +33,8 @@ class Dropdown extends Component {
         this.state = {
             listOpen: false
         };
+
+        this.renderDepricatedList = this.renderDepricatedList.bind(this);
     }
 
     handleClickOutside() {
@@ -39,56 +52,70 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { list, toggleItem, title, toggleClass } = this.props;
+        const { list, toggleItem, title, toggleClass, children } = this.props;
         const { listOpen } = this.state;
+
         return (
             <div className="c-dropdown">
                 <DropdownToggle
-                    btnClass={toggleClass || "btn btn-primary"}
+                    btnClass={toggleClass}
                     clickAction={() => this.toggleList()}
                     title={title}
                 />
 
-                {listOpen && (
+                {typeof children !== 'undefined' && listOpen && (
                     <DropdownList>
-                        {list.map((item, index) => {
-                            if (typeof item.title == "undefined") {
-                                return null;
-                            }
-
-                            let id = item.id || index;
-                            let key = item.key || "";
-
-                            let props = {};
-
-                            props.key = id;
-                            props.title = item.title;
-
-                            if (typeof item.classes != "undefined") {
-                                props.classes = item.classes;
-                            }
-
-                            if (typeof item.href != "undefined") {
-                                props.href = item.href;
-                            } else if (
-                                typeof item.onClickAction != "undefined"
-                            ) {
-                                props.onClickAction = () =>
-                                    item.onClickAction(id, key);
-                            }
-
-                            if (
-                                typeof props.href == "undefined" &&
-                                typeof props.onClickAction == "undefined"
-                            ) {
-                                return null;
-                            }
-
-                            return <DropdownItem {...props} />;
-                        })}
+                        {typeof children !== 'array' ? [children] : children}
                     </DropdownList>
                 )}
+
+                {/* Depricated way of showing dropdown items, use children instead */}
+                {typeof list !== 'undefined' &&
+                    typeof children === 'undefined' &&
+                    listOpen &&
+                    this.renderDepricatedList()}
             </div>
+        );
+    }
+
+    renderDepricatedList() {
+        const { list } = this.props;
+
+        return (
+            <DropdownList>
+                {list.map((item, index) => {
+                    if (typeof item.title == 'undefined') {
+                        return null;
+                    }
+
+                    let id = item.id || index;
+                    let key = item.key || '';
+
+                    let props = {};
+
+                    props.key = id;
+                    props.title = item.title;
+
+                    if (typeof item.classes != 'undefined') {
+                        props.classes = item.classes;
+                    }
+
+                    if (typeof item.href != 'undefined') {
+                        props.href = item.href;
+                    } else if (typeof item.onClickAction != 'undefined') {
+                        props.onClickAction = () => item.onClickAction(id, key);
+                    }
+
+                    if (
+                        typeof props.href == 'undefined' &&
+                        typeof props.onClickAction == 'undefined'
+                    ) {
+                        return null;
+                    }
+
+                    return <DropdownItem {...props} />;
+                })}
+            </DropdownList>
         );
     }
 }
