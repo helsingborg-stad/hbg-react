@@ -61,20 +61,24 @@ class CalendarHeader extends Component {
                         dayFormat,
                         locale
                     )}
-                    className="grid-auto text-center"
+                    className="calendar__cell"
                 >
-                    <strong>
-                        {format(
-                            dateFns.addDays(startDate, i),
-                            dayFormat,
-                            locale
-                        )}
-                    </strong>
+                    <div className="calendar__day">
+                        <span>
+                            {format(
+                                dateFns.addDays(startDate, i),
+                                dayFormat,
+                                locale
+                            )}
+                        </span>
+                    </div>
                 </div>
             );
         }
 
-        return <div className="grid no-gutter">{days}</div>;
+        return (
+            <div className="calendar__row calendar__row--weekdays">{days}</div>
+        );
     }
 
     render() {
@@ -90,43 +94,49 @@ class CalendarHeader extends Component {
         } = this.props;
 
         return (
-            <div className="calendar__header u-pb-4">
-                <div className="grid">
-                    <div
-                        className={classNames(
-                            'calendar__prev grid-auto text-left u-flex u-justify-content-start',
-                            {
-                                disabled:
-                                    typeof minDate !== 'undefined' &&
-                                    dateFns.isSameMonth(minDate, month)
-                            }
-                        )}
-                    >
-                        <Button color="plain" onClick={prevMonth}>
-                            <i className="pricon pricon-angle-left" />
-                        </Button>
+            <div className="calendar__header">
+                <div className="calendar__row">
+                    <div className="calendar__cell">
+                        <div
+                            className={classNames(
+                                'calendar__nav calendar__nav--prev',
+                                {
+                                    disabled:
+                                        typeof minDate !== 'undefined' &&
+                                        dateFns.isSameMonth(minDate, month)
+                                }
+                            )}
+                        >
+                            <Button color="plain" onClick={prevMonth}>
+                                <i className="pricon pricon-angle-left" />
+                            </Button>
+                        </div>
                     </div>
-                    <div className="grid-auto text-center">
-                        <h4 className="calendar__month">
-                            {format(month, monthFormat, locale)}
-                        </h4>
-                        <h4 className="calendar__year">
-                            {format(month, yearFormat, locale)}
-                        </h4>
+                    <div className="calendar__cell">
+                        <div className="calendar__title">
+                            <div className="calendar__month">
+                                {format(month, monthFormat, locale)}
+                            </div>
+                            <div className="calendar__year">
+                                {format(month, yearFormat, locale)}
+                            </div>
+                        </div>
                     </div>
-                    <div
-                        className={classNames(
-                            'calendar__next grid-auto text-right u-flex u-justify-content-end',
-                            {
-                                disabled:
-                                    typeof maxDate !== 'undefined' &&
-                                    dateFns.isSameMonth(maxDate, month)
-                            }
-                        )}
-                    >
-                        <Button color="plain" onClick={nextMonth}>
-                            <i className="pricon pricon-angle-right" />
-                        </Button>
+                    <div className="calendar__cell">
+                        <div
+                            className={classNames(
+                                'calendar__nav calendar__nav--next',
+                                {
+                                    disabled:
+                                        typeof maxDate !== 'undefined' &&
+                                        dateFns.isSameMonth(maxDate, month)
+                                }
+                            )}
+                        >
+                            <Button color="plain" onClick={nextMonth}>
+                                <i className="pricon pricon-angle-right" />
+                            </Button>
+                        </div>
                     </div>
                 </div>
                 {this.renderWeekDays()}

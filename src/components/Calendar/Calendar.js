@@ -7,32 +7,47 @@ import classNames from 'classnames';
 
 class Calendar extends Component {
     static propTypes = {
+        /** @type {array} [description] */
+        events: PropTypes.arrayOf(
+            PropTypes.shape({
+                /** @type {string} Title of the event, which will be used as content */
+                title: PropTypes.string.isRequired,
+                /** @type {Date Object} Start date of the event */
+                start: PropTypes.instanceOf(Date).isRequired,
+                /** @type {Date Object} End date of the event, cannot be before start date */
+                stop: PropTypes.instanceOf(Date).isRequired
+            })
+        ),
         /** @type {Date Object} The current month being displayed in the calendar */
         currentMonth: PropTypes.instanceOf(Date),
         /** @type {Date Object} First month in the calendar, earliest in time */
         minDate: PropTypes.instanceOf(Date),
         /** @type {Date Object} Last month in the calendar, latest in time */
         maxDate: PropTypes.instanceOf(Date),
-        /** @type {function} Function called when user clicks on a week/row */
-        onClickWeek: PropTypes.func,
-        /** @type {function} Function called when user clicks on a date */
+        /** @type {function} Function to call when current month changes eg. (date) => {console.log(date)} */
+        onChangeMonth: PropTypes.func,
+        /** @type {function} Function to call when user clicks on a date eg. (date) => {console.log(date)} */
         onClickDate: PropTypes.func,
+        /** @type {function} Function to call when user clicks on an event, eg. (event) => {console.log(event)} */
+        onClickEvent: PropTypes.func,
         /** @type {string/array} Used to add a class name to the calendar wrapper */
         className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-        /** @type {string/array/function} Used to add a class name to weeks */
-        weekClassName: PropTypes.oneOfType([
+        /** @type {string/array/function} Used to add a class name to dates, can be either string, array of string or function eg. (date) => {return 'custom-class'} */
+        dateClassName: PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.array,
+            PropTypes.arrayOf(PropTypes.string),
             PropTypes.func
         ]),
-        /** @type {string/array/function} Used to add a class name to cells */
-        cellClassName: PropTypes.oneOfType([
+        /** @type {string/array/function} Used to add a class name to events, can be either string, array of string or function eg. (event) => {return 'custom-class'} */
+        eventClassName: PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.array,
+            PropTypes.arrayOf(PropTypes.string),
             PropTypes.func
         ]),
-        /** @type {function} Adds custom content within calendar cells */
-        cellContent: PropTypes.func,
+        /** @type {function} Modifies the HTML of dates eg. (formattedDate, dateObject) => {return <span>{formattedDate}</span>} */
+        dateContent: PropTypes.func,
+        /** @type {function} Modifies the HTML of events eg. (event) => {return <span>{event.title}</span>} */
+        eventContent: PropTypes.func,
         /** @type {string} Set language of date labels */
         locale: PropTypes.oneOf(['en', 'sv']),
         /** @type {string} Set year format */
@@ -61,7 +76,8 @@ class Calendar extends Component {
         yearFormat: 'YYYY',
         dayFormat: 'dd',
         dateFormat: 'D',
-        weekStartsOn: 'monday'
+        weekStartsOn: 'monday',
+        locale: 'en'
     };
 
     constructor(props) {
@@ -76,8 +92,12 @@ class Calendar extends Component {
         this.prevMonth = this.prevMonth.bind(this);
     }
 
+    /**
+     * Navigates to the next month, fires when clicking on next button
+     * @return {void}
+     */
     nextMonth() {
-        const { maxDate } = this.props;
+        const { maxDate, onChangeMonth } = this.props;
         const { currentMonth } = this.state;
 
         if (
@@ -90,10 +110,18 @@ class Calendar extends Component {
         this.setState({
             currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
         });
+
+        if (typeof onChangeMonth === 'function') {
+            onChangeMonth(this.state.currentMonth);
+        }
     }
 
+    /**
+     * Navigates to the previous month, fires when clicking on prev button
+     * @return {void}
+     */
     prevMonth() {
-        const { minDate } = this.props;
+        const { minDate, onChangeMonth } = this.props;
         const { currentMonth } = this.state;
 
         if (
@@ -106,102 +134,272 @@ class Calendar extends Component {
         this.setState({
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
         });
+
+        if (typeof onChangeMonth === 'function') {
+            onChangeMonth(this.state.currentMonth);
+        }
     }
 
+    /**
+     * Generates an array of rows for each event. Specifies width & offset for each event which is used when rendering each event.
+     * @param  {array} events               Array of events
+     * @param  {Date Object} firstDayOfWeek First day of the week
+     * @param  {Date Object} lastDayOfWeek  Last day of the week
+     * @return {array}                      Array containg event rows
+     */
+    generateEventRows(events, firstDayOfWeek, lastDayOfWeek) {
+        let eventRows = [];
+
+        if (events.length <= 0) {
+            return eventRows;
+        }
+
+        events.forEach(event => {
+            if (dateFns.isBefore(event.stop, event.start)) {
+                throw new Error(
+                    'The stop date of an event cannot be earlier then the start date.'
+                );
+            }
+
+            if (
+                !dateFns.isWithinRange(
+                    firstDayOfWeek,
+                    event.start,
+                    event.stop
+                ) &&
+                !dateFns.isWithinRange(
+                    lastDayOfWeek,
+                    event.start,
+                    event.stop
+                ) &&
+                !dateFns.isWithinRange(
+                    event.start,
+                    firstDayOfWeek,
+                    lastDayOfWeek
+                )
+            ) {
+                return;
+            }
+
+            const startDate = dateFns.isBefore(event.start, firstDayOfWeek)
+                ? firstDayOfWeek
+                : event.start;
+
+            const stopDate = dateFns.isAfter(event.stop, lastDayOfWeek)
+                ? lastDayOfWeek
+                : event.stop;
+
+            const width =
+                dateFns.differenceInCalendarDays(stopDate, startDate) + 1;
+
+            const offset = dateFns.differenceInCalendarDays(
+                startDate,
+                firstDayOfWeek
+            );
+
+            eventRows.push({
+                event: event,
+                width: width,
+                offset: offset,
+                startsThisWeek: startDate === event.start,
+                endsThisWeek: stopDate === event.stop
+            });
+        });
+
+        return eventRows;
+    }
+
+    /**
+     * Renders the Calendar body
+     * @return {React Component}
+     */
     renderBody() {
         const { currentMonth } = this.state;
 
         const {
-            onClickWeek,
             onClickDate,
-            weekClassName,
-            cellClassName,
-            cellContent,
+            onClickEvent,
+            dateClassName,
+            eventClassName,
+            dateContent,
+            eventContent,
             dateFormat,
-            locale
+            locale,
+            events
         } = this.props;
 
-        const weeks = getCalendarDatesByMonth(currentMonth);
+        const weeks = getCalendarDatesByMonth(currentMonth).map(
+            (days, index) => {
+                const eventRows =
+                    typeof events !== 'undefined' && events.length > 0
+                        ? this.generateEventRows(events, days[0], days[6])
+                        : [];
 
-        return (
-            <div className="calendar__body">
-                {/* Render Weeks */}
-                {weeks.map(days => {
-                    const weekClassNames = classNames(
-                        'calendar__row',
-                        'grid',
-                        'no-gutter',
-                        typeof weekClassName !== 'undefined'
-                            ? typeof weekClassName === 'function'
-                                ? cellClassName(days)
-                                : weekClassName
-                            : null
-                    );
-                    return (
-                        <div
-                            className={weekClassNames}
-                            onClick={
-                                typeof onClickWeek === 'function'
-                                    ? () => {
-                                          onClickWeek(days);
-                                      }
-                                    : null
-                            }
-                            key={
-                                format(days[0], 'D-M-YYYY', locale) +
-                                '-' +
-                                format(days[6], 'D-M-YYYY', locale)
-                            }
-                        >
-                            {/* Render days */}
+                return (
+                    <div
+                        key={
+                            format(days[0], 'DMYYYY', locale) +
+                            '--' +
+                            format(days[6], 'DMYYYY', locale)
+                        }
+                        className="calendar__week"
+                    >
+                        {/* Background row */}
+                        <div className="calendar__row calendar__row--bg calendar__row--float">
                             {days.map(date => {
-                                const cellClassNames = classNames(
-                                    'calendar__cell',
-                                    'grid-xs-auto',
-                                    'text-center',
-                                    'ratio-1-1',
-                                    typeof cellClassName !== 'undefined'
-                                        ? typeof cellClassName === 'function'
-                                            ? cellClassName(date)
-                                            : cellClassName
-                                        : null
-                                );
                                 return (
                                     <div
-                                        className={cellClassNames}
-                                        onClick={
-                                            typeof onClickDate === 'function'
-                                                ? () => {
-                                                      onClickDate(date);
-                                                  }
-                                                : null
-                                        }
-                                        key={format(date, 'D-M-YYYY')}
+                                        key={format(
+                                            'background--' + date,
+                                            'D-M-YYYY',
+                                            locale
+                                        )}
+                                        className={classNames(
+                                            'calendar__cell',
+                                            'calendar__cell--bg',
+                                            {
+                                                'is-off-range': !dateFns.isSameMonth(
+                                                    date,
+                                                    currentMonth
+                                                )
+                                            }
+                                        )}
                                     >
-                                        <div className="calendar__cell_inner">
-                                            {typeof cellContent !== 'undefined'
-                                                ? cellContent(
-                                                      date,
+                                        {}
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Date row */}
+                        <div className="calendar__row calendar__row--date calendar__row--float">
+                            {days.map(date => {
+                                return (
+                                    <div
+                                        key={format(
+                                            'date--' + date,
+                                            'D-M-YYYY',
+                                            locale
+                                        )}
+                                        className={classNames(
+                                            'calendar__cell',
+                                            {
+                                                'is-off-range': !dateFns.isSameMonth(
+                                                    date,
+                                                    currentMonth
+                                                )
+                                            }
+                                        )}
+                                    >
+                                        {/* Date wrapper */}
+                                        <div
+                                            className={classNames(
+                                                'calendar__date',
+                                                typeof dateClassName !==
+                                                    'undefined'
+                                                    ? typeof dateClassName ===
+                                                      'function'
+                                                        ? dateClassName(date)
+                                                        : dateClassName
+                                                    : null
+                                            )}
+                                            onClick={
+                                                typeof onClickDate ===
+                                                'function'
+                                                    ? () => {
+                                                          onClickDate(date);
+                                                      }
+                                                    : null
+                                            }
+                                        >
+                                            {/* Date content */}
+                                            {typeof eventContent === 'function'
+                                                ? dateContent(
                                                       format(
                                                           date,
                                                           dateFormat,
                                                           locale
-                                                      )
+                                                      ),
+                                                      date
                                                   )
-                                                : format(
-                                                      date,
-                                                      dateFormat,
-                                                      locale
-                                                  )}
+                                                : format(date, dateFormat)}
                                         </div>
                                     </div>
                                 );
                             })}
                         </div>
-                    );
-                })}
-            </div>
+
+                        {/* Events row */}
+                        {eventRows.length > 0 &&
+                            eventRows.map((row, index) => {
+                                const {
+                                    event,
+                                    width,
+                                    offset,
+                                    startsThisWeek,
+                                    endsThisWeek
+                                } = row;
+                                const { title } = event;
+
+                                return (
+                                    <div
+                                        className="calendar__row calendar__row--event"
+                                        key={'event-row-' + index}
+                                    >
+                                        <div
+                                            className={classNames(
+                                                'calendar__cell',
+                                                {
+                                                    [`calendar__cell--${width}`]: true,
+                                                    [`calendar__cell--offset-${offset}`]:
+                                                        offset > 0
+                                                }
+                                            )}
+                                        >
+                                            {/* Event wrapper */}
+                                            <div
+                                                className={classNames(
+                                                    'calendar__event',
+                                                    {
+                                                        'calendar__event--extend-left': !startsThisWeek,
+                                                        'calendar__event--extend-right': !endsThisWeek
+                                                    },
+                                                    typeof eventClassName !==
+                                                        'undefined'
+                                                        ? typeof eventClassName ===
+                                                          'function'
+                                                            ? eventClassName(
+                                                                  event
+                                                              )
+                                                            : eventClassName
+                                                        : null
+                                                )}
+                                                onClick={
+                                                    typeof onClickEvent ===
+                                                    'function'
+                                                        ? () => {
+                                                              onClickEvent(
+                                                                  event
+                                                              );
+                                                          }
+                                                        : null
+                                                }
+                                            >
+                                                {/* Event content */}
+                                                {typeof eventContent ===
+                                                'function'
+                                                    ? eventContent(event)
+                                                    : title}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                    </div>
+                );
+            }
         );
+        return <div className="calendar__body">{weeks}</div>;
     }
 
     render() {
@@ -217,13 +415,13 @@ class Calendar extends Component {
             maxDate
         } = this.props;
 
-        let calendarClassNames = classNames(
-            'calendar',
-            typeof className !== 'undefined' ? className : null
-        );
-
         return (
-            <div className={calendarClassNames}>
+            <div
+                className={classNames(
+                    'calendar',
+                    typeof className !== 'undefined' ? className : null
+                )}
+            >
                 <CalendarHeader
                     month={currentMonth}
                     prevMonth={this.prevMonth}
