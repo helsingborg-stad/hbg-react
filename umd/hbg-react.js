@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.10.3 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.0 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -524,7 +524,7 @@ module.exports = {
   getISODay: __webpack_require__(48),
   getISOWeek: __webpack_require__(25),
   getISOWeeksInYear: __webpack_require__(105),
-  getISOYear: __webpack_require__(4),
+  getISOYear: __webpack_require__(5),
   getMilliseconds: __webpack_require__(106),
   getMinutes: __webpack_require__(107),
   getMonth: __webpack_require__(108),
@@ -596,9 +596,9 @@ module.exports = {
   setQuarter: __webpack_require__(157),
   setSeconds: __webpack_require__(158),
   setYear: __webpack_require__(159),
-  startOfDay: __webpack_require__(6),
+  startOfDay: __webpack_require__(7),
   startOfHour: __webpack_require__(50),
-  startOfISOWeek: __webpack_require__(5),
+  startOfISOWeek: __webpack_require__(6),
   startOfISOYear: __webpack_require__(11),
   startOfMinute: __webpack_require__(54),
   startOfMonth: __webpack_require__(160),
@@ -624,153 +624,6 @@ module.exports = {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var parse = __webpack_require__(2)
-var startOfISOWeek = __webpack_require__(5)
-
-/**
- * @category ISO Week-Numbering Year Helpers
- * @summary Get the ISO week-numbering year of the given date.
- *
- * @description
- * Get the ISO week-numbering year of the given date,
- * which always starts 3 days before the year's first Thursday.
- *
- * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
- *
- * @param {Date|String|Number} date - the given date
- * @returns {Number} the ISO week-numbering year
- *
- * @example
- * // Which ISO-week numbering year is 2 January 2005?
- * var result = getISOYear(new Date(2005, 0, 2))
- * //=> 2004
- */
-function getISOYear (dirtyDate) {
-  var date = parse(dirtyDate)
-  var year = date.getFullYear()
-
-  var fourthOfJanuaryOfNextYear = new Date(0)
-  fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4)
-  fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0)
-  var startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear)
-
-  var fourthOfJanuaryOfThisYear = new Date(0)
-  fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4)
-  fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0)
-  var startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear)
-
-  if (date.getTime() >= startOfNextYear.getTime()) {
-    return year + 1
-  } else if (date.getTime() >= startOfThisYear.getTime()) {
-    return year
-  } else {
-    return year - 1
-  }
-}
-
-module.exports = getISOYear
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var startOfWeek = __webpack_require__(14)
-
-/**
- * @category ISO Week Helpers
- * @summary Return the start of an ISO week for the given date.
- *
- * @description
- * Return the start of an ISO week for the given date.
- * The result will be in the local timezone.
- *
- * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
- *
- * @param {Date|String|Number} date - the original date
- * @returns {Date} the start of an ISO week
- *
- * @example
- * // The start of an ISO week for 2 September 2014 11:55:00:
- * var result = startOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Mon Sep 01 2014 00:00:00
- */
-function startOfISOWeek (dirtyDate) {
-  return startOfWeek(dirtyDate, {weekStartsOn: 1})
-}
-
-module.exports = startOfISOWeek
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var parse = __webpack_require__(2)
-
-/**
- * @category Day Helpers
- * @summary Return the start of a day for the given date.
- *
- * @description
- * Return the start of a day for the given date.
- * The result will be in the local timezone.
- *
- * @param {Date|String|Number} date - the original date
- * @returns {Date} the start of a day
- *
- * @example
- * // The start of a day for 2 September 2014 11:55:00:
- * var result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Tue Sep 02 2014 00:00:00
- */
-function startOfDay (dirtyDate) {
-  var date = parse(dirtyDate)
-  date.setHours(0, 0, 0, 0)
-  return date
-}
-
-module.exports = startOfDay
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (false) {}
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (true) {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(67);
-} else {}
-
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -824,6 +677,153 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
 }());
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(2)
+var startOfISOWeek = __webpack_require__(6)
+
+/**
+ * @category ISO Week-Numbering Year Helpers
+ * @summary Get the ISO week-numbering year of the given date.
+ *
+ * @description
+ * Get the ISO week-numbering year of the given date,
+ * which always starts 3 days before the year's first Thursday.
+ *
+ * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
+ *
+ * @param {Date|String|Number} date - the given date
+ * @returns {Number} the ISO week-numbering year
+ *
+ * @example
+ * // Which ISO-week numbering year is 2 January 2005?
+ * var result = getISOYear(new Date(2005, 0, 2))
+ * //=> 2004
+ */
+function getISOYear (dirtyDate) {
+  var date = parse(dirtyDate)
+  var year = date.getFullYear()
+
+  var fourthOfJanuaryOfNextYear = new Date(0)
+  fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4)
+  fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0)
+  var startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear)
+
+  var fourthOfJanuaryOfThisYear = new Date(0)
+  fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4)
+  fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0)
+  var startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear)
+
+  if (date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1
+  } else if (date.getTime() >= startOfThisYear.getTime()) {
+    return year
+  } else {
+    return year - 1
+  }
+}
+
+module.exports = getISOYear
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var startOfWeek = __webpack_require__(14)
+
+/**
+ * @category ISO Week Helpers
+ * @summary Return the start of an ISO week for the given date.
+ *
+ * @description
+ * Return the start of an ISO week for the given date.
+ * The result will be in the local timezone.
+ *
+ * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the start of an ISO week
+ *
+ * @example
+ * // The start of an ISO week for 2 September 2014 11:55:00:
+ * var result = startOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Mon Sep 01 2014 00:00:00
+ */
+function startOfISOWeek (dirtyDate) {
+  return startOfWeek(dirtyDate, {weekStartsOn: 1})
+}
+
+module.exports = startOfISOWeek
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(2)
+
+/**
+ * @category Day Helpers
+ * @summary Return the start of a day for the given date.
+ *
+ * @description
+ * Return the start of a day for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the start of a day
+ *
+ * @example
+ * // The start of a day for 2 September 2014 11:55:00:
+ * var result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 02 2014 00:00:00
+ */
+function startOfDay (dirtyDate) {
+  var date = parse(dirtyDate)
+  date.setHours(0, 0, 0, 0)
+  return date
+}
+
+module.exports = startOfDay
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (false) {}
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (true) {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(67);
+} else {}
 
 
 /***/ }),
@@ -893,8 +893,8 @@ module.exports = addMilliseconds
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(4)
-var startOfISOWeek = __webpack_require__(5)
+var getISOYear = __webpack_require__(5)
+var startOfISOWeek = __webpack_require__(6)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -1049,7 +1049,7 @@ module.exports = startOfWeek
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(6)
+var startOfDay = __webpack_require__(7)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_DAY = 86400000
@@ -1429,7 +1429,7 @@ module.exports = endOfDay
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(2)
-var startOfISOWeek = __webpack_require__(5)
+var startOfISOWeek = __webpack_require__(6)
 var startOfISOYear = __webpack_require__(11)
 
 var MILLISECONDS_IN_WEEK = 604800000
@@ -1547,7 +1547,7 @@ module.exports = addHours
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(4)
+var getISOYear = __webpack_require__(5)
 var setISOYear = __webpack_require__(29)
 
 /**
@@ -1745,7 +1745,7 @@ module.exports = addYears
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(4)
+var getISOYear = __webpack_require__(5)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -3664,7 +3664,7 @@ module.exports = closestTo
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfISOWeek = __webpack_require__(5)
+var startOfISOWeek = __webpack_require__(6)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_WEEK = 604800000
@@ -4631,8 +4631,8 @@ module.exports = endOfISOWeek
 /* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(4)
-var startOfISOWeek = __webpack_require__(5)
+var getISOYear = __webpack_require__(5)
+var startOfISOWeek = __webpack_require__(6)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -4894,7 +4894,7 @@ module.exports = endOfYesterday
 
 var getDayOfYear = __webpack_require__(44)
 var getISOWeek = __webpack_require__(25)
-var getISOYear = __webpack_require__(4)
+var getISOYear = __webpack_require__(5)
 var parse = __webpack_require__(2)
 var isValid = __webpack_require__(46)
 var enLocale = __webpack_require__(13)
@@ -5898,7 +5898,7 @@ module.exports = isPast
 /* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(6)
+var startOfDay = __webpack_require__(7)
 
 /**
  * @category Day Helpers
@@ -6285,7 +6285,7 @@ module.exports = isThursday
 /* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(6)
+var startOfDay = __webpack_require__(7)
 
 /**
  * @category Day Helpers
@@ -6313,7 +6313,7 @@ module.exports = isToday
 /* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(6)
+var startOfDay = __webpack_require__(7)
 
 /**
  * @category Day Helpers
@@ -6477,7 +6477,7 @@ module.exports = isWithinRange
 /* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(6)
+var startOfDay = __webpack_require__(7)
 
 /**
  * @category Day Helpers
@@ -6538,8 +6538,8 @@ module.exports = lastDayOfISOWeek
 /* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(4)
-var startOfISOWeek = __webpack_require__(5)
+var getISOYear = __webpack_require__(5)
+var startOfISOWeek = __webpack_require__(6)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -7163,7 +7163,7 @@ module.exports = startOfMonth
 /* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(6)
+var startOfDay = __webpack_require__(7)
 
 /**
  * @category Day Helpers
@@ -7833,7 +7833,7 @@ var Button_Button = (Button_temp = Button_class = function (_Component) {
 
 /* harmony default export */ var components_Button_Button = (Button_Button);
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(7);
+var react_dom = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./node_modules/react-onclickoutside/dist/react-onclickoutside.es.js
 
@@ -9291,7 +9291,7 @@ var dateFns_format = function format(date, formatStr) {
 
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(8);
+var classnames = __webpack_require__(4);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./src/components/Calendar/CalendarHeader.js
@@ -9347,19 +9347,23 @@ var CalendarHeader_CalendarHeader = (CalendarHeader_temp = CalendarHeader_class 
                 'div',
                 {
                     key: dateFns_format(date_fns_default.a.addDays(startDate, i), dayFormat, locale),
-                    className: 'grid-auto text-center'
+                    className: 'calendar__cell'
                 },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'strong',
-                    null,
-                    dateFns_format(date_fns_default.a.addDays(startDate, i), dayFormat, locale)
+                    'div',
+                    { className: 'calendar__day' },
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                        'span',
+                        null,
+                        dateFns_format(date_fns_default.a.addDays(startDate, i), dayFormat, locale)
+                    )
                 )
             ));
         }
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             'div',
-            { className: 'grid no-gutter' },
+            { className: 'calendar__row calendar__row--weekdays' },
             days
         );
     };
@@ -9378,48 +9382,60 @@ var CalendarHeader_CalendarHeader = (CalendarHeader_temp = CalendarHeader_class 
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             'div',
-            { className: 'calendar__header u-pb-4' },
+            { className: 'calendar__header' },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 'div',
-                { className: 'grid' },
+                { className: 'calendar__row' },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     'div',
-                    {
-                        className: classnames_default()('calendar__prev grid-auto text-left u-flex u-justify-content-start', {
-                            disabled: typeof minDate !== 'undefined' && date_fns_default.a.isSameMonth(minDate, month)
-                        })
-                    },
+                    { className: 'calendar__cell' },
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                        components_Button_Button,
-                        { color: 'plain', onClick: prevMonth },
-                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'pricon pricon-angle-left' })
+                        'div',
+                        {
+                            className: classnames_default()('calendar__nav calendar__nav--prev', {
+                                disabled: typeof minDate !== 'undefined' && date_fns_default.a.isSameMonth(minDate, month)
+                            })
+                        },
+                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            components_Button_Button,
+                            { color: 'plain', onClick: prevMonth },
+                            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'pricon pricon-angle-left' })
+                        )
                     )
                 ),
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     'div',
-                    { className: 'grid-auto text-center' },
+                    { className: 'calendar__cell' },
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                        'h4',
-                        { className: 'calendar__month' },
-                        dateFns_format(month, monthFormat, locale)
-                    ),
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                        'h4',
-                        { className: 'calendar__year' },
-                        dateFns_format(month, yearFormat, locale)
+                        'div',
+                        { className: 'calendar__title' },
+                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            'div',
+                            { className: 'calendar__month' },
+                            dateFns_format(month, monthFormat, locale)
+                        ),
+                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            'div',
+                            { className: 'calendar__year' },
+                            dateFns_format(month, yearFormat, locale)
+                        )
                     )
                 ),
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     'div',
-                    {
-                        className: classnames_default()('calendar__next grid-auto text-right u-flex u-justify-content-end', {
-                            disabled: typeof maxDate !== 'undefined' && date_fns_default.a.isSameMonth(maxDate, month)
-                        })
-                    },
+                    { className: 'calendar__cell' },
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                        components_Button_Button,
-                        { color: 'plain', onClick: nextMonth },
-                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'pricon pricon-angle-right' })
+                        'div',
+                        {
+                            className: classnames_default()('calendar__nav calendar__nav--next', {
+                                disabled: typeof maxDate !== 'undefined' && date_fns_default.a.isSameMonth(maxDate, month)
+                            })
+                        },
+                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            components_Button_Button,
+                            { color: 'plain', onClick: nextMonth },
+                            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'pricon pricon-angle-right' })
+                        )
                     )
                 )
             ),
@@ -9484,8 +9500,16 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
         return _this;
     }
 
+    /**
+     * Navigates to the next month, fires when clicking on next button
+     * @return {void}
+     */
+
+
     Calendar.prototype.nextMonth = function nextMonth() {
-        var maxDate = this.props.maxDate;
+        var _props = this.props,
+            maxDate = _props.maxDate,
+            onChangeMonth = _props.onChangeMonth;
         var currentMonth = this.state.currentMonth;
 
 
@@ -9496,10 +9520,22 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
         this.setState({
             currentMonth: date_fns_default.a.addMonths(this.state.currentMonth, 1)
         });
+
+        if (typeof onChangeMonth === 'function') {
+            onChangeMonth(this.state.currentMonth);
+        }
     };
 
+    /**
+     * Navigates to the previous month, fires when clicking on prev button
+     * @return {void}
+     */
+
+
     Calendar.prototype.prevMonth = function prevMonth() {
-        var minDate = this.props.minDate;
+        var _props2 = this.props,
+            minDate = _props2.minDate,
+            onChangeMonth = _props2.onChangeMonth;
         var currentMonth = this.state.currentMonth;
 
 
@@ -9510,77 +9546,190 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
         this.setState({
             currentMonth: date_fns_default.a.subMonths(this.state.currentMonth, 1)
         });
+
+        if (typeof onChangeMonth === 'function') {
+            onChangeMonth(this.state.currentMonth);
+        }
     };
 
+    /**
+     * Generates an array of rows for each event. Specifies width & offset for each event which is used when rendering each event.
+     * @param  {array} events               Array of events
+     * @param  {Date Object} firstDayOfWeek First day of the week
+     * @param  {Date Object} lastDayOfWeek  Last day of the week
+     * @return {array}                      Array containg event rows
+     */
+
+
+    Calendar.prototype.generateEventRows = function generateEventRows(events, firstDayOfWeek, lastDayOfWeek) {
+        var eventRows = [];
+
+        if (events.length <= 0) {
+            return eventRows;
+        }
+
+        events.forEach(function (event) {
+            if (date_fns_default.a.isBefore(event.stop, event.start)) {
+                throw new Error('The stop date of an event cannot be earlier then the start date.');
+            }
+
+            if (!date_fns_default.a.isWithinRange(firstDayOfWeek, event.start, event.stop) && !date_fns_default.a.isWithinRange(lastDayOfWeek, event.start, event.stop) && !date_fns_default.a.isWithinRange(event.start, firstDayOfWeek, lastDayOfWeek)) {
+                return;
+            }
+
+            var startDate = date_fns_default.a.isBefore(event.start, firstDayOfWeek) ? firstDayOfWeek : event.start;
+
+            var stopDate = date_fns_default.a.isAfter(event.stop, lastDayOfWeek) ? lastDayOfWeek : event.stop;
+
+            var width = date_fns_default.a.differenceInCalendarDays(stopDate, startDate) + 1;
+
+            var offset = date_fns_default.a.differenceInCalendarDays(startDate, firstDayOfWeek);
+
+            eventRows.push({
+                event: event,
+                width: width,
+                offset: offset,
+                startsThisWeek: startDate === event.start,
+                endsThisWeek: stopDate === event.stop
+            });
+        });
+
+        return eventRows;
+    };
+
+    /**
+     * Renders the Calendar body
+     * @return {React Component}
+     */
+
+
     Calendar.prototype.renderBody = function renderBody() {
+        var _this2 = this;
+
         var currentMonth = this.state.currentMonth;
-        var _props = this.props,
-            onClickWeek = _props.onClickWeek,
-            onClickDate = _props.onClickDate,
-            weekClassName = _props.weekClassName,
-            cellClassName = _props.cellClassName,
-            cellContent = _props.cellContent,
-            dateFormat = _props.dateFormat,
-            locale = _props.locale;
+        var _props3 = this.props,
+            onClickDate = _props3.onClickDate,
+            onClickEvent = _props3.onClickEvent,
+            dateClassName = _props3.dateClassName,
+            eventClassName = _props3.eventClassName,
+            dateContent = _props3.dateContent,
+            eventContent = _props3.eventContent,
+            dateFormat = _props3.dateFormat,
+            locale = _props3.locale,
+            events = _props3.events;
 
 
-        var weeks = dateFns_getCalendarDatesByMonth(currentMonth);
+        var weeks = dateFns_getCalendarDatesByMonth(currentMonth).map(function (days, index) {
+            var eventRows = typeof events !== 'undefined' && events.length > 0 ? _this2.generateEventRows(events, days[0], days[6]) : [];
 
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            'div',
-            { className: 'calendar__body' },
-            weeks.map(function (days) {
-                var weekClassNames = classnames_default()('calendar__row', 'grid', 'no-gutter', typeof weekClassName !== 'undefined' ? typeof weekClassName === 'function' ? cellClassName(days) : weekClassName : null);
-                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                'div',
+                {
+                    key: dateFns_format(days[0], 'DMYYYY', locale) + '--' + dateFns_format(days[6], 'DMYYYY', locale),
+                    className: 'calendar__week'
+                },
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     'div',
-                    {
-                        className: weekClassNames,
-                        onClick: typeof onClickWeek === 'function' ? function () {
-                            onClickWeek(days);
-                        } : null,
-                        key: dateFns_format(days[0], 'D-M-YYYY', locale) + '-' + dateFns_format(days[6], 'D-M-YYYY', locale)
-                    },
+                    { className: 'calendar__row calendar__row--bg calendar__row--float' },
                     days.map(function (date) {
-                        var cellClassNames = classnames_default()('calendar__cell', 'grid-xs-auto', 'text-center', 'ratio-1-1', typeof cellClassName !== 'undefined' ? typeof cellClassName === 'function' ? cellClassName(date) : cellClassName : null);
+                        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', {
+                            key: dateFns_format('background--' + date, 'D-M-YYYY', locale),
+                            className: classnames_default()('calendar__cell', 'calendar__cell--bg', {
+                                'is-off-range': !date_fns_default.a.isSameMonth(date, currentMonth)
+                            })
+                        });
+                    })
+                ),
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'div',
+                    { className: 'calendar__row calendar__row--date calendar__row--float' },
+                    days.map(function (date) {
                         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                             'div',
                             {
-                                className: cellClassNames,
-                                onClick: typeof onClickDate === 'function' ? function () {
-                                    onClickDate(date);
-                                } : null,
-                                key: dateFns_format(date, 'D-M-YYYY')
+                                key: dateFns_format('date--' + date, 'D-M-YYYY', locale),
+                                className: classnames_default()('calendar__cell', {
+                                    'is-off-range': !date_fns_default.a.isSameMonth(date, currentMonth)
+                                })
                             },
                             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                                 'div',
-                                { className: 'calendar__cell_inner' },
-                                typeof cellContent !== 'undefined' ? cellContent(date, dateFns_format(date, dateFormat, locale)) : dateFns_format(date, dateFormat, locale)
+                                {
+                                    className: classnames_default()('calendar__date', typeof dateClassName !== 'undefined' ? typeof dateClassName === 'function' ? dateClassName(date) : dateClassName : null),
+                                    onClick: typeof onClickDate === 'function' ? function () {
+                                        onClickDate(date);
+                                    } : null
+                                },
+                                typeof eventContent === 'function' ? dateContent(dateFns_format(date, dateFormat, locale), date) : dateFns_format(date, dateFormat)
                             )
                         );
                     })
-                );
-            })
+                ),
+                eventRows.length > 0 && eventRows.map(function (row, index) {
+                    var _classNames;
+
+                    var event = row.event,
+                        width = row.width,
+                        offset = row.offset,
+                        startsThisWeek = row.startsThisWeek,
+                        endsThisWeek = row.endsThisWeek;
+                    var title = event.title;
+
+
+                    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                        'div',
+                        {
+                            className: 'calendar__row calendar__row--event',
+                            key: 'event-row-' + index
+                        },
+                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            'div',
+                            {
+                                className: classnames_default()('calendar__cell', (_classNames = {}, _classNames['calendar__cell--' + width] = true, _classNames['calendar__cell--offset-' + offset] = offset > 0, _classNames))
+                            },
+                            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                                'div',
+                                {
+                                    className: classnames_default()('calendar__event', {
+                                        'calendar__event--extend-left': !startsThisWeek,
+                                        'calendar__event--extend-right': !endsThisWeek
+                                    }, typeof eventClassName !== 'undefined' ? typeof eventClassName === 'function' ? eventClassName(event) : eventClassName : null),
+                                    onClick: typeof onClickEvent === 'function' ? function () {
+                                        onClickEvent(event);
+                                    } : null
+                                },
+                                typeof eventContent === 'function' ? eventContent(event) : title
+                            )
+                        )
+                    );
+                })
+            );
+        });
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            'div',
+            { className: 'calendar__body' },
+            weeks
         );
     };
 
     Calendar.prototype.render = function render() {
         var currentMonth = this.state.currentMonth;
-        var _props2 = this.props,
-            className = _props2.className,
-            monthFormat = _props2.monthFormat,
-            yearFormat = _props2.yearFormat,
-            dayFormat = _props2.dayFormat,
-            weekStartsOn = _props2.weekStartsOn,
-            locale = _props2.locale,
-            minDate = _props2.minDate,
-            maxDate = _props2.maxDate;
+        var _props4 = this.props,
+            className = _props4.className,
+            monthFormat = _props4.monthFormat,
+            yearFormat = _props4.yearFormat,
+            dayFormat = _props4.dayFormat,
+            weekStartsOn = _props4.weekStartsOn,
+            locale = _props4.locale,
+            minDate = _props4.minDate,
+            maxDate = _props4.maxDate;
 
-
-        var calendarClassNames = classnames_default()('calendar', typeof className !== 'undefined' ? className : null);
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             'div',
-            { className: calendarClassNames },
+            {
+                className: classnames_default()('calendar', typeof className !== 'undefined' ? className : null)
+            },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Calendar_CalendarHeader, {
                 month: currentMonth,
                 prevMonth: this.prevMonth,
@@ -9599,24 +9748,37 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
 
     return Calendar;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), Calendar_class.propTypes = {
+    /** @type {array} [description] */
+    events: prop_types_default.a.arrayOf(prop_types_default.a.shape({
+        /** @type {string} Title of the event, which will be used as content */
+        title: prop_types_default.a.string.isRequired,
+        /** @type {Date Object} Start date of the event */
+        start: prop_types_default.a.instanceOf(Date).isRequired,
+        /** @type {Date Object} End date of the event, cannot be before start date */
+        stop: prop_types_default.a.instanceOf(Date).isRequired
+    })),
     /** @type {Date Object} The current month being displayed in the calendar */
     currentMonth: prop_types_default.a.instanceOf(Date),
     /** @type {Date Object} First month in the calendar, earliest in time */
     minDate: prop_types_default.a.instanceOf(Date),
     /** @type {Date Object} Last month in the calendar, latest in time */
     maxDate: prop_types_default.a.instanceOf(Date),
-    /** @type {function} Function called when user clicks on a week/row */
-    onClickWeek: prop_types_default.a.func,
-    /** @type {function} Function called when user clicks on a date */
+    /** @type {function} Function to call when current month changes eg. (date) => {console.log(date)} */
+    onChangeMonth: prop_types_default.a.func,
+    /** @type {function} Function to call when user clicks on a date eg. (date) => {console.log(date)} */
     onClickDate: prop_types_default.a.func,
+    /** @type {function} Function to call when user clicks on an event, eg. (event) => {console.log(event)} */
+    onClickEvent: prop_types_default.a.func,
     /** @type {string/array} Used to add a class name to the calendar wrapper */
     className: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.array]),
-    /** @type {string/array/function} Used to add a class name to weeks */
-    weekClassName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.array, prop_types_default.a.func]),
-    /** @type {string/array/function} Used to add a class name to cells */
-    cellClassName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.array, prop_types_default.a.func]),
-    /** @type {function} Adds custom content within calendar cells */
-    cellContent: prop_types_default.a.func,
+    /** @type {string/array/function} Used to add a class name to dates, can be either string, array of string or function eg. (date) => {return 'custom-class'} */
+    dateClassName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.arrayOf(prop_types_default.a.string), prop_types_default.a.func]),
+    /** @type {string/array/function} Used to add a class name to events, can be either string, array of string or function eg. (event) => {return 'custom-class'} */
+    eventClassName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.arrayOf(prop_types_default.a.string), prop_types_default.a.func]),
+    /** @type {function} Modifies the HTML of dates eg. (formattedDate, dateObject) => {return <span>{formattedDate}</span>} */
+    dateContent: prop_types_default.a.func,
+    /** @type {function} Modifies the HTML of events eg. (event) => {return <span>{event.title}</span>} */
+    eventContent: prop_types_default.a.func,
     /** @type {string} Set language of date labels */
     locale: prop_types_default.a.oneOf(['en', 'sv']),
     /** @type {string} Set year format */
@@ -9635,7 +9797,8 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
     yearFormat: 'YYYY',
     dayFormat: 'dd',
     dateFormat: 'D',
-    weekStartsOn: 'monday'
+    weekStartsOn: 'monday',
+    locale: 'en'
 }, Calendar_temp);
 
 

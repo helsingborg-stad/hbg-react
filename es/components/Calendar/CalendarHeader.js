@@ -50,19 +50,23 @@ var CalendarHeader = (_temp = _class = function (_Component) {
                 'div',
                 {
                     key: format(dateFns.addDays(startDate, i), dayFormat, locale),
-                    className: 'grid-auto text-center'
+                    className: 'calendar__cell'
                 },
                 React.createElement(
-                    'strong',
-                    null,
-                    format(dateFns.addDays(startDate, i), dayFormat, locale)
+                    'div',
+                    { className: 'calendar__day' },
+                    React.createElement(
+                        'span',
+                        null,
+                        format(dateFns.addDays(startDate, i), dayFormat, locale)
+                    )
                 )
             ));
         }
 
         return React.createElement(
             'div',
-            { className: 'grid no-gutter' },
+            { className: 'calendar__row calendar__row--weekdays' },
             days
         );
     };
@@ -81,48 +85,60 @@ var CalendarHeader = (_temp = _class = function (_Component) {
 
         return React.createElement(
             'div',
-            { className: 'calendar__header u-pb-4' },
+            { className: 'calendar__header' },
             React.createElement(
                 'div',
-                { className: 'grid' },
+                { className: 'calendar__row' },
                 React.createElement(
                     'div',
-                    {
-                        className: classNames('calendar__prev grid-auto text-left u-flex u-justify-content-start', {
-                            disabled: typeof minDate !== 'undefined' && dateFns.isSameMonth(minDate, month)
-                        })
-                    },
+                    { className: 'calendar__cell' },
                     React.createElement(
-                        Button,
-                        { color: 'plain', onClick: prevMonth },
-                        React.createElement('i', { className: 'pricon pricon-angle-left' })
+                        'div',
+                        {
+                            className: classNames('calendar__nav calendar__nav--prev', {
+                                disabled: typeof minDate !== 'undefined' && dateFns.isSameMonth(minDate, month)
+                            })
+                        },
+                        React.createElement(
+                            Button,
+                            { color: 'plain', onClick: prevMonth },
+                            React.createElement('i', { className: 'pricon pricon-angle-left' })
+                        )
                     )
                 ),
                 React.createElement(
                     'div',
-                    { className: 'grid-auto text-center' },
+                    { className: 'calendar__cell' },
                     React.createElement(
-                        'h4',
-                        { className: 'calendar__month' },
-                        format(month, monthFormat, locale)
-                    ),
-                    React.createElement(
-                        'h4',
-                        { className: 'calendar__year' },
-                        format(month, yearFormat, locale)
+                        'div',
+                        { className: 'calendar__title' },
+                        React.createElement(
+                            'div',
+                            { className: 'calendar__month' },
+                            format(month, monthFormat, locale)
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'calendar__year' },
+                            format(month, yearFormat, locale)
+                        )
                     )
                 ),
                 React.createElement(
                     'div',
-                    {
-                        className: classNames('calendar__next grid-auto text-right u-flex u-justify-content-end', {
-                            disabled: typeof maxDate !== 'undefined' && dateFns.isSameMonth(maxDate, month)
-                        })
-                    },
+                    { className: 'calendar__cell' },
                     React.createElement(
-                        Button,
-                        { color: 'plain', onClick: nextMonth },
-                        React.createElement('i', { className: 'pricon pricon-angle-right' })
+                        'div',
+                        {
+                            className: classNames('calendar__nav calendar__nav--next', {
+                                disabled: typeof maxDate !== 'undefined' && dateFns.isSameMonth(maxDate, month)
+                            })
+                        },
+                        React.createElement(
+                            Button,
+                            { color: 'plain', onClick: nextMonth },
+                            React.createElement('i', { className: 'pricon pricon-angle-right' })
+                        )
                     )
                 )
             ),
