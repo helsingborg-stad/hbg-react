@@ -16,7 +16,7 @@ class Notice extends Component {
         const avalibleIcons = {
             success: "pricon-check",
             warning: "pricon-notice-warning",
-            danger: "pricon-notice-error",
+            danger: "pricon-notice-danger",
             info: "pricon-info-o"
         };
 
