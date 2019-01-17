@@ -28,7 +28,7 @@ var Notice = (_temp = _class = function (_Component) {
         var avalibleIcons = {
             success: "pricon-check",
             warning: "pricon-notice-warning",
-            danger: "pricon-notice-error",
+            danger: "pricon-notice-danger",
             info: "pricon-info-o"
         };
 
