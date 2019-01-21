@@ -1,15 +1,10 @@
 {
   "name": "hbg-react",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "Library of reusable React components",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "files": [
-    "css",
-    "es",
-    "lib",
-    "umd"
-  ],
+  "files": ["css", "es", "lib", "umd"],
   "scripts": {
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
@@ -23,14 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/helsingborg-stad/hbg-react.git"
   },
-  "keywords": [
-    "react",
-    "react-dom",
-    "hbg",
-    "helsingborg",
-    "components",
-    "ui"
-  ],
+  "keywords": ["react", "react-dom", "hbg", "helsingborg", "components", "ui"],
   "author": "Nikolas Ramstedt",
   "license": "MIT",
   "bugs": {

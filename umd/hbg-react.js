@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.1 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.2 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -8666,39 +8666,50 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
     Input.prototype.render = function render() {
         var dynamicProps = {};
         var props = this.props;
-        var avalibleProps = ["placeholder", "autocomplete", "maxLength", "minLength", "required", "disabled", "readonly"];
+        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly'];
 
         avalibleProps.forEach(function (key) {
-            if (typeof props[key] != "undefined") {
+            if (typeof props[key] != 'undefined') {
                 dynamicProps[key] = props[key];
             }
         });
 
         //Hyperform confirm field validation
-        if (typeof props.confirmField != "undefined") {
-            dynamicProps["data-confirm-field"] = props.confirmField;
+        if (typeof props.confirmField != 'undefined') {
+            dynamicProps['data-confirm-field'] = props.confirmField;
 
-            if (typeof props.confirmFieldMessage != "undefined") {
-                dynamicProps["data-confirm-message"] = props.confirmFieldMessage;
+            if (typeof props.confirmFieldMessage != 'undefined') {
+                dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
             }
         }
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { className: "form-group" },
+            'div',
+            { className: 'form-group' },
             props.label && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "label",
-                { htmlFor: props.name, className: "form-label" },
-                props.label
+                'label',
+                { htmlFor: props.id || props.name, className: 'form-label' },
+                props.label,
+                ' ',
+                typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'span',
+                    { 'data-tooltip': props.explainer },
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { 'class': 'fa fa-question-circle' })
+                ) : null
             ),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("input", _extends({
-                className: "form-input",
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('input', _extends({
+                className: 'form-input',
                 id: props.id || props.name,
                 name: props.name,
                 type: props.type,
                 value: props.value,
                 onChange: props.handleChange
-            }, dynamicProps))
+            }, dynamicProps)),
+            typeof props.description !== 'undefined' && props.description.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                'small',
+                null,
+                props.description
+            ) : null
         );
     };
 
@@ -8706,7 +8717,7 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), Input_class.propTypes = {
     name: prop_types_default.a.string.isRequired,
 
-    type: prop_types_default.a.oneOf(["date", "datetime-local", "email", "file", "hidden", "image", "month", "number", "password", "radio", "range", "reset", "search", "submit", "tel", "text", "time", "url", "week", "button", "checkbox", "color"]).isRequired,
+    type: prop_types_default.a.oneOf(['date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week', 'button', 'checkbox', 'color']).isRequired,
 
     id: prop_types_default.a.string,
 
@@ -8716,7 +8727,7 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
 
     placeholder: prop_types_default.a.string,
 
-    autocomplete: prop_types_default.a.oneOf(["on", "off"]),
+    autocomplete: prop_types_default.a.oneOf(['on', 'off']),
 
     maxLength: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number]),
 
@@ -8730,7 +8741,11 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
 
     confirmField: prop_types_default.a.string,
 
-    confirmFieldMessage: prop_types_default.a.string
+    confirmFieldMessage: prop_types_default.a.string,
+
+    explainer: prop_types_default.a.string,
+
+    description: prop_types_default.a.string
 }, Input_temp);
 
 
@@ -8761,39 +8776,50 @@ var Textarea_Textarea = (Textarea_temp = Textarea_class = function (_Component) 
     Textarea.prototype.render = function render() {
         var props = this.props;
         var dynamicProps = {};
-        var avalibleProps = ["placeholder", "autocomplete", "maxLength", "minLength", "rows", "cols", "required", "disabled", "readonly"];
+        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'rows', 'cols', 'required', 'disabled', 'readonly'];
 
         avalibleProps.forEach(function (key) {
-            if (typeof props[key] != "undefined") {
+            if (typeof props[key] != 'undefined') {
                 dynamicProps[key] = props[key];
             }
         });
 
         //Hyperform confirm field validation
-        if (typeof props.confirmField != "undefined") {
-            dynamicProps["data-confirm-field"] = props.confirmField;
+        if (typeof props.confirmField != 'undefined') {
+            dynamicProps['data-confirm-field'] = props.confirmField;
 
-            if (typeof props.confirmFieldMessage != "undefined") {
-                dynamicProps["data-confirm-message"] = props.confirmFieldMessage;
+            if (typeof props.confirmFieldMessage != 'undefined') {
+                dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
             }
         }
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { className: "form-group" },
+            'div',
+            { className: 'form-group' },
             props.label && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "label",
-                { htmlFor: props.name, className: "form-label" },
-                props.label
+                'label',
+                { htmlFor: props.id || props.name, className: 'form-label' },
+                props.label,
+                ' ',
+                typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'span',
+                    { 'data-tooltip': props.explainer },
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { 'class': 'fa fa-question-circle' })
+                ) : null
             ),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("textarea", Textarea_extends({
-                className: "form-input",
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('textarea', Textarea_extends({
+                className: 'form-input',
                 id: props.id || props.name,
                 name: props.name,
                 type: props.type,
                 value: props.value,
                 onChange: props.handleChange
-            }, dynamicProps))
+            }, dynamicProps)),
+            typeof props.description !== 'undefined' && props.description.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                'small',
+                null,
+                props.description
+            ) : null
         );
     };
 
@@ -8809,7 +8835,7 @@ var Textarea_Textarea = (Textarea_temp = Textarea_class = function (_Component) 
 
     placeholder: prop_types_default.a.string,
 
-    autocomplete: prop_types_default.a.oneOf(["on", "off"]),
+    autocomplete: prop_types_default.a.oneOf(['on', 'off']),
 
     maxLength: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number]),
 
@@ -8827,7 +8853,11 @@ var Textarea_Textarea = (Textarea_temp = Textarea_class = function (_Component) 
 
     confirmField: prop_types_default.a.string,
 
-    confirmFieldMessage: prop_types_default.a.string
+    confirmFieldMessage: prop_types_default.a.string,
+
+    explainer: prop_types_default.a.string,
+
+    description: prop_types_default.a.string
 }, Textarea_temp);
 
 /* harmony default export */ var Form_Textarea = (Textarea_Textarea);
