@@ -27,9 +27,7 @@ const addScript = src => {
 };
 
 insertAfter(
-    addScript(
-        'http://helsingborg-stad.github.io/styleguide-web/dist/js/hbg-prime.min.js'
-    ),
+    addScript('http://helsingborg-stad.github.io/styleguide-web/dist/js/hbg-prime.min.js'),
     document.querySelector('#demo')
 );
 
@@ -41,13 +39,15 @@ class Demo extends Component {
                 <Button color="primary" href="http://google.se">
                     Lol
                 </Button>
-                <Input name="lol" type="text" handleChange={() => {}} />
-                <Notice>Just another notice!</Notice>
-                <Textarea
-                    value="lol"
-                    name="mytextarea"
+                <Input
+                    name="lol"
+                    type="text"
                     handleChange={() => {}}
+                    label="Hello Man"
+                    description="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
                 />
+                <Notice>Just another notice!</Notice>
+                <Textarea value="lol" name="mytextarea" handleChange={() => {}} />
                 <Pagination
                     current={1}
                     total={10}
