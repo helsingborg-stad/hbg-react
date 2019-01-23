@@ -94,7 +94,7 @@ class Input extends Component {
                         {props.label}{' '}
                         {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
                             <span data-tooltip={props.explainer}>
-                                <i class="fa fa-question-circle" />
+                                <i className="fa fa-question-circle" />
                             </span>
                         ) : null}
                     </label>
