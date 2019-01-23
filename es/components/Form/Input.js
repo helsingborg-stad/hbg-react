@@ -49,7 +49,7 @@ var Input = function (_Component) {
                 typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? React.createElement(
                     'span',
                     { 'data-tooltip': props.explainer },
-                    React.createElement('i', { 'class': 'fa fa-question-circle' })
+                    React.createElement('i', { className: 'fa fa-question-circle' })
                 ) : null
             ),
             React.createElement('input', _extends({

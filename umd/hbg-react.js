@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.2 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.3 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -8694,7 +8694,7 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
                 typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     'span',
                     { 'data-tooltip': props.explainer },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { 'class': 'fa fa-question-circle' })
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'fa fa-question-circle' })
                 ) : null
             ),
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('input', _extends({
@@ -8804,7 +8804,7 @@ var Textarea_Textarea = (Textarea_temp = Textarea_class = function (_Component) 
                 typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     'span',
                     { 'data-tooltip': props.explainer },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { 'class': 'fa fa-question-circle' })
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'fa fa-question-circle' })
                 ) : null
             ),
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('textarea', Textarea_extends({
