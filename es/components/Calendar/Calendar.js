@@ -39,7 +39,8 @@ var Calendar = (_temp = _class = function (_Component) {
      */
 
 
-    Calendar.prototype.nextMonth = function nextMonth() {
+    Calendar.prototype.nextMonth = function nextMonth(e) {
+        e.preventDefault();
         var _props = this.props,
             maxDate = _props.maxDate,
             onChangeMonth = _props.onChangeMonth;
@@ -65,7 +66,8 @@ var Calendar = (_temp = _class = function (_Component) {
      */
 
 
-    Calendar.prototype.prevMonth = function prevMonth() {
+    Calendar.prototype.prevMonth = function prevMonth(e) {
+        e.preventDefault();
         var _props2 = this.props,
             minDate = _props2.minDate,
             onChangeMonth = _props2.onChangeMonth;

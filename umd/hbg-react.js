@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.4 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.5 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -9536,7 +9536,8 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
      */
 
 
-    Calendar.prototype.nextMonth = function nextMonth() {
+    Calendar.prototype.nextMonth = function nextMonth(e) {
+        e.preventDefault();
         var _props = this.props,
             maxDate = _props.maxDate,
             onChangeMonth = _props.onChangeMonth;
@@ -9562,7 +9563,8 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
      */
 
 
-    Calendar.prototype.prevMonth = function prevMonth() {
+    Calendar.prototype.prevMonth = function prevMonth(e) {
+        e.preventDefault();
         var _props2 = this.props,
             minDate = _props2.minDate,
             onChangeMonth = _props2.onChangeMonth;
