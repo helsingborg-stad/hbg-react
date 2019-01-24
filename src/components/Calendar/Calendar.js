@@ -313,7 +313,7 @@ class Calendar extends Component {
                                             }
                                         >
                                             {/* Date content */}
-                                            {typeof eventContent === 'function'
+                                            {typeof dateContent === 'function'
                                                 ? dateContent(
                                                       format(
                                                           date,
