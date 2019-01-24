@@ -44,7 +44,7 @@ class Demo extends Component {
                     type="text"
                     handleChange={() => {}}
                     label="Hello Man"
-                    description="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
+                    explainer="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
                 />
                 <Notice>Just another notice!</Notice>
                 <Textarea value="lol" name="mytextarea" handleChange={() => {}} />

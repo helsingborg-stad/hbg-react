@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.3 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.4 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -9690,7 +9690,7 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
                                         onClickDate(date);
                                     } : null
                                 },
-                                typeof eventContent === 'function' ? dateContent(dateFns_format(date, dateFormat, locale), date) : dateFns_format(date, dateFormat)
+                                typeof dateContent === 'function' ? dateContent(dateFns_format(date, dateFormat, locale), date) : dateFns_format(date, dateFormat)
                             )
                         );
                     })

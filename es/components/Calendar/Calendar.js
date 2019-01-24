@@ -193,7 +193,7 @@ var Calendar = (_temp = _class = function (_Component) {
                                         onClickDate(date);
                                     } : null
                                 },
-                                typeof eventContent === 'function' ? dateContent(format(date, dateFormat, locale), date) : format(date, dateFormat)
+                                typeof dateContent === 'function' ? dateContent(format(date, dateFormat, locale), date) : format(date, dateFormat)
                             )
                         );
                     })
