@@ -67,7 +67,9 @@ class Calendar extends Component {
             'friday',
             'saturday',
             'sunday'
-        ])
+        ]),
+        /** @type {boolean} Set the first day of the week, eg. "monday" */
+        disable: PropTypes.bool
     };
 
     static defaultProps = {
@@ -77,7 +79,8 @@ class Calendar extends Component {
         dayFormat: 'dd',
         dateFormat: 'D',
         weekStartsOn: 'monday',
-        locale: 'en'
+        locale: 'en',
+        disable: false
     };
 
     constructor(props) {
@@ -337,15 +340,17 @@ class Calendar extends Component {
             weekStartsOn,
             locale,
             minDate,
-            maxDate
+            maxDate,
+            disable
         } = this.props;
 
         return (
             <div
-                className={classNames(
-                    'calendar',
-                    typeof className !== 'undefined' ? className : null
-                )}
+                className={classNames({
+                    calendar: true,
+                    [className]: typeof className !== 'undefined' ? true : false,
+                    disabled: disable
+                })}
             >
                 <CalendarHeader
                     month={currentMonth}
