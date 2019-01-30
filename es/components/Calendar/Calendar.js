@@ -248,6 +248,8 @@ var Calendar = (_temp = _class = function (_Component) {
     };
 
     Calendar.prototype.render = function render() {
+        var _classNames2;
+
         var currentMonth = this.state.currentMonth;
         var _props4 = this.props,
             className = _props4.className,
@@ -257,13 +259,16 @@ var Calendar = (_temp = _class = function (_Component) {
             weekStartsOn = _props4.weekStartsOn,
             locale = _props4.locale,
             minDate = _props4.minDate,
-            maxDate = _props4.maxDate;
+            maxDate = _props4.maxDate,
+            disable = _props4.disable;
 
 
         return React.createElement(
             'div',
             {
-                className: classNames('calendar', typeof className !== 'undefined' ? className : null)
+                className: classNames((_classNames2 = {
+                    calendar: true
+                }, _classNames2[className] = typeof className !== 'undefined' ? true : false, _classNames2.disabled = disable, _classNames2))
             },
             React.createElement(CalendarHeader, {
                 month: currentMonth,
@@ -289,7 +294,8 @@ var Calendar = (_temp = _class = function (_Component) {
     dayFormat: 'dd',
     dateFormat: 'D',
     weekStartsOn: 'monday',
-    locale: 'en'
+    locale: 'en',
+    disable: false
 }, _temp);
 Calendar.propTypes = process.env.NODE_ENV !== "production" ? {
     /** @type {array} [description] */
@@ -334,7 +340,9 @@ Calendar.propTypes = process.env.NODE_ENV !== "production" ? {
     /** @type {string} Set date format */
     dateFormat: PropTypes.string,
     /** @type {string} Set the first day of the week, eg. "monday" */
-    weekStartsOn: PropTypes.oneOf(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])
+    weekStartsOn: PropTypes.oneOf(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
+    /** @type {boolean} Set the first day of the week, eg. "monday" */
+    disable: PropTypes.bool
 } : {};
 
 

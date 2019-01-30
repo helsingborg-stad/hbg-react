@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.5 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.6 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -9745,6 +9745,8 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
     };
 
     Calendar.prototype.render = function render() {
+        var _classNames2;
+
         var currentMonth = this.state.currentMonth;
         var _props4 = this.props,
             className = _props4.className,
@@ -9754,13 +9756,16 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
             weekStartsOn = _props4.weekStartsOn,
             locale = _props4.locale,
             minDate = _props4.minDate,
-            maxDate = _props4.maxDate;
+            maxDate = _props4.maxDate,
+            disable = _props4.disable;
 
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             'div',
             {
-                className: classnames_default()('calendar', typeof className !== 'undefined' ? className : null)
+                className: classnames_default()((_classNames2 = {
+                    calendar: true
+                }, _classNames2[className] = typeof className !== 'undefined' ? true : false, _classNames2.disabled = disable, _classNames2))
             },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Calendar_CalendarHeader, {
                 month: currentMonth,
@@ -9822,7 +9827,9 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
     /** @type {string} Set date format */
     dateFormat: prop_types_default.a.string,
     /** @type {string} Set the first day of the week, eg. "monday" */
-    weekStartsOn: prop_types_default.a.oneOf(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])
+    weekStartsOn: prop_types_default.a.oneOf(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
+    /** @type {boolean} Set the first day of the week, eg. "monday" */
+    disable: prop_types_default.a.bool
 }, Calendar_class.defaultProps = {
     currentMonth: new Date(),
     monthFormat: 'MMMM',
@@ -9830,7 +9837,8 @@ var Calendar_Calendar = (Calendar_temp = Calendar_class = function (_Component) 
     dayFormat: 'dd',
     dateFormat: 'D',
     weekStartsOn: 'monday',
-    locale: 'en'
+    locale: 'en',
+    disable: false
 }, Calendar_temp);
 
 
