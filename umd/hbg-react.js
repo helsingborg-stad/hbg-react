@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.6 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.7 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -8304,7 +8304,7 @@ var DropdownToggle_DropdownToggle = (DropdownToggle_temp = DropdownToggle_class 
         var classes = props.btnClass ? "c-dropdown__toggle " + props.btnClass : "c-dropdown__toggle";
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "button",
-            { className: classes, onClick: props.clickAction },
+            { className: classes, onClick: props.clickAction, type: "button" },
             props.children || props.title
         );
     };

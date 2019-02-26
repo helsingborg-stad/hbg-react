@@ -21,7 +21,7 @@ var DropdownToggle = function (_Component) {
         var classes = props.btnClass ? "c-dropdown__toggle " + props.btnClass : "c-dropdown__toggle";
         return React.createElement(
             "button",
-            { className: classes, onClick: props.clickAction },
+            { className: classes, onClick: props.clickAction, type: "button" },
             props.children || props.title
         );
     };
