@@ -1,5 +1,5 @@
 /*!
- * hbg-react v0.11.8 - https://github.com/helsingborg-stad/hbg-react#readme
+ * hbg-react v0.11.9 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
