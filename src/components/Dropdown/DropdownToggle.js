@@ -12,7 +12,7 @@ class DropdownToggle extends Component {
             ? "c-dropdown__toggle " + props.btnClass
             : "c-dropdown__toggle";
         return (
-            <button className={classes} onClick={props.clickAction}>
+            <button className={classes} onClick={props.clickAction} type="button">
                 {props.children || props.title}
             </button>
         );
