@@ -49,20 +49,13 @@ npm run start
 npm whoami
 ```
 
-2. Bump package version:
+2. Run npm version to bump package version, build assets and add version commit.
 
 ```
 npm version patch | minor | major
 ```
 
-3. Build assets for production
-
-```
-npm run build
-```
-
-4. Commit changes, set release tag and publish to github
-5. Then publish to NPM:
+3. Review the generated commit, if happy run npm publish - this will push to origin master (with tags) & publish NPM package.
 
 ```
 npm publish
