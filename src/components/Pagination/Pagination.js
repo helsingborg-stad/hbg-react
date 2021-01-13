@@ -31,7 +31,7 @@ class Pagination extends Component {
                 <div className="o-grid-fit u-mr-auto">
                     <div className="o-grid sm-gutter grid-va-middle">
                         <div className="o-grid-fit">
-                            <div class="c-field">
+                            <div className="c-field">
                                 <Input
                                     value={current}
                                     type="number"
