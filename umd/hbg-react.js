@@ -7762,20 +7762,22 @@ var Button_Button = (Button_temp = Button_class = function (_Component) {
         var props = this.props;
         var dynamicProps = {};
 
-        dynamicProps.className = 'btn';
+        dynamicProps.className = 'c-button c-button__filled';
 
         //Size
         if (typeof props.size != 'undefined') {
-            dynamicProps.className += props.size == 'large' ? ' btn-lg' : '';
-            dynamicProps.className += props.size == 'small' ? ' btn-sm' : '';
+            dynamicProps.className += props.size == 'large' ? ' c-button--lg' : '';
+            dynamicProps.className += props.size == 'small' ? ' c-button--sm' : '';
+        } else {
+            dynamicProps.className += ' c-button--md';
         }
 
         //Color
         if (typeof props.color != 'undefined') {
-            var colors = ['primary', 'contrasted', 'light', 'danger', 'theme-first', 'theme-second', 'theme-third', 'theme-fourth', 'theme-fifth', 'plain'];
+            var colors = ['primary', 'secondary'];
 
             if (colors.includes(props.color.toLowerCase())) {
-                dynamicProps.className += ' btn-' + props.color.toLowerCase();
+                dynamicProps.className += ' c-button__filled--' + props.color.toLowerCase();
             }
         }
 
@@ -8205,18 +8207,22 @@ var DropdownList_DropdownList = function (_Component) {
     DropdownList.prototype.render = function render() {
         var props = this.props;
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { className: "c-dropdown__menu is-open" },
+            'div',
+            { className: 'c-dropdown__list c-dropdown__list--down c-dropdown__list--visible' },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "ul",
-                { className: "o-dropdown-links unlist" },
-                props.children.map(function (child, index) {
-                    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                        "li",
-                        { key: props.itemKey + '-' + index },
-                        child
-                    );
-                })
+                'div',
+                null,
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'ul',
+                    null,
+                    props.children.map(function (child, index) {
+                        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            'li',
+                            { key: props.itemKey + '-' + index },
+                            child
+                        );
+                    })
+                )
             )
         );
     };
@@ -8301,7 +8307,9 @@ var DropdownToggle_DropdownToggle = (DropdownToggle_temp = DropdownToggle_class 
 
     DropdownToggle.prototype.render = function render() {
         var props = this.props;
-        var classes = props.btnClass ? "c-dropdown__toggle " + props.btnClass : "c-dropdown__toggle";
+
+        var classes = props.btnClass ? props.btnClass : 'c-button c-button__filled c-button__filled--default c-button--md';
+
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "button",
             { className: classes, onClick: props.clickAction, type: "button" },
@@ -8385,7 +8393,7 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             'div',
-            { className: 'c-dropdown' },
+            { className: 'c-dropdown c-dropdown-button--down' },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dropdown_DropdownToggle, {
                 btnClass: toggleClass,
                 clickAction: function clickAction() {
@@ -8453,11 +8461,128 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
     toggleClass: prop_types_default.a.string,
     itemKey: prop_types_default.a.string
 }, Dropdown_class.defaultProps = {
-    toggleClass: 'btn btn-primary',
+    toggleClass: 'c-button c-button__filled c-button__filled--primary c-button--md',
     itemKey: 'dropdownItem'
 }, Dropdown_temp);
 
 /* harmony default export */ var components_Dropdown_Dropdown = (react_onclickoutside_es(Dropdown_Dropdown));
+// CONCATENATED MODULE: ./src/components/Form/Input.js
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var Input_class, Input_temp;
+
+function Input_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function Input_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function Input_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var Input_Input = (Input_temp = Input_class = function (_Component) {
+    Input_inherits(Input, _Component);
+
+    function Input() {
+        Input_classCallCheck(this, Input);
+
+        return Input_possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    Input.prototype.render = function render() {
+        var dynamicProps = {};
+        var props = this.props;
+        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly', 'style'];
+
+        avalibleProps.forEach(function (key) {
+            if (typeof props[key] != 'undefined') {
+                dynamicProps[key] = props[key];
+            }
+        });
+
+        //Hyperform confirm field validation
+        if (typeof props.confirmField != 'undefined') {
+            dynamicProps['data-confirm-field'] = props.confirmField;
+
+            if (typeof props.confirmFieldMessage != 'undefined') {
+                dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
+            }
+        }
+
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            'div',
+            null,
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                'div',
+                { className: 'c-field c-field--md c-field--radius-md ' + (props.icon ? 'c-field--icon' : '') },
+                props.icon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'i',
+                    { className: 'c-icon c-icon--size-md material-icons' },
+                    props.icon
+                ),
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('input', _extends({
+                    id: props.id || props.name,
+                    name: props.name,
+                    type: props.type,
+                    value: props.value,
+                    onChange: props.handleChange
+                }, dynamicProps, {
+                    placeholder: props.label ? props.label : ''
+                })),
+                props.label && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'label',
+                    { htmlFor: props.id || props.name, className: 'c-field__text--label' },
+                    props.label,
+                    ' '
+                )
+            ),
+            typeof props.description !== 'undefined' && props.description.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                'small',
+                null,
+                props.description
+            ) : null
+        );
+    };
+
+    return Input;
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), Input_class.propTypes = {
+    name: prop_types_default.a.string.isRequired,
+
+    type: prop_types_default.a.oneOf(['date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week', 'button', 'checkbox', 'color']).isRequired,
+
+    id: prop_types_default.a.string,
+
+    value: prop_types_default.a.string,
+
+    handleChange: prop_types_default.a.func,
+
+    placeholder: prop_types_default.a.string,
+
+    icon: prop_types_default.a.string,
+
+    autocomplete: prop_types_default.a.oneOf(['on', 'off']),
+
+    maxLength: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number]),
+
+    minLength: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number]),
+
+    required: prop_types_default.a.bool,
+
+    disabled: prop_types_default.a.bool,
+
+    readonly: prop_types_default.a.bool,
+
+    confirmField: prop_types_default.a.string,
+
+    confirmFieldMessage: prop_types_default.a.string,
+
+    explainer: prop_types_default.a.string,
+
+    description: prop_types_default.a.string
+}, Input_temp);
+
+
+/* harmony default export */ var Form_Input = (Input_Input);
 // CONCATENATED MODULE: ./src/components/Pagination/Pagination.js
 var Pagination_class, Pagination_temp;
 
@@ -8466,6 +8591,7 @@ function Pagination_classCallCheck(instance, Constructor) { if (!(instance insta
 function Pagination_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function Pagination_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -8493,27 +8619,32 @@ var Pagination_Pagination = (Pagination_temp = Pagination_class = function (_Com
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "div",
-            { className: "grid" },
+            { className: "o-grid" },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 "div",
-                { className: "grid-fit-content u-mr-auto" },
+                { className: "o-grid-fit u-mr-auto" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     "div",
-                    { className: "grid sm-gutter grid-va-middle" },
+                    { className: "o-grid sm-gutter grid-va-middle" },
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                         "div",
-                        { className: "grid-xs-fit-content" },
-                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("input", {
-                            value: current,
-                            type: "number",
-                            min: "1",
-                            max: total,
-                            onChange: input
-                        })
+                        { className: "o-grid-fit" },
+                        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                            "div",
+                            { "class": "c-field" },
+                            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Form_Input, {
+                                value: current,
+                                type: "number",
+                                min: "1",
+                                max: total,
+                                onChange: input,
+                                style: { maxWidth: '80px' }
+                            })
+                        )
                     ),
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                         "div",
-                        { className: "grid-fit-content" },
+                        { className: "o-grid-fit  u-display--flex u-align-items--center" },
                         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                             "span",
                             null,
@@ -8525,13 +8656,13 @@ var Pagination_Pagination = (Pagination_temp = Pagination_class = function (_Com
             ),
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 "div",
-                { className: "grid-fit-content" },
+                { className: "o-grid-fit" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                     "div",
-                    { className: "grid sm-gutter" },
+                    { className: "o-grid sm-gutter" },
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                         "div",
-                        { className: "grid-fit-content" },
+                        { className: "o-grid-fit" },
                         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                             components_Button_Button,
                             {
@@ -8550,7 +8681,7 @@ var Pagination_Pagination = (Pagination_temp = Pagination_class = function (_Com
                     ),
                     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                         "div",
-                        { className: "grid-fit-content" },
+                        { className: "o-grid-fit" },
                         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                             components_Button_Button,
                             {
@@ -8640,116 +8771,6 @@ var Notice_Notice = (Notice_temp = Notice_class = function (_Component) {
 
 
 /* harmony default export */ var components_Notice_Notice = (Notice_Notice);
-// CONCATENATED MODULE: ./src/components/Form/Input.js
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var Input_class, Input_temp;
-
-function Input_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function Input_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function Input_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var Input_Input = (Input_temp = Input_class = function (_Component) {
-    Input_inherits(Input, _Component);
-
-    function Input() {
-        Input_classCallCheck(this, Input);
-
-        return Input_possibleConstructorReturn(this, _Component.apply(this, arguments));
-    }
-
-    Input.prototype.render = function render() {
-        var dynamicProps = {};
-        var props = this.props;
-        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly'];
-
-        avalibleProps.forEach(function (key) {
-            if (typeof props[key] != 'undefined') {
-                dynamicProps[key] = props[key];
-            }
-        });
-
-        //Hyperform confirm field validation
-        if (typeof props.confirmField != 'undefined') {
-            dynamicProps['data-confirm-field'] = props.confirmField;
-
-            if (typeof props.confirmFieldMessage != 'undefined') {
-                dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
-            }
-        }
-
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            'div',
-            { className: 'form-group' },
-            props.label && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'label',
-                { htmlFor: props.id || props.name, className: 'form-label' },
-                props.label,
-                ' ',
-                typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'span',
-                    { 'data-tooltip': props.explainer },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'fa fa-question-circle' })
-                ) : null
-            ),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('input', _extends({
-                className: 'form-input',
-                id: props.id || props.name,
-                name: props.name,
-                type: props.type,
-                value: props.value,
-                onChange: props.handleChange
-            }, dynamicProps)),
-            typeof props.description !== 'undefined' && props.description.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'small',
-                null,
-                props.description
-            ) : null
-        );
-    };
-
-    return Input;
-}(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), Input_class.propTypes = {
-    name: prop_types_default.a.string.isRequired,
-
-    type: prop_types_default.a.oneOf(['date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week', 'button', 'checkbox', 'color']).isRequired,
-
-    id: prop_types_default.a.string,
-
-    value: prop_types_default.a.string,
-
-    handleChange: prop_types_default.a.func,
-
-    placeholder: prop_types_default.a.string,
-
-    autocomplete: prop_types_default.a.oneOf(['on', 'off']),
-
-    maxLength: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number]),
-
-    minLength: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number]),
-
-    required: prop_types_default.a.bool,
-
-    disabled: prop_types_default.a.bool,
-
-    readonly: prop_types_default.a.bool,
-
-    confirmField: prop_types_default.a.string,
-
-    confirmFieldMessage: prop_types_default.a.string,
-
-    explainer: prop_types_default.a.string,
-
-    description: prop_types_default.a.string
-}, Input_temp);
-
-
-/* harmony default export */ var Form_Input = (Input_Input);
 // CONCATENATED MODULE: ./src/components/Form/Textarea.js
 var Textarea_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -8795,26 +8816,27 @@ var Textarea_Textarea = (Textarea_temp = Textarea_class = function (_Component) 
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             'div',
-            { className: 'form-group' },
-            props.label && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'label',
-                { htmlFor: props.id || props.name, className: 'form-label' },
-                props.label,
-                ' ',
-                typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'span',
-                    { 'data-tooltip': props.explainer },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('i', { className: 'fa fa-question-circle' })
-                ) : null
+            null,
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                'div',
+                { className: 'c-textarea' },
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('textarea', Textarea_extends({
+                    className: 'form-input',
+                    id: props.id || props.name,
+                    name: props.name,
+                    type: props.type,
+                    value: props.value,
+                    onChange: props.handleChange
+                }, dynamicProps, {
+                    placeholder: props.label ? props.label : ''
+                })),
+                props.label && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'label',
+                    { htmlFor: props.id || props.name, className: 'c-textarea--label' },
+                    props.label,
+                    ' '
+                )
             ),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('textarea', Textarea_extends({
-                className: 'form-input',
-                id: props.id || props.name,
-                name: props.name,
-                type: props.type,
-                value: props.value,
-                onChange: props.handleChange
-            }, dynamicProps)),
             typeof props.description !== 'undefined' && props.description.length > 0 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 'small',
                 null,

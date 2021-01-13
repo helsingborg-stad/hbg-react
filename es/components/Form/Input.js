@@ -21,7 +21,7 @@ var Input = function (_Component) {
     Input.prototype.render = function render() {
         var dynamicProps = {};
         var props = this.props;
-        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly'];
+        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly', 'style'];
 
         avalibleProps.forEach(function (key) {
             if (typeof props[key] != 'undefined') {
@@ -40,26 +40,31 @@ var Input = function (_Component) {
 
         return React.createElement(
             'div',
-            { className: 'form-group' },
-            props.label && React.createElement(
-                'label',
-                { htmlFor: props.id || props.name, className: 'form-label' },
-                props.label,
-                ' ',
-                typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? React.createElement(
-                    'span',
-                    { 'data-tooltip': props.explainer },
-                    React.createElement('i', { className: 'fa fa-question-circle' })
-                ) : null
+            null,
+            React.createElement(
+                'div',
+                { className: 'c-field c-field--md c-field--radius-md ' + (props.icon ? 'c-field--icon' : '') },
+                props.icon && React.createElement(
+                    'i',
+                    { className: 'c-icon c-icon--size-md material-icons' },
+                    props.icon
+                ),
+                React.createElement('input', _extends({
+                    id: props.id || props.name,
+                    name: props.name,
+                    type: props.type,
+                    value: props.value,
+                    onChange: props.handleChange
+                }, dynamicProps, {
+                    placeholder: props.label ? props.label : ''
+                })),
+                props.label && React.createElement(
+                    'label',
+                    { htmlFor: props.id || props.name, className: 'c-field__text--label' },
+                    props.label,
+                    ' '
+                )
             ),
-            React.createElement('input', _extends({
-                className: 'form-input',
-                id: props.id || props.name,
-                name: props.name,
-                type: props.type,
-                value: props.value,
-                onChange: props.handleChange
-            }, dynamicProps)),
             typeof props.description !== 'undefined' && props.description.length > 0 ? React.createElement(
                 'small',
                 null,
@@ -83,6 +88,8 @@ Input.propTypes = process.env.NODE_ENV !== "production" ? {
     handleChange: PropTypes.func,
 
     placeholder: PropTypes.string,
+
+    icon: PropTypes.string,
 
     autocomplete: PropTypes.oneOf(['on', 'off']),
 

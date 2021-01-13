@@ -40,26 +40,27 @@ var Textarea = function (_Component) {
 
         return React.createElement(
             'div',
-            { className: 'form-group' },
-            props.label && React.createElement(
-                'label',
-                { htmlFor: props.id || props.name, className: 'form-label' },
-                props.label,
-                ' ',
-                typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? React.createElement(
-                    'span',
-                    { 'data-tooltip': props.explainer },
-                    React.createElement('i', { className: 'fa fa-question-circle' })
-                ) : null
+            null,
+            React.createElement(
+                'div',
+                { className: 'c-textarea' },
+                React.createElement('textarea', _extends({
+                    className: 'form-input',
+                    id: props.id || props.name,
+                    name: props.name,
+                    type: props.type,
+                    value: props.value,
+                    onChange: props.handleChange
+                }, dynamicProps, {
+                    placeholder: props.label ? props.label : ''
+                })),
+                props.label && React.createElement(
+                    'label',
+                    { htmlFor: props.id || props.name, className: 'c-textarea--label' },
+                    props.label,
+                    ' '
+                )
             ),
-            React.createElement('textarea', _extends({
-                className: 'form-input',
-                id: props.id || props.name,
-                name: props.name,
-                type: props.type,
-                value: props.value,
-                onChange: props.handleChange
-            }, dynamicProps)),
             typeof props.description !== 'undefined' && props.description.length > 0 ? React.createElement(
                 'small',
                 null,

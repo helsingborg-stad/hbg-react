@@ -18,18 +18,22 @@ var DropdownList = function (_Component) {
     DropdownList.prototype.render = function render() {
         var props = this.props;
         return React.createElement(
-            "div",
-            { className: "c-dropdown__menu is-open" },
+            'div',
+            { className: 'c-dropdown__list c-dropdown__list--down c-dropdown__list--visible' },
             React.createElement(
-                "ul",
-                { className: "o-dropdown-links unlist" },
-                props.children.map(function (child, index) {
-                    return React.createElement(
-                        "li",
-                        { key: props.itemKey + '-' + index },
-                        child
-                    );
-                })
+                'div',
+                null,
+                React.createElement(
+                    'ul',
+                    null,
+                    props.children.map(function (child, index) {
+                        return React.createElement(
+                            'li',
+                            { key: props.itemKey + '-' + index },
+                            child
+                        );
+                    })
+                )
             )
         );
     };

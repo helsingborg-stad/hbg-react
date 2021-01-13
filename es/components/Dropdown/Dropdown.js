@@ -65,7 +65,7 @@ var Dropdown = (_temp = _class = function (_Component) {
 
         return React.createElement(
             'div',
-            { className: 'c-dropdown' },
+            { className: 'c-dropdown c-dropdown-button--down' },
             React.createElement(DropdownToggle, {
                 btnClass: toggleClass,
                 clickAction: function clickAction() {
@@ -127,7 +127,7 @@ var Dropdown = (_temp = _class = function (_Component) {
 
     return Dropdown;
 }(Component), _class.defaultProps = {
-    toggleClass: 'btn btn-primary',
+    toggleClass: 'c-button c-button__filled c-button__filled--primary c-button--md',
     itemKey: 'dropdownItem'
 }, _temp);
 Dropdown.propTypes = process.env.NODE_ENV !== "production" ? {

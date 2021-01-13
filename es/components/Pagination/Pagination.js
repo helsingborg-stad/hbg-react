@@ -7,6 +7,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Button from "../Button/Button";
+import Input from "../Form/Input";
 
 var Pagination = function (_Component) {
     _inherits(Pagination, _Component);
@@ -30,27 +31,32 @@ var Pagination = function (_Component) {
 
         return React.createElement(
             "div",
-            { className: "grid" },
+            { className: "o-grid" },
             React.createElement(
                 "div",
-                { className: "grid-fit-content u-mr-auto" },
+                { className: "o-grid-fit u-mr-auto" },
                 React.createElement(
                     "div",
-                    { className: "grid sm-gutter grid-va-middle" },
+                    { className: "o-grid sm-gutter grid-va-middle" },
                     React.createElement(
                         "div",
-                        { className: "grid-xs-fit-content" },
-                        React.createElement("input", {
-                            value: current,
-                            type: "number",
-                            min: "1",
-                            max: total,
-                            onChange: input
-                        })
+                        { className: "o-grid-fit" },
+                        React.createElement(
+                            "div",
+                            { "class": "c-field" },
+                            React.createElement(Input, {
+                                value: current,
+                                type: "number",
+                                min: "1",
+                                max: total,
+                                onChange: input,
+                                style: { maxWidth: '80px' }
+                            })
+                        )
                     ),
                     React.createElement(
                         "div",
-                        { className: "grid-fit-content" },
+                        { className: "o-grid-fit  u-display--flex u-align-items--center" },
                         React.createElement(
                             "span",
                             null,
@@ -62,13 +68,13 @@ var Pagination = function (_Component) {
             ),
             React.createElement(
                 "div",
-                { className: "grid-fit-content" },
+                { className: "o-grid-fit" },
                 React.createElement(
                     "div",
-                    { className: "grid sm-gutter" },
+                    { className: "o-grid sm-gutter" },
                     React.createElement(
                         "div",
-                        { className: "grid-fit-content" },
+                        { className: "o-grid-fit" },
                         React.createElement(
                             Button,
                             {
@@ -87,7 +93,7 @@ var Pagination = function (_Component) {
                     ),
                     React.createElement(
                         "div",
-                        { className: "grid-fit-content" },
+                        { className: "o-grid-fit" },
                         React.createElement(
                             Button,
                             {
