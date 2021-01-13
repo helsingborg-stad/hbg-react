@@ -9248,14 +9248,7 @@ var AccordionTable_AccordionTable = function AccordionTable(_ref) {
 var PreLoader_PreLoader = function PreLoader(_ref) {
     var _ref$modifier = _ref.modifier,
         modifier = _ref$modifier === undefined ? "" : _ref$modifier;
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { className: "loading " + modifier },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null)
-    );
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { className: "c-loader c-loader__linear--color--black c-loader__linear c-loader__linear--md " + modifier });
 };
 
 /* harmony default export */ var components_PreLoader_PreLoader = (PreLoader_PreLoader);
