@@ -95,10 +95,10 @@ class Input extends Component {
 
         if (props.jsDatepicker) {
             const jsDatepickerOptions = {
-                title: 'Välj ett datum',
+                title: '',
                 showdaysoutofmonth: '',
-                showresetbutton: '1',
-                showclearbutton: '1',
+                showresetbutton: '',
+                showclearbutton: '',
                 hideonblur: '1',
                 hideonselect: '1',
                 min: '6/29/1997',
