@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Button from "../Button/Button";
+import Input from "../Form/Input";
+
 
 class Pagination extends Component {
     static propTypes = {
@@ -25,26 +27,28 @@ class Pagination extends Component {
         } = this.props;
 
         return (
-            <div className="grid">
-                <div className="grid-fit-content u-mr-auto">
-                    <div className="grid sm-gutter grid-va-middle">
-                        <div className="grid-xs-fit-content">
-                            <input
-                                value={current}
-                                type="number"
-                                min="1"
-                                max={total}
-                                onChange={input}
-                            />
+            <div className="o-grid">
+                <div className="o-grid-fit u-mr-auto">
+                    <div className="o-grid sm-gutter grid-va-middle">
+                        <div className="o-grid-fit">
+                            <div class="c-field">
+                                <Input
+                                    value={current}
+                                    type="number"
+                                    min="1"
+                                    max={total}
+                                    onChange={input}
+                                />
+                            </div>
                         </div>
-                        <div className="grid-fit-content">
+                        <div className="o-grid-fit  u-display--flex u-align-items--center">
                             <span> / {total}</span>
                         </div>
                     </div>
                 </div>
-                <div className="grid-fit-content">
-                    <div className="grid sm-gutter">
-                        <div className="grid-fit-content">
+                <div className="o-grid-fit">
+                    <div className="o-grid sm-gutter">
+                        <div className="o-grid-fit">
                             <Button
                                 color="primary"
                                 onClick={prev}
@@ -58,7 +62,7 @@ class Pagination extends Component {
                                 ) : null}
                             </Button>
                         </div>
-                        <div className="grid-fit-content">
+                        <div className="o-grid-fit">
                             <Button
                                 color="primary"
                                 onClick={next}
