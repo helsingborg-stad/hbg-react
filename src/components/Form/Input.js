@@ -39,6 +39,8 @@ class Input extends Component {
         placeholder: PropTypes.string,
         
         icon: PropTypes.string,
+        
+        jsDatepicker: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 
         autocomplete: PropTypes.oneOf(['on', 'off']),
 
@@ -72,7 +74,8 @@ class Input extends Component {
             'required',
             'disabled',
             'readonly',
-            'style'
+            'style',
+            'js-datepicker'
         ];
 
         avalibleProps.forEach(function(key) {
@@ -87,6 +90,34 @@ class Input extends Component {
 
             if (typeof props.confirmFieldMessage != 'undefined') {
                 dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
+            }
+        }
+
+        if (props.jsDatepicker) {
+            const jsDatepickerOptions = {
+                title: 'Välj ett datum',
+                showdaysoutofmonth: '',
+                showresetbutton: '1',
+                showclearbutton: '1',
+                hideonblur: '1',
+                hideonselect: '1',
+                min: '6/29/1997',
+                max: '1/14/2077',
+                ...props.jsDatepicker
+            }
+
+            const jsDatePickerAttributes = Object.keys(jsDatepickerOptions).reduce((accumulator, optionKey) => {
+                if (typeof jsDatepickerOptions[optionKey] !== 'undefined') {
+                    accumulator[`c-datepicker-${optionKey}`] = jsDatepickerOptions[optionKey];
+                }
+                
+                return accumulator;
+            }, {});
+
+            dynamicProps = {
+                ...dynamicProps,
+                'js-datepicker': '1',
+                ...jsDatePickerAttributes
             }
         }
 
