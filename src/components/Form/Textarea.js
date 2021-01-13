@@ -69,27 +69,30 @@ class Textarea extends Component {
         }
 
         return (
-            <div className="form-group">
-                {props.label && (
-                    <label htmlFor={props.id || props.name} className="form-label">
-                        {props.label}{' '}
-                        {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
-                            <span data-tooltip={props.explainer}>
-                                <i className="fa fa-question-circle" />
-                            </span>
-                        ) : null}
-                    </label>
-                )}
+            <div>
+                <div className="c-textarea">
+                    <textarea
+                        className="form-input"
+                        id={props.id || props.name}
+                        name={props.name}
+                        type={props.type}
+                        value={props.value}
+                        onChange={props.handleChange}
+                        {...dynamicProps}
+                        placeholder={props.label ? props.label : ''}
+                    />
+                    {props.label && (
+                        <label htmlFor={props.id || props.name} className="c-textarea--label">
+                            {props.label}{' '}
+                            {/* {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
+                                <span data-tooltip={props.explainer}>
+                                    <i className="fa fa-question-circle" />
+                                </span>
+                            ) : null} */}
+                        </label>
+                    )}
+                </div>
 
-                <textarea
-                    className="form-input"
-                    id={props.id || props.name}
-                    name={props.name}
-                    type={props.type}
-                    value={props.value}
-                    onChange={props.handleChange}
-                    {...dynamicProps}
-                />
 
                 {typeof props.description !== 'undefined' && props.description.length > 0 ? (
                     <small>{props.description}</small>
