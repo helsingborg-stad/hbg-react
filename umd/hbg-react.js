@@ -8510,6 +8510,11 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
         }
 
         if (props.jsDatepicker) {
+            var jsDatepickerProps = props.jsDatepicker === 'object' ? props.jsDatepicker : {};
+            var nowDate = new Date();
+            var maxYear = new Date();
+            maxYear.setFullYear(nowDate.getFullYear() + 3);
+
             var jsDatepickerOptions = _extends({
                 title: '',
                 showdaysoutofmonth: '',
@@ -8517,9 +8522,9 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
                 showclearbutton: '',
                 hideonblur: '1',
                 hideonselect: '1',
-                min: '6/29/1997',
-                max: '1/14/2077'
-            }, props.jsDatepicker);
+                min: nowDate,
+                max: maxYear
+            }, jsDatepickerProps);
 
             var jsDatePickerAttributes = Object.keys(jsDatepickerOptions).reduce(function (accumulator, optionKey) {
                 if (typeof jsDatepickerOptions[optionKey] !== 'undefined') {
