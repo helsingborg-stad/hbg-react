@@ -37,6 +37,8 @@ class Input extends Component {
         handleChange: PropTypes.func,
 
         placeholder: PropTypes.string,
+        
+        icon: PropTypes.string,
 
         autocomplete: PropTypes.oneOf(['on', 'off']),
 
@@ -69,7 +71,8 @@ class Input extends Component {
             'minLength',
             'required',
             'disabled',
-            'readonly'
+            'readonly',
+            'style'
         ];
 
         avalibleProps.forEach(function(key) {
@@ -88,27 +91,34 @@ class Input extends Component {
         }
 
         return (
-            <div className="form-group">
-                {props.label && (
-                    <label htmlFor={props.id || props.name} className="form-label">
-                        {props.label}{' '}
-                        {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
-                            <span data-tooltip={props.explainer}>
-                                <i className="fa fa-question-circle" />
-                            </span>
-                        ) : null}
-                    </label>
-                )}
+            <div>
+                <div className={`c-field c-field--md c-field--radius-md ${props.icon ? 'c-field--icon' : ''}`}>
 
-                <input
-                    className="form-input"
-                    id={props.id || props.name}
-                    name={props.name}
-                    type={props.type}
-                    value={props.value}
-                    onChange={props.handleChange}
-                    {...dynamicProps}
-                />
+                    {props.icon && (
+                        <i className="c-icon c-icon--size-md material-icons">{props.icon}</i>
+                    )}
+
+                    <input
+                        id={props.id || props.name}
+                        name={props.name}
+                        type={props.type}
+                        value={props.value}
+                        onChange={props.handleChange}
+                        {...dynamicProps}
+                        placeholder={props.label ? props.label : ''}
+                    />
+                    
+                    {props.label && (
+                        <label className="c-field__text--label">
+                            {props.label}{' '}
+                            {/* {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
+                                <span data-tooltip={props.explainer}>
+                                    <i className="fa fa-question-circle" />
+                                </span>
+                            ) : null} */}
+                        </label>
+                    )}
+                </div>
 
                 {typeof props.description !== 'undefined' && props.description.length > 0 ? (
                     <small>{props.description}</small>
