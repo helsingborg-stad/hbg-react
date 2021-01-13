@@ -21,7 +21,7 @@ var Input = function (_Component) {
     Input.prototype.render = function render() {
         var dynamicProps = {};
         var props = this.props;
-        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly', 'style'];
+        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly', 'style', 'js-datepicker'];
 
         avalibleProps.forEach(function (key) {
             if (typeof props[key] != 'undefined') {
@@ -36,6 +36,31 @@ var Input = function (_Component) {
             if (typeof props.confirmFieldMessage != 'undefined') {
                 dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
             }
+        }
+
+        if (props.jsDatepicker) {
+            var jsDatepickerOptions = _extends({
+                title: '',
+                showdaysoutofmonth: '',
+                showresetbutton: '',
+                showclearbutton: '',
+                hideonblur: '1',
+                hideonselect: '1',
+                min: '6/29/1997',
+                max: '1/14/2077'
+            }, props.jsDatepicker);
+
+            var jsDatePickerAttributes = Object.keys(jsDatepickerOptions).reduce(function (accumulator, optionKey) {
+                if (typeof jsDatepickerOptions[optionKey] !== 'undefined') {
+                    accumulator['c-datepicker-' + optionKey] = jsDatepickerOptions[optionKey];
+                }
+
+                return accumulator;
+            }, {});
+
+            dynamicProps = _extends({}, dynamicProps, {
+                'js-datepicker': '1'
+            }, jsDatePickerAttributes);
         }
 
         return React.createElement(
@@ -90,6 +115,8 @@ Input.propTypes = process.env.NODE_ENV !== "production" ? {
     placeholder: PropTypes.string,
 
     icon: PropTypes.string,
+
+    jsDatepicker: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 
     autocomplete: PropTypes.oneOf(['on', 'off']),
 

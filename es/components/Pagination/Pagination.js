@@ -43,7 +43,7 @@ var Pagination = function (_Component) {
                         { className: "o-grid-fit" },
                         React.createElement(
                             "div",
-                            { "class": "c-field" },
+                            { className: "c-field" },
                             React.createElement(Input, {
                                 value: current,
                                 type: "number",
