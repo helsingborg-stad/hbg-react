@@ -109,7 +109,7 @@ class Input extends Component {
                     />
                     
                     {props.label && (
-                        <label className="c-field__text--label">
+                        <label htmlFor={props.id || props.name} className="c-field__text--label">
                             {props.label}{' '}
                             {/* {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
                                 <span data-tooltip={props.explainer}>
