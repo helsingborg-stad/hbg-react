@@ -94,6 +94,11 @@ class Input extends Component {
         }
 
         if (props.jsDatepicker) {
+            const jsDatepickerProps = props.jsDatepicker === 'object' ? props.jsDatepicker : {};
+            const nowDate = new Date();
+            const maxYear = new Date();
+            maxYear.setFullYear(nowDate.getFullYear() + 3)
+
             const jsDatepickerOptions = {
                 title: '',
                 showdaysoutofmonth: '',
@@ -101,9 +106,9 @@ class Input extends Component {
                 showclearbutton: '',
                 hideonblur: '1',
                 hideonselect: '1',
-                min: '6/29/1997',
-                max: '1/14/2077',
-                ...props.jsDatepicker
+                min: nowDate,
+                max: maxYear,
+                ...jsDatepickerProps
             }
 
             const jsDatePickerAttributes = Object.keys(jsDatepickerOptions).reduce((accumulator, optionKey) => {
