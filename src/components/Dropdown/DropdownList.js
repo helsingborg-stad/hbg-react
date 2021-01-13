@@ -4,12 +4,14 @@ class DropdownList extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="c-dropdown__menu is-open">
-                <ul className="o-dropdown-links unlist">
-                    {props.children.map((child, index) => (
-                        <li key={props.itemKey + '-' + index}>{child}</li>
-                    ))}
-                </ul>
+            <div className="c-dropdown__list c-dropdown__list--down c-dropdown__list--visible">
+                <div>
+                    <ul>
+                        {props.children.map((child, index) => (
+                            <li key={props.itemKey + '-' + index}>{child}</li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         );
     }

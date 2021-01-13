@@ -26,7 +26,7 @@ class Dropdown extends Component {
     };
 
     static defaultProps = {
-        toggleClass: 'btn btn-primary',
+        toggleClass: 'c-button c-button__filled c-button__filled--primary c-button--md',
         itemKey: 'dropdownItem'
     };
 
@@ -65,7 +65,7 @@ class Dropdown extends Component {
         const { listOpen } = this.state;
 
         return (
-            <div className="c-dropdown">
+            <div className="c-dropdown c-dropdown-button--down">
                 <DropdownToggle
                     btnClass={toggleClass}
                     clickAction={() => this.toggleList()}

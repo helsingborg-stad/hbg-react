@@ -8,9 +8,9 @@ class DropdownToggle extends Component {
     };
     render() {
         const props = this.props;
-        let classes = props.btnClass
-            ? "c-dropdown__toggle " + props.btnClass
-            : "c-dropdown__toggle";
+
+        let classes = props.btnClass ? props.btnClass : 'c-button c-button__filled c-button__filled--default c-button--md';
+
         return (
             <button className={classes} onClick={props.clickAction} type="button">
                 {props.children || props.title}
