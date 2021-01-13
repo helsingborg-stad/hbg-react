@@ -29,31 +29,25 @@ class Button extends Component {
         const props = this.props;
         let dynamicProps = {};
 
-        dynamicProps.className = 'btn';
+        dynamicProps.className = 'c-button c-button__filled';
 
         //Size
         if (typeof props.size != 'undefined') {
-            dynamicProps.className += props.size == 'large' ? ' btn-lg' : '';
-            dynamicProps.className += props.size == 'small' ? ' btn-sm' : '';
+            dynamicProps.className += props.size == 'large' ? ' c-button--lg' : '';
+            dynamicProps.className += props.size == 'small' ? ' c-button--sm' : '';
+        } else {
+            dynamicProps.className += ' c-button--md';
         }
 
         //Color
         if (typeof props.color != 'undefined') {
             let colors = [
                 'primary',
-                'contrasted',
-                'light',
-                'danger',
-                'theme-first',
-                'theme-second',
-                'theme-third',
-                'theme-fourth',
-                'theme-fifth',
-                'plain'
+                'secondary',
             ];
 
             if (colors.includes(props.color.toLowerCase())) {
-                dynamicProps.className += ' btn-' + props.color.toLowerCase();
+                dynamicProps.className += ' c-button__filled--' + props.color.toLowerCase();
             }
         }
 
