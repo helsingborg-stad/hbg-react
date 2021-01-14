@@ -58,7 +58,7 @@ class Input extends Component {
 
         explainer: PropTypes.string,
 
-        description: PropTypes.string
+        description: PropTypes.string,
     };
 
     render() {
@@ -75,7 +75,9 @@ class Input extends Component {
             'style',
             'defaultValue',
             'value',
-            'ref'
+            'ref',
+            'onFocus',
+            'onBlur'
         ];
 
         avalibleProps.forEach(function(key) {
