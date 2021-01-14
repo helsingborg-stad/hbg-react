@@ -39,8 +39,6 @@ class Input extends Component {
         placeholder: PropTypes.string,
         
         icon: PropTypes.string,
-        
-        jsDatepicker: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 
         autocomplete: PropTypes.oneOf(['on', 'off']),
 
@@ -75,7 +73,9 @@ class Input extends Component {
             'disabled',
             'readonly',
             'style',
-            'js-datepicker'
+            'defaultValue',
+            'value',
+            'ref'
         ];
 
         avalibleProps.forEach(function(key) {
@@ -93,39 +93,6 @@ class Input extends Component {
             }
         }
 
-        if (props.jsDatepicker) {
-            const jsDatepickerProps = props.jsDatepicker === 'object' ? props.jsDatepicker : {};
-            const nowDate = new Date();
-            const maxYear = new Date();
-            maxYear.setFullYear(nowDate.getFullYear() + 3)
-
-            const jsDatepickerOptions = {
-                title: '',
-                showdaysoutofmonth: '',
-                showresetbutton: '',
-                showclearbutton: '',
-                hideonblur: '1',
-                hideonselect: '1',
-                min: nowDate,
-                max: maxYear,
-                ...jsDatepickerProps
-            }
-
-            const jsDatePickerAttributes = Object.keys(jsDatepickerOptions).reduce((accumulator, optionKey) => {
-                if (typeof jsDatepickerOptions[optionKey] !== 'undefined') {
-                    accumulator[`c-datepicker-${optionKey}`] = jsDatepickerOptions[optionKey];
-                }
-                
-                return accumulator;
-            }, {});
-
-            dynamicProps = {
-                ...dynamicProps,
-                'js-datepicker': '1',
-                ...jsDatePickerAttributes
-            }
-        }
-
         return (
             <div>
                 <div className={`c-field c-field--md c-field--radius-md ${props.icon ? 'c-field--icon' : ''}`}>
@@ -138,7 +105,6 @@ class Input extends Component {
                         id={props.id || props.name}
                         name={props.name}
                         type={props.type}
-                        value={props.value}
                         onChange={props.handleChange}
                         {...dynamicProps}
                         placeholder={props.label ? props.label : ''}
