@@ -37,7 +37,7 @@ class Pagination extends Component {
                                     type="number"
                                     min="1"
                                     max={total}
-                                    onChange={input}
+                                    handleChange={input}
                                     style={{maxWidth: '80px'}}
                                 />
                             </div>
