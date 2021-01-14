@@ -8492,7 +8492,7 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
     Input.prototype.render = function render() {
         var dynamicProps = {};
         var props = this.props;
-        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly', 'style', 'js-datepicker'];
+        var avalibleProps = ['placeholder', 'autocomplete', 'maxLength', 'minLength', 'required', 'disabled', 'readonly', 'style', 'defaultValue', 'value', 'ref', 'onFocus', 'onBlur'];
 
         avalibleProps.forEach(function (key) {
             if (typeof props[key] != 'undefined') {
@@ -8507,36 +8507,6 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
             if (typeof props.confirmFieldMessage != 'undefined') {
                 dynamicProps['data-confirm-message'] = props.confirmFieldMessage;
             }
-        }
-
-        if (props.jsDatepicker) {
-            var jsDatepickerProps = props.jsDatepicker === 'object' ? props.jsDatepicker : {};
-            var nowDate = new Date();
-            var maxYear = new Date();
-            maxYear.setFullYear(nowDate.getFullYear() + 3);
-
-            var jsDatepickerOptions = _extends({
-                title: '',
-                showdaysoutofmonth: '',
-                showresetbutton: '',
-                showclearbutton: '',
-                hideonblur: '1',
-                hideonselect: '1',
-                min: nowDate,
-                max: maxYear
-            }, jsDatepickerProps);
-
-            var jsDatePickerAttributes = Object.keys(jsDatepickerOptions).reduce(function (accumulator, optionKey) {
-                if (typeof jsDatepickerOptions[optionKey] !== 'undefined') {
-                    accumulator['c-datepicker-' + optionKey] = jsDatepickerOptions[optionKey];
-                }
-
-                return accumulator;
-            }, {});
-
-            dynamicProps = _extends({}, dynamicProps, {
-                'js-datepicker': '1'
-            }, jsDatePickerAttributes);
         }
 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -8554,7 +8524,6 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
                     id: props.id || props.name,
                     name: props.name,
                     type: props.type,
-                    value: props.value,
                     onChange: props.handleChange
                 }, dynamicProps, {
                     placeholder: props.label ? props.label : ''
@@ -8589,8 +8558,6 @@ var Input_Input = (Input_temp = Input_class = function (_Component) {
     placeholder: prop_types_default.a.string,
 
     icon: prop_types_default.a.string,
-
-    jsDatepicker: prop_types_default.a.oneOfType([prop_types_default.a.object, prop_types_default.a.bool]),
 
     autocomplete: prop_types_default.a.oneOf(['on', 'off']),
 
@@ -8669,7 +8636,7 @@ var Pagination_Pagination = (Pagination_temp = Pagination_class = function (_Com
                                 type: "number",
                                 min: "1",
                                 max: total,
-                                onChange: input,
+                                handleChange: input,
                                 style: { maxWidth: '80px' }
                             })
                         )

@@ -49,7 +49,7 @@ var Pagination = function (_Component) {
                                 type: "number",
                                 min: "1",
                                 max: total,
-                                onChange: input,
+                                handleChange: input,
                                 style: { maxWidth: '80px' }
                             })
                         )
