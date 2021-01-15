@@ -60,6 +60,8 @@ var Dropdown = (_temp = _class = function (_Component) {
             toggleClass = _props.toggleClass,
             children = _props.children,
             itemKey = _props.itemKey;
+
+        console.log("🚀 ~ file: Dropdown.js ~ line 65 ~ Dropdown ~ render ~ toggleClass", toggleClass);
         var listOpen = this.state.listOpen;
 
 
@@ -71,7 +73,8 @@ var Dropdown = (_temp = _class = function (_Component) {
                 clickAction: function clickAction() {
                     return _this2.toggleList();
                 },
-                title: title
+                title: title,
+                isActive: listOpen
             }),
             typeof children !== 'undefined' && listOpen && React.createElement(
                 DropdownList,
@@ -127,7 +130,7 @@ var Dropdown = (_temp = _class = function (_Component) {
 
     return Dropdown;
 }(Component), _class.defaultProps = {
-    toggleClass: 'c-button c-button__filled c-button__filled--primary c-button--md',
+    toggleClass: 'c-button c-button__filled c-button__filled--default c-button--md',
     itemKey: 'dropdownItem'
 }, _temp);
 Dropdown.propTypes = process.env.NODE_ENV !== "production" ? {

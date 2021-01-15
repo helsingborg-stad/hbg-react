@@ -7774,11 +7774,13 @@ var Button_Button = (Button_temp = Button_class = function (_Component) {
 
         //Color
         if (typeof props.color != 'undefined') {
-            var colors = ['primary', 'secondary'];
+            var colors = ['default', 'primary', 'secondary'];
 
             if (colors.includes(props.color.toLowerCase())) {
                 dynamicProps.className += ' c-button__filled--' + props.color.toLowerCase();
             }
+        } else {
+            dynamicProps.className += ' c-button__filled--default';
         }
 
         //Block
@@ -8313,7 +8315,20 @@ var DropdownToggle_DropdownToggle = (DropdownToggle_temp = DropdownToggle_class 
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "button",
             { className: classes, onClick: props.clickAction, type: "button" },
-            props.children || props.title
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                "span",
+                { className: "c-button__label-text" },
+                props.children || props.title
+            ),
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                "span",
+                { className: "c-button__label-icon" },
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    "i",
+                    { id: "", className: "c-icon c-icon--size-md material-icons" },
+                    props.isActive ? 'keyboard_arrow_up' : 'keyboard_arrow_down'
+                )
+            )
         );
     };
 
@@ -8388,6 +8403,8 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
             toggleClass = _props.toggleClass,
             children = _props.children,
             itemKey = _props.itemKey;
+
+        console.log("🚀 ~ file: Dropdown.js ~ line 65 ~ Dropdown ~ render ~ toggleClass", toggleClass);
         var listOpen = this.state.listOpen;
 
 
@@ -8399,7 +8416,8 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
                 clickAction: function clickAction() {
                     return _this2.toggleList();
                 },
-                title: title
+                title: title,
+                isActive: listOpen
             }),
             typeof children !== 'undefined' && listOpen && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 Dropdown_DropdownList,
@@ -8461,7 +8479,7 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
     toggleClass: prop_types_default.a.string,
     itemKey: prop_types_default.a.string
 }, Dropdown_class.defaultProps = {
-    toggleClass: 'c-button c-button__filled c-button__filled--primary c-button--md',
+    toggleClass: 'c-button c-button__filled c-button__filled--default c-button--md',
     itemKey: 'dropdownItem'
 }, Dropdown_temp);
 
@@ -8665,7 +8683,7 @@ var Pagination_Pagination = (Pagination_temp = Pagination_class = function (_Com
                         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                             components_Button_Button,
                             {
-                                color: "primary",
+                                color: "default",
                                 onClick: prev,
                                 disabled: current === 1
                             },
@@ -8684,7 +8702,7 @@ var Pagination_Pagination = (Pagination_temp = Pagination_class = function (_Com
                         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                             components_Button_Button,
                             {
-                                color: "primary",
+                                color: "default",
                                 onClick: next,
                                 disabled: current === total
                             },
@@ -9215,7 +9233,7 @@ var AccordionTable_AccordionTable = function AccordionTable(_ref) {
 var PreLoader_PreLoader = function PreLoader(_ref) {
     var _ref$modifier = _ref.modifier,
         modifier = _ref$modifier === undefined ? "" : _ref$modifier;
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { className: "c-loader c-loader__linear--color--black c-loader__linear c-loader__linear--md " + modifier });
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { className: "c-loader c-loader__linear--color--black c-loader__linear c-loader__linear c-loader__linear--sm " + modifier });
 };
 
 /* harmony default export */ var components_PreLoader_PreLoader = (PreLoader_PreLoader);

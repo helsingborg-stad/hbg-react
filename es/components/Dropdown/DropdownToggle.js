@@ -24,7 +24,20 @@ var DropdownToggle = function (_Component) {
         return React.createElement(
             "button",
             { className: classes, onClick: props.clickAction, type: "button" },
-            props.children || props.title
+            React.createElement(
+                "span",
+                { className: "c-button__label-text" },
+                props.children || props.title
+            ),
+            React.createElement(
+                "span",
+                { className: "c-button__label-icon" },
+                React.createElement(
+                    "i",
+                    { id: "", className: "c-icon c-icon--size-md material-icons" },
+                    props.isActive ? 'keyboard_arrow_up' : 'keyboard_arrow_down'
+                )
+            )
         );
     };
 

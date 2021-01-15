@@ -78,7 +78,7 @@ var Pagination = function (_Component) {
                         React.createElement(
                             Button,
                             {
-                                color: "primary",
+                                color: "default",
                                 onClick: prev,
                                 disabled: current === 1
                             },
@@ -97,7 +97,7 @@ var Pagination = function (_Component) {
                         React.createElement(
                             Button,
                             {
-                                color: "primary",
+                                color: "default",
                                 onClick: next,
                                 disabled: current === total
                             },
