@@ -13,7 +13,12 @@ class DropdownToggle extends Component {
 
         return (
             <button className={classes} onClick={props.clickAction} type="button">
-                {props.children || props.title}
+                <span className="c-button__label-text">
+                    {props.children || props.title}
+                </span>
+                <span className="c-button__label-icon">
+                    <i id="" className="c-icon c-icon--size-md material-icons">{props.isActive ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}</i>
+                </span>
             </button>
         );
     }
