@@ -42,6 +42,7 @@ class Button extends Component {
         //Color
         if (typeof props.color != 'undefined') {
             let colors = [
+                'default',
                 'primary',
                 'secondary',
             ];
@@ -49,6 +50,8 @@ class Button extends Component {
             if (colors.includes(props.color.toLowerCase())) {
                 dynamicProps.className += ' c-button__filled--' + props.color.toLowerCase();
             }
+        } else {
+            dynamicProps.className += ' c-button__filled--default';
         }
 
         //Block

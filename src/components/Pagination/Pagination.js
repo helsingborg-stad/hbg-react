@@ -51,7 +51,7 @@ class Pagination extends Component {
                     <div className="o-grid sm-gutter">
                         <div className="o-grid-fit">
                             <Button
-                                color="primary"
+                                color="default"
                                 onClick={prev}
                                 disabled={current === 1}
                             >
@@ -65,7 +65,7 @@ class Pagination extends Component {
                         </div>
                         <div className="o-grid-fit">
                             <Button
-                                color="primary"
+                                color="default"
                                 onClick={next}
                                 disabled={current === total}
                             >
