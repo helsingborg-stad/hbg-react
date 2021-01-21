@@ -8403,8 +8403,6 @@ var Dropdown_Dropdown = (Dropdown_temp = Dropdown_class = function (_Component) 
             toggleClass = _props.toggleClass,
             children = _props.children,
             itemKey = _props.itemKey;
-
-        console.log("🚀 ~ file: Dropdown.js ~ line 65 ~ Dropdown ~ render ~ toggleClass", toggleClass);
         var listOpen = this.state.listOpen;
 
 
