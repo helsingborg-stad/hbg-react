@@ -62,7 +62,7 @@ class Dropdown extends Component {
             children,
             itemKey
         } = this.props;
-            console.log("🚀 ~ file: Dropdown.js ~ line 65 ~ Dropdown ~ render ~ toggleClass", toggleClass)
+
         const { listOpen } = this.state;
 
         return (
