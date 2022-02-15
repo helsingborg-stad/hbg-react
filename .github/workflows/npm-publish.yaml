@@ -1,0 +1,44 @@
+name: Tag and push npm package and create a version release.
+
+on:
+  push:
+    branches:
+    - "feat/move-to-github-npm"
+
+jobs:
+  publish:
+    name: 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Setup PHP with composer v2
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        tools: composer:v2
+
+    - name: NPM Install.
+      run: npm ci
+
+    - name: Setup git bot.
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+    - name: Push tag.
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.HBG_GH_TOKEN }}
+        tags: true
+
+    - name: Inject access token in .npmrc
+      run: | 
+        echo "@helsingborg-stad:registry=https://npm.pkg.github.com/helsingborg-stad" >> ~/.npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.HBG_GH_TOKEN }}" >> ~/.npmrc
+
+    - name: NPM Publish.
+      run: npm publish
