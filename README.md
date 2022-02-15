@@ -43,23 +43,7 @@ npm run start
 
 ## Publish package
 
-1. Go to hbg-react directory and make sure you are logged in:
-
-```
-npm whoami
-```
-
-2. Run npm version to bump package version, build assets and add version commit.
-
-```
-npm version patch | minor | major
-```
-
-3. Review the generated commit, if happy run npm publish - this will push to origin master (with tags) & publish NPM package.
-
-```
-npm publish
-```
+1. commit and push your code to master to start the publish workflow
 
 ## To do
 
