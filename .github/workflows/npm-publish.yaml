@@ -15,12 +15,6 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Setup PHP with composer v2
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-        tools: composer:v2
-
     - name: NPM Install.
       run: npm ci
 
@@ -29,11 +23,15 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
 
+    - name: NPM Version.
+      run: npm version patch
+
     - name: Push tag.
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.HBG_GH_TOKEN }}
         tags: true
+        branch: ${{ github.ref }}
 
     - name: Inject access token in .npmrc
       run: | 
