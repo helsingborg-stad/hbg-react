@@ -1,9 +1,9 @@
-name: Tag and push npm package and create a version release.
+name: publish minor version npm package
 
 on:
   push:
     branches:
-    - "feat/move-to-github-npm"
+    - "3.0/develop"
 
 jobs:
   publish:
