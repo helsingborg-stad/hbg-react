@@ -71,12 +71,19 @@ class Button extends Component {
 
         if (typeof props.href != 'undefined') {
             dynamicProps.href = props.href;
-            return <a {...dynamicProps}>{props.children || props.title}</a>;
+            return (
+            <a {...dynamicProps}>
+                {typeof props.children != 'undefined'
+                        ? props.children
+                        : <span class="c-button__label"><span class="c-button__label-text">{props.title}</span></span>}
+            </a>);
         } else if (typeof props.onClick != 'undefined') {
             dynamicProps.onClick = props.onClick;
             return (
                 <button {...dynamicProps}>
-                    {props.children || props.title}
+                    {typeof props.children != 'undefined'
+                        ? props.children
+                        : <span class="c-button__label"><span class="c-button__label-text">{props.title}</span></span>}
                 </button>
             );
         } else if (typeof props.submit != 'undefined' && props.submit) {

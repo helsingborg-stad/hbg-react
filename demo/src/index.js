@@ -36,9 +36,8 @@ class Demo extends Component {
         return (
             <div className="container">
                 <h1>hbg-react-v2 Demo</h1>
-                <Button color="primary" href="http://google.se">
-                    Lol
-                </Button>
+                <Button color="primary" title="Button" onClick={() => alert('Click')} />
+                <Button color="primary" href="http://google.se" title="Lol"></Button>
                 <Input
                     name="lol"
                     type="text"
