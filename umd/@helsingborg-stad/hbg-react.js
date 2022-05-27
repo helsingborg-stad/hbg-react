@@ -1,5 +1,5 @@
 /*!
- * @helsingborg-stad/hbg-react v1.0.1 - https://github.com/helsingborg-stad/hbg-react#readme
+ * @helsingborg-stad/hbg-react v1.0.2 - https://github.com/helsingborg-stad/hbg-react#readme
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -7831,14 +7831,30 @@ var Button_Button = (Button_temp = Button_class = function (_Component) {
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 'a',
                 dynamicProps,
-                props.children || props.title
+                props.children.length > 0 ? props.children : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'span',
+                    { 'class': 'c-button__label' },
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                        'span',
+                        { 'class': 'c-button__label-text' },
+                        props.title
+                    )
+                )
             );
         } else if (typeof props.onClick != 'undefined') {
             dynamicProps.onClick = props.onClick;
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 'button',
                 dynamicProps,
-                props.children || props.title
+                props.children.length > 0 ? props.children : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    'span',
+                    { 'class': 'c-button__label' },
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                        'span',
+                        { 'class': 'c-button__label-text' },
+                        props.title
+                    )
+                )
             );
         } else if (typeof props.submit != 'undefined' && props.submit) {
             dynamicProps.type = 'submit';

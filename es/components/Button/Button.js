@@ -61,14 +61,30 @@ var Button = function (_Component) {
             return React.createElement(
                 'a',
                 dynamicProps,
-                props.children || props.title
+                props.children.length > 0 ? props.children : React.createElement(
+                    'span',
+                    { 'class': 'c-button__label' },
+                    React.createElement(
+                        'span',
+                        { 'class': 'c-button__label-text' },
+                        props.title
+                    )
+                )
             );
         } else if (typeof props.onClick != 'undefined') {
             dynamicProps.onClick = props.onClick;
             return React.createElement(
                 'button',
                 dynamicProps,
-                props.children || props.title
+                props.children.length > 0 ? props.children : React.createElement(
+                    'span',
+                    { 'class': 'c-button__label' },
+                    React.createElement(
+                        'span',
+                        { 'class': 'c-button__label-text' },
+                        props.title
+                    )
+                )
             );
         } else if (typeof props.submit != 'undefined' && props.submit) {
             dynamicProps.type = 'submit';
