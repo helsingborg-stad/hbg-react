@@ -50,9 +50,9 @@ class Demo extends Component {
                 <Pagination
                     current={1}
                     total={10}
+                    goToPage={() => {}}
                     next={() => {}}
                     prev={() => {}}
-                    input={() => {}}
                     langNext="Next"
                     langPrev="Prev"
                 />
