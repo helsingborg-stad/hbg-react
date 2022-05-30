@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Button from "../Button/Button";
-import Input from "../Form/Input";
-
 
 class Pagination extends Component {
     static propTypes = {
@@ -10,10 +8,38 @@ class Pagination extends Component {
         total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         next: PropTypes.func.isRequired,
         prev: PropTypes.func.isRequired,
-        input: PropTypes.func.isRequired,
+        goToPage: PropTypes.func.isRequired,
         langPrev: PropTypes.string,
         langNext: PropTypes.string
     };
+
+    pageList() {
+        const {
+            total,
+            current
+        } = this.props;
+        const allowedItems = 5;
+        let list = Array.from({length: total}, (_, i) => i + 1) // Fill array with all page numbers
+
+        if(total <= allowedItems) {
+            return list;
+        }
+
+        let currentIndex = current -1;
+        let offset = 2;
+        let firstIndex = currentIndex - offset - 1 < 0 ? 0 : currentIndex - offset;
+
+        if(total - current < offset) {
+            offset = offset - (total - current);
+            firstIndex = firstIndex - offset;
+        }
+
+        const items = list.slice(firstIndex, allowedItems + firstIndex);
+        const firstItem = items.includes(1) ? false : 1;
+        const lastItem = items.includes(total) ? false : total;
+        console.log({firstItem, lastItem, items})
+        return {firstItem, lastItem, items}
+    }
 
     render() {
         const {
@@ -21,37 +47,20 @@ class Pagination extends Component {
             total,
             next,
             prev,
-            input,
             langPrev,
-            langNext
+            langNext,
+            goToPage
         } = this.props;
+
+        const pageList = this.pageList();
 
         return (
             <div className="o-grid">
-                <div className="o-grid-fit u-mr-auto">
-                    <div className="o-grid sm-gutter grid-va-middle">
-                        <div className="o-grid-fit">
-                            <div className="c-field">
-                                <Input
-                                    value={current}
-                                    type="number"
-                                    min="1"
-                                    max={total}
-                                    handleChange={input}
-                                    style={{maxWidth: '80px'}}
-                                />
-                            </div>
-                        </div>
-                        <div className="o-grid-fit  u-display--flex u-align-items--center">
-                            <span> / {total}</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="o-grid-fit">
-                    <div className="o-grid sm-gutter">
-                        <div className="o-grid-fit">
+                <div className="grid-fit-content">
+                    <div className="grid sm-gutter">
+                        <div className="grid-fit-content">
                             <Button
-                                color="default"
+                                color="primary"
                                 onClick={prev}
                                 disabled={current === 1}
                             >
@@ -63,9 +72,56 @@ class Pagination extends Component {
                                 ) : null}
                             </Button>
                         </div>
-                        <div className="o-grid-fit">
+
+                        {pageList.firstItem &&
+                            <React.Fragment>
+                                <div className="grid-fit-content">
+                                    <Button
+                                        color={current === pageList.firstItem ? 'primary' : 'default'}
+                                        onClick={() => goToPage(pageList.firstItem)}
+                                        disabled={current === pageList.firstItem}
+                                    >
+                                        {pageList.firstItem}
+                                    </Button>
+                                </div>
+                                <div className="grid-fit-content">
+                                    ...
+                                </div>
+                            </React.Fragment>
+                        }
+
+                        {pageList.items.map(page => (
+                            <div className="grid-fit-content">
+                                <Button
+                                    color={current === page ? 'primary' : 'default'}
+                                    onClick={() => goToPage(page)}
+                                    disabled={current === page}
+                                >
+                                    {page}
+                                </Button>
+                            </div>
+                        ))}
+
+                        {pageList.lastItem &&
+                            <React.Fragment>
+                                <div className="grid-fit-content">
+                                    ...
+                                </div>
+                                <div className="grid-fit-content">
+                                    <Button
+                                        color={current === pageList.lastItem ? 'primary' : 'default'}
+                                        onClick={() => goToPage(pageList.lastItem)}
+                                        disabled={current === pageList.lastItem}
+                                    >
+                                        {pageList.lastItem}
+                                    </Button>
+                                </div>
+                            </React.Fragment>
+                        }
+                        
+                        <div className="grid-fit-content">
                             <Button
-                                color="default"
+                                color="primary"
                                 onClick={next}
                                 disabled={current === total}
                             >
