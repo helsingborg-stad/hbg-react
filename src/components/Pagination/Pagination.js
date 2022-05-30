@@ -37,7 +37,6 @@ class Pagination extends Component {
         const items = list.slice(firstIndex, allowedItems + firstIndex);
         const firstItem = items.includes(1) ? false : 1;
         const lastItem = items.includes(total) ? false : total;
-        console.log({firstItem, lastItem, items})
         return {firstItem, lastItem, items}
     }
 
