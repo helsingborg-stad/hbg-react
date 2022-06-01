@@ -20,10 +20,7 @@
         "test:coverage": "nwb test-react --coverage",
         "test:watch": "nwb test-react --server"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/helsingborg-stad/hbg-react.git"
-    },
+    "repository": "https://github.com/helsingborg-stad/hbg-react",
     "keywords": [
         "react",
         "react-dom",
