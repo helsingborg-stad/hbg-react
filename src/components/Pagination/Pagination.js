@@ -55,85 +55,81 @@ class Pagination extends Component {
         const pageList = this.pageList();
 
         return (
-            <div className="o-grid">
-                <div className="grid-fit-content">
-                    <div className="grid sm-gutter">
-                        <div className="grid-fit-content">
+            <div className="o-grid sm-gutter">
+                <div className="o-grid-fit">
+                    <Button
+                        color="primary"
+                        onClick={prev}
+                        disabled={current === 1}
+                    >
+                        <i className="pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl" />{" "}
+                        {langPrev ? (
+                            <span className="u-hidden@xs u-hidden@sm">
+                                {langPrev}
+                            </span>
+                        ) : null}
+                    </Button>
+                </div>
+
+                {pageList.firstItem &&
+                    <React.Fragment>
+                        <div className="o-grid-fit">
                             <Button
-                                color="primary"
-                                onClick={prev}
-                                disabled={current === 1}
+                                color={current === pageList.firstItem ? 'primary' : 'plain'}
+                                onClick={() => goToPage(pageList.firstItem)}
+                                disabled={current === pageList.firstItem}
                             >
-                                <i className="pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl" />{" "}
-                                {langPrev ? (
-                                    <span className="u-hidden@xs u-hidden@sm">
-                                        {langPrev}
-                                    </span>
-                                ) : null}
+                                {pageList.firstItem}
                             </Button>
                         </div>
-
-                        {pageList.firstItem &&
-                            <React.Fragment>
-                                <div className="grid-fit-content">
-                                    <Button
-                                        color={current === pageList.firstItem ? 'primary' : 'default'}
-                                        onClick={() => goToPage(pageList.firstItem)}
-                                        disabled={current === pageList.firstItem}
-                                    >
-                                        {pageList.firstItem}
-                                    </Button>
-                                </div>
-                                <div className="grid-fit-content">
-                                    ...
-                                </div>
-                            </React.Fragment>
-                        }
-
-                        {pageList.items.map(page => (
-                            <div className="grid-fit-content">
-                                <Button
-                                    color={current === page ? 'primary' : 'default'}
-                                    onClick={() => goToPage(page)}
-                                    disabled={current === page}
-                                >
-                                    {page}
-                                </Button>
-                            </div>
-                        ))}
-
-                        {pageList.lastItem &&
-                            <React.Fragment>
-                                <div className="grid-fit-content">
-                                    ...
-                                </div>
-                                <div className="grid-fit-content">
-                                    <Button
-                                        color={current === pageList.lastItem ? 'primary' : 'default'}
-                                        onClick={() => goToPage(pageList.lastItem)}
-                                        disabled={current === pageList.lastItem}
-                                    >
-                                        {pageList.lastItem}
-                                    </Button>
-                                </div>
-                            </React.Fragment>
-                        }
-                        
-                        <div className="grid-fit-content">
-                            <Button
-                                color="primary"
-                                onClick={next}
-                                disabled={current === total}
-                            >
-                                {langNext ? (
-                                    <span className="u-hidden@xs u-hidden@sm">
-                                        {langNext}
-                                    </span>
-                                ) : null}{" "}
-                                <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
-                            </Button>
+                        <div className="o-grid-fit">
+                            ...
                         </div>
+                    </React.Fragment>
+                }
+
+                {pageList.items.map((page, key) => (
+                    <div className="o-grid-fit" key={key}>
+                        <Button
+                            color={current === page ? 'primary' : 'default'}
+                            onClick={() => goToPage(page)}
+                            disabled={current === page}
+                        >
+                            {page}
+                        </Button>
                     </div>
+                ))}
+
+                {pageList.lastItem &&
+                    <React.Fragment>
+                        <div className="o-grid-fit">
+                            ...
+                        </div>
+                        <div className="o-grid-fit">
+                            <Button
+                                color={current === pageList.lastItem ? 'primary' : 'default'}
+                                onClick={() => goToPage(pageList.lastItem)}
+                                disabled={current === pageList.lastItem}
+                            >
+                                {pageList.lastItem}
+                            </Button>
+                        </div>
+                    </React.Fragment>
+                }
+                
+                <div className="o-grid-fit">
+                    <Button
+                        color="primary"
+                        onClick={next}
+                        disabled={current === total}
+                    >
+                        {langNext ? (
+                            <span className="u-hidden@xs u-hidden@sm">
+                                {langNext}
+                            </span>
+                        ) : null}{" "}
+                        <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
+                    </Button>
                 </div>
             </div>
         );
