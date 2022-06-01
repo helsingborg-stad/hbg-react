@@ -47,33 +47,28 @@ class Pagination extends Component {
             total,
             next,
             prev,
-            langPrev,
-            langNext,
             goToPage
         } = this.props;
 
         const pageList = this.pageList();
 
         return (
-            <div className="o-grid sm-gutter">
-                <div className="o-grid-fit">
+            <ul className="c-pagination__list">
+                <li className="c-pagination__item--previous c-pagination__item">
                     <Button
                         color="primary"
                         onClick={prev}
                         disabled={current === 1}
                     >
-                        <i className="pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl" />{" "}
-                        {langPrev ? (
-                            <span className="u-hidden@xs u-hidden@sm">
-                                {langPrev}
-                            </span>
-                        ) : null}
+                        <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                            chevron_left
+                        </i>
                     </Button>
-                </div>
-
+                </li>
+                
                 {pageList.firstItem &&
                     <React.Fragment>
-                        <div className="o-grid-fit">
+                        <li className="c-pagination__item u-display--none@xs">
                             <Button
                                 color={current === pageList.firstItem ? 'primary' : 'plain'}
                                 onClick={() => goToPage(pageList.firstItem)}
@@ -81,31 +76,39 @@ class Pagination extends Component {
                             >
                                 {pageList.firstItem}
                             </Button>
-                        </div>
-                        <div className="o-grid-fit">
-                            ...
-                        </div>
+                        </li>
+                        <li class="c-pagination__item u-display--none@xs">  
+                            <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                                more_horiz
+                            </i>
+                        </li>
                     </React.Fragment>
                 }
 
-                {pageList.items.map((page, key) => (
-                    <div className="o-grid-fit" key={key}>
-                        <Button
-                            color={current === page ? 'primary' : 'default'}
-                            onClick={() => goToPage(page)}
-                            disabled={current === page}
-                        >
-                            {page}
-                        </Button>
-                    </div>
-                ))}
+                <li className="c-pagination__page-wrapper">
+                    <ul className="c-pagination__pages">
+                        {pageList.items.map((page, key) => (
+                            <li className="c-pagination__item" key={key}>
+                                <Button
+                                    color={current === page ? 'primary' : 'default'}
+                                    onClick={() => goToPage(page)}
+                                    disabled={current === page}
+                                >
+                                    {page}
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                </li>
 
                 {pageList.lastItem &&
                     <React.Fragment>
-                        <div className="o-grid-fit">
-                            ...
-                        </div>
-                        <div className="o-grid-fit">
+                        <li class="c-pagination__item u-display--none@xs">  
+                            <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                                more_horiz
+                            </i>
+                        </li>
+                        <li className="c-pagination__item u-display--none@xs">
                             <Button
                                 color={current === pageList.lastItem ? 'primary' : 'default'}
                                 onClick={() => goToPage(pageList.lastItem)}
@@ -113,25 +116,22 @@ class Pagination extends Component {
                             >
                                 {pageList.lastItem}
                             </Button>
-                        </div>
+                        </li>
                     </React.Fragment>
                 }
                 
-                <div className="o-grid-fit">
+                <li className="c-pagination__item--next c-pagination__item">
                     <Button
                         color="primary"
                         onClick={next}
                         disabled={current === total}
                     >
-                        {langNext ? (
-                            <span className="u-hidden@xs u-hidden@sm">
-                                {langNext}
-                            </span>
-                        ) : null}{" "}
-                        <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
+                        <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                            chevron_right
+                        </i>
                     </Button>
-                </div>
-            </div>
+                </li>
+            </ul>
         );
     }
 }
