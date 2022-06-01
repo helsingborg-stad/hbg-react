@@ -19,24 +19,25 @@ class Pagination extends Component {
             current
         } = this.props;
         const allowedItems = 5;
-        let list = Array.from({length: total}, (_, i) => i + 1) // Fill array with all page numbers
+        let items = Array.from({length: total}, (_, i) => i + 1) // Fill array with all page numbers
+        let firstItem = false;
+        let lastItem = false;
 
-        if(total <= allowedItems) {
-            return list;
+        if(total > allowedItems) {
+            let currentIndex = current -1;
+            let offset = 2;
+            let firstIndex = currentIndex - offset - 1 < 0 ? 0 : currentIndex - offset;
+    
+            if(total - current < offset) {
+                offset = offset - (total - current);
+                firstIndex = firstIndex - offset;
+            }
+    
+            items = items.slice(firstIndex, allowedItems + firstIndex);
+            firstItem = items.includes(1) ? false : 1;
+            lastItem = items.includes(total) ? false : total;
         }
 
-        let currentIndex = current -1;
-        let offset = 2;
-        let firstIndex = currentIndex - offset - 1 < 0 ? 0 : currentIndex - offset;
-
-        if(total - current < offset) {
-            offset = offset - (total - current);
-            firstIndex = firstIndex - offset;
-        }
-
-        const items = list.slice(firstIndex, allowedItems + firstIndex);
-        const firstItem = items.includes(1) ? false : 1;
-        const lastItem = items.includes(total) ? false : total;
         return {firstItem, lastItem, items}
     }
 
