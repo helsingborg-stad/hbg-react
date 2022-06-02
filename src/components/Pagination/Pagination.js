@@ -59,8 +59,9 @@ class Pagination extends Component {
                         color="primary"
                         onClick={prev}
                         disabled={current === 1}
+                        className="c-pagination__link"
                     >
-                        <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                        <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
                             chevron_left
                         </i>
                     </Button>
@@ -73,12 +74,13 @@ class Pagination extends Component {
                                 color={current === pageList.firstItem ? 'primary' : 'plain'}
                                 onClick={() => goToPage(pageList.firstItem)}
                                 disabled={current === pageList.firstItem}
+                                className="c-pagination__link"
                             >
                                 {pageList.firstItem}
                             </Button>
                         </li>
-                        <li class="c-pagination__item u-display--none@xs">  
-                            <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                        <li className="c-pagination__item u-display--none@xs">  
+                            <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
                                 more_horiz
                             </i>
                         </li>
@@ -93,6 +95,7 @@ class Pagination extends Component {
                                     color={current === page ? 'primary' : 'default'}
                                     onClick={() => goToPage(page)}
                                     disabled={current === page}
+                                    className="c-pagination__link"
                                 >
                                     {page}
                                 </Button>
@@ -103,8 +106,8 @@ class Pagination extends Component {
 
                 {pageList.lastItem &&
                     <React.Fragment>
-                        <li class="c-pagination__item u-display--none@xs">  
-                            <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                        <li className="c-pagination__item u-display--none@xs">  
+                            <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
                                 more_horiz
                             </i>
                         </li>
@@ -113,6 +116,7 @@ class Pagination extends Component {
                                 color={current === pageList.lastItem ? 'primary' : 'default'}
                                 onClick={() => goToPage(pageList.lastItem)}
                                 disabled={current === pageList.lastItem}
+                                className="c-pagination__link"
                             >
                                 {pageList.lastItem}
                             </Button>
@@ -125,8 +129,9 @@ class Pagination extends Component {
                         color="primary"
                         onClick={next}
                         disabled={current === total}
+                        className="c-pagination__link"
                     >
-                        <i class="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                        <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
                             chevron_right
                         </i>
                     </Button>
