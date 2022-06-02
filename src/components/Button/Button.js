@@ -16,6 +16,7 @@ class Button extends Component {
             'theme-fifth',
             'plain'
         ]),
+        className: PropTypes.string,
         block: PropTypes.bool,
         disabled: PropTypes.bool,
         outline: PropTypes.bool,
@@ -30,6 +31,9 @@ class Button extends Component {
         let dynamicProps = {};
 
         dynamicProps.className = 'c-button c-button__filled';
+        if(props.className !== '') {
+            dynamicProps.className += ` ${props.className}`;
+        }
 
         //Size
         if (typeof props.size != 'undefined') {
@@ -75,7 +79,7 @@ class Button extends Component {
             <a {...dynamicProps}>
                 {typeof props.children != 'undefined'
                         ? props.children
-                        : <span class="c-button__label"><span class="c-button__label-text">{props.title}</span></span>}
+                        : <span className="c-button__label"><span className="c-button__label-text">{props.title}</span></span>}
             </a>);
         } else if (typeof props.onClick != 'undefined') {
             dynamicProps.onClick = props.onClick;
@@ -83,7 +87,7 @@ class Button extends Component {
                 <button {...dynamicProps}>
                     {typeof props.children != 'undefined'
                         ? props.children
-                        : <span class="c-button__label"><span class="c-button__label-text">{props.title}</span></span>}
+                        : <span className="c-button__label"><span className="c-button__label-text">{props.title}</span></span>}
                 </button>
             );
         } else if (typeof props.submit != 'undefined' && props.submit) {
@@ -94,6 +98,10 @@ class Button extends Component {
 
         return null;
     }
+}
+
+Button.defaultProps = {
+    className: ''
 }
 
 export default Button;
