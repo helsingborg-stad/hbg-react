@@ -53,90 +53,92 @@ class Pagination extends Component {
         const pageList = this.pageList();
 
         return (
-            <ul className="c-pagination__list">
-                <li className="c-pagination__item--previous c-pagination__item">
-                    <Button
-                        color="primary"
-                        onClick={prev}
-                        disabled={current === 1}
-                        className="c-pagination__link"
-                    >
-                        <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
-                            chevron_left
-                        </i>
-                    </Button>
-                </li>
-                
-                {pageList.firstItem &&
-                    <React.Fragment>
-                        <li className="c-pagination__item u-display--none@xs">
-                            <Button
-                                color={current === pageList.firstItem ? 'primary' : 'plain'}
-                                onClick={() => goToPage(pageList.firstItem)}
-                                disabled={current === pageList.firstItem}
-                                className="c-pagination__link"
-                            >
-                                {pageList.firstItem}
-                            </Button>
-                        </li>
-                        <li className="c-pagination__item u-display--none@xs">  
+            <nav class="c-pagination u-margin__top--4 u-display--flex u-justify-content--center" role="navigation" aria-label="Pagination Navigation">
+                <ul className="c-pagination__list">
+                    <li className="c-pagination__item--previous c-pagination__item">
+                        <Button
+                            color="primary"
+                            onClick={prev}
+                            disabled={current === 1}
+                            className="c-pagination__link"
+                        >
                             <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
-                                more_horiz
+                                chevron_left
                             </i>
-                        </li>
-                    </React.Fragment>
-                }
-
-                <li className="c-pagination__page-wrapper">
-                    <ul className="c-pagination__pages">
-                        {pageList.items.map((page, key) => (
-                            <li className="c-pagination__item" key={key}>
+                        </Button>
+                    </li>
+                    
+                    {pageList.firstItem &&
+                        <React.Fragment>
+                            <li className="c-pagination__item u-display--none@xs">
                                 <Button
-                                    color={current === page ? 'primary' : 'default'}
-                                    onClick={() => goToPage(page)}
-                                    disabled={current === page}
+                                    color={current === pageList.firstItem ? 'primary' : 'plain'}
+                                    onClick={() => goToPage(pageList.firstItem)}
+                                    disabled={current === pageList.firstItem}
                                     className="c-pagination__link"
                                 >
-                                    {page}
+                                    {pageList.firstItem}
                                 </Button>
                             </li>
-                        ))}
-                    </ul>
-                </li>
+                            <li className="c-pagination__item u-display--none@xs">  
+                                <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                                    more_horiz
+                                </i>
+                            </li>
+                        </React.Fragment>
+                    }
 
-                {pageList.lastItem &&
-                    <React.Fragment>
-                        <li className="c-pagination__item u-display--none@xs">  
+                    <li className="c-pagination__page-wrapper">
+                        <ul className="c-pagination__pages">
+                            {pageList.items.map((page, key) => (
+                                <li className="c-pagination__item" key={key}>
+                                    <Button
+                                        color={current === page ? 'primary' : 'plain'}
+                                        onClick={() => goToPage(page)}
+                                        disabled={current === page}
+                                        className="c-pagination__link"
+                                    >
+                                        {page}
+                                    </Button>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+
+                    {pageList.lastItem &&
+                        <React.Fragment>
+                            <li className="c-pagination__item u-display--none@xs">  
+                                <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                                    more_horiz
+                                </i>
+                            </li>
+                            <li className="c-pagination__item u-display--none@xs">
+                                <Button
+                                    color={current === pageList.lastItem ? 'primary' : 'plain'}
+                                    onClick={() => goToPage(pageList.lastItem)}
+                                    disabled={current === pageList.lastItem}
+                                    className="c-pagination__link"
+                                >
+                                    {pageList.lastItem}
+                                </Button>
+                            </li>
+                        </React.Fragment>
+                    }
+                    
+                    <li className="c-pagination__item--next c-pagination__item">
+                        <Button
+                            color="primary"
+                            onClick={next}
+                            disabled={current === total}
+                            className="c-pagination__link"
+                        >
                             <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
-                                more_horiz
+                                chevron_right
                             </i>
-                        </li>
-                        <li className="c-pagination__item u-display--none@xs">
-                            <Button
-                                color={current === pageList.lastItem ? 'primary' : 'default'}
-                                onClick={() => goToPage(pageList.lastItem)}
-                                disabled={current === pageList.lastItem}
-                                className="c-pagination__link"
-                            >
-                                {pageList.lastItem}
-                            </Button>
-                        </li>
-                    </React.Fragment>
-                }
-                
-                <li className="c-pagination__item--next c-pagination__item">
-                    <Button
-                        color="primary"
-                        onClick={next}
-                        disabled={current === total}
-                        className="c-pagination__link"
-                    >
-                        <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
-                            chevron_right
-                        </i>
-                    </Button>
-                </li>
-            </ul>
+                        </Button>
+                    </li>
+                </ul>
+            </nav>
         );
     }
 }
