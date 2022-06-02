@@ -14,7 +14,8 @@ class Button extends Component {
             'theme-third',
             'theme-fourth',
             'theme-fifth',
-            'plain'
+            'plain',
+            'default'
         ]),
         className: PropTypes.string,
         block: PropTypes.bool,
