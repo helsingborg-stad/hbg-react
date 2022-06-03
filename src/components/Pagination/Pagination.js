@@ -52,7 +52,7 @@ class Pagination extends Component {
 
         const pageList = this.pageList();
 
-        return (
+        return total === 1 ? null : (
             <nav class="c-pagination u-display--flex u-justify-content--center" role="navigation" aria-label="Pagination Navigation">
                 <ul className="c-pagination__list">
                     <li className="c-pagination__item--previous c-pagination__item">
