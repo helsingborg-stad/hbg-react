@@ -40,6 +40,8 @@ class Input extends Component {
         
         icon: PropTypes.string,
 
+        icon_suffix: PropTypes.string,
+
         autocomplete: PropTypes.oneOf(['on', 'off']),
 
         maxLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -97,23 +99,25 @@ class Input extends Component {
 
         return (
             <div>
-                <div className={`c-field c-field--md c-field--radius-md ${props.icon ? 'c-field--icon' : ''}`}>
-
-                    {props.icon && (
-                        <i className="c-icon c-icon--size-md material-icons">{props.icon}</i>
-                    )}
-
-                    <input
-                        id={props.id || props.name}
-                        name={props.name}
-                        type={props.type}
-                        onChange={props.handleChange}
-                        {...dynamicProps}
-                        placeholder={props.label ? props.label : ''}
-                    />
-                    
+                <div className={`c-field c-field--text c-field--md c-field--radius-md ${(props.icon || props.icon_suffix) ? 'c-field--icon' : ''}`}>
+                    <div className={`c-field__inner c-field__inner--text`}>
+                         {props.icon && (
+                            <i className="c-icon c-field__suffix material-icons">{props.icon}</i>
+                        )}  
+                        <input
+                            id={props.id || props.name}
+                            name={props.name}
+                            type={props.type}
+                            onChange={props.handleChange}
+                            {...dynamicProps}
+                            placeholder={props.label ? props.label : ''}
+                        />
+                        {props.icon_suffix && (
+                            <i className="c-icon c-field__suffix material-icons">{props.icon_suffix}</i>
+                        )}                        
+                    </div>    
                     {props.label && (
-                        <label htmlFor={props.id || props.name} className="c-field__text--label">
+                        <label htmlFor={props.id || props.name} className="c-field__label">
                             {props.label}{' '}
                             {/* {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
                                 <span data-tooltip={props.explainer}>
