@@ -100,20 +100,15 @@ class Input extends Component {
         return (
             <div>
                 <div className={`c-field c-field--text c-field--md c-field--radius-md ${(props.icon || props.icon_suffix) ? 'c-field--icon' : ''}`}>
+                    {props.label && (
+                        <label htmlFor={props.id || props.name} className="c-field__label">
+                            {props.label}{' '}
+                        </label>
+                    )}
                     <div className={`c-field__inner c-field__inner--text`}>
                          {props.icon && (
                             <i className="c-icon c-field__suffix material-icons">{props.icon}</i>
                         )}  
-                        {props.label && (
-                            <label htmlFor={props.id || props.name} className="c-field__label">
-                                {props.label}{' '}
-                                {/* {typeof props.explainer !== 'undefined' && props.explainer.length > 0 ? (
-                                    <span data-tooltip={props.explainer}>
-                                        <i className="fa fa-question-circle" />
-                                    </span>
-                                    ) : null} */}
-                            </label>
-                        )}
                         <input
                             id={props.id || props.name}
                             name={props.name}
