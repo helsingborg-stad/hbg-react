@@ -61,6 +61,8 @@ class Input extends Component {
         explainer: PropTypes.string,
 
         description: PropTypes.string,
+
+        classNames: PropTypes.arrayOf(PropTypes.string),
     };
 
     render() {
@@ -99,7 +101,7 @@ class Input extends Component {
 
         return (
             <div>
-                <div className={`c-field c-field--text c-field--md c-field--radius-md ${(props.icon || props.icon_suffix) ? 'c-field--icon' : ''}`}>
+                <div className={`c-field c-field--text c-field--md c-field--radius-md ${[...(props?.classNames ?? [])].join(' ')} ${(props.icon || props.icon_suffix) ? 'c-field--icon' : ''}`}>
                     {props.label && (
                         <label htmlFor={props.id || props.name} className="c-field__label">
                             {props.label}{' '}
@@ -107,7 +109,7 @@ class Input extends Component {
                     )}
                     <div className={`c-field__inner c-field__inner--text`}>
                          {props.icon && (
-                            <i className="c-icon c-field__suffix material-icons">{props.icon}</i>
+                            <i className="c-icon c-field__icon c-field__suffix material-icons">{props.icon}</i>
                         )}  
                         <input
                             id={props.id || props.name}
