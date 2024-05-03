@@ -106,7 +106,7 @@ class Pagination extends Component {
                                         className="c-pagination__link"
                                         size="small"
                                     >
-                                        <span className="u-sr__only">{langGoToPage ?? "Go to page: "}</span>{page}
+                                        <span className="u-sr__only">{langGoToPage ?? "Go to page: "} </span>{page}
                                     </Button>
                                 </li>
                             ))}
