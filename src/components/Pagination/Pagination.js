@@ -47,7 +47,9 @@ class Pagination extends Component {
             total,
             next,
             prev,
-            goToPage
+            goToPage,
+            langNext,
+            langPrev
         } = this.props;
 
         const pageList = this.pageList();
@@ -63,7 +65,8 @@ class Pagination extends Component {
                             className="c-pagination__link"
                             size="small"
                         >
-                            <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                            <span className="u-sr__only">{langPrev ?? "Previous page"}</span>
+                            <i className="c-icon c-icon--size-sm material-icons" translate="no" aria-hidden="true">
                                 chevron_left
                             </i>
                         </Button>
@@ -137,7 +140,8 @@ class Pagination extends Component {
                             className="c-pagination__link"
                             size="small"
                         >
-                            <i className="c-icon c-icon--size-sm material-icons" translate="no" role="img" alt="">
+                            <span className="u-sr__only">{langNext ?? "Next page"}</span>
+                            <i className="c-icon c-icon--size-sm material-icons" translate="no" aria-hidden="true">
                                 chevron_right
                             </i>
                         </Button>
