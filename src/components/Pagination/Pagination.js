@@ -10,7 +10,8 @@ class Pagination extends Component {
         prev: PropTypes.func.isRequired,
         goToPage: PropTypes.func.isRequired,
         langPrev: PropTypes.string,
-        langNext: PropTypes.string
+        langNext: PropTypes.string,
+        langGoToPage: PropTypes.string
     };
 
     pageList() {
@@ -49,7 +50,8 @@ class Pagination extends Component {
             prev,
             goToPage,
             langNext,
-            langPrev
+            langPrev,
+            langGoToPage
         } = this.props;
 
         const pageList = this.pageList();
@@ -104,7 +106,7 @@ class Pagination extends Component {
                                         className="c-pagination__link"
                                         size="small"
                                     >
-                                        {page}
+                                        <span className="u-sr__only">{langGoToPage ?? "Go to page: "} </span>{page}
                                     </Button>
                                 </li>
                             ))}
