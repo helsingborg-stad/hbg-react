@@ -49,5 +49,3 @@ npm run start
 
 -   Write tests for each component
 -   Demo page
-
-
