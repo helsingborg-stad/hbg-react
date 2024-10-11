@@ -67,7 +67,7 @@ class Pagination extends Component {
                             className="c-pagination__link"
                             size="small"
                         >
-                            <span className="u-sr__only">{langPrev ?? "Previous page"}</span>
+                            <span className="u-sr__only">{langPrev || "Previous page"}</span>
                             <i className="c-icon c-icon--size-sm material-icons" translate="no" aria-hidden="true">
                                 chevron_left
                             </i>
@@ -106,7 +106,7 @@ class Pagination extends Component {
                                         className="c-pagination__link"
                                         size="small"
                                     >
-                                        <span className="u-sr__only">{langGoToPage ?? "Go to page: "} </span>{page}
+                                        <span className="u-sr__only">{langGoToPage || "Go to page: "} </span>{page}
                                     </Button>
                                 </li>
                             ))}
@@ -142,7 +142,7 @@ class Pagination extends Component {
                             className="c-pagination__link"
                             size="small"
                         >
-                            <span className="u-sr__only">{langNext ?? "Next page"}</span>
+                            <span className="u-sr__only">{langNext || "Next page"}</span>
                             <i className="c-icon c-icon--size-sm material-icons" translate="no" aria-hidden="true">
                                 chevron_right
                             </i>

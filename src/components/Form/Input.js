@@ -101,7 +101,7 @@ class Input extends Component {
 
         return (
             <div>
-                <div className={`c-field c-field--text c-field--md c-field--radius-md ${[...(props?.classNames ?? [])].join(' ')} ${(props.icon || props.icon_suffix) ? 'c-field--icon' : ''}`}>
+                <div className={`c-field c-field--text c-field--md c-field--radius-md ${[...(props.classNames || [])].join(' ')} ${(props.icon || props.icon_suffix) ? 'c-field--icon' : ''}`}>
                     {props.label && (
                         <label htmlFor={props.id || props.name} className="c-field__label">
                             {props.label}{' '}
