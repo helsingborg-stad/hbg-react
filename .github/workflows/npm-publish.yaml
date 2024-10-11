@@ -1,6 +1,7 @@
 name: publish minor version npm package
 
 on:
+  workflow_dispatch:
   push:
     branches:
     - "3.0/develop"
